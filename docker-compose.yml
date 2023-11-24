@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: wic_nginx
+    restart: always
+    volumes:
+      - ./.docker/services/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./:/app
+    ports:
+      - "${APP_PORT}:80"
+    depends_on:
+      - php
+    networks:
+      - default
+
+  php:
+    container_name: wic_php
+    build:
+      args:
+        user: a
+        uid: 1000
+      context: .docker/services/php
+      dockerfile: Dockerfile
+    environment:
+      - XDEBUG_SESSION=PHPSTORM
+      - PHP_IDE_CONFIG=serverName=localhost
+    volumes:
+      - ./:/app
+      - ./.docker/services/php/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./.docker/services/php/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
+    networks:
+      - default
+
+networks:
+  default:
+    name: ${APP_NAME}_network

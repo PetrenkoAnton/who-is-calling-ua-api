@@ -1,0 +1,7 @@
+/vendor
+/.idea
+.phpunit.result.cache
+/_dev
+_ide_helper.php
+.phpstorm.meta.php
+Makefile
