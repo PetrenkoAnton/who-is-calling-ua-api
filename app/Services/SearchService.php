@@ -29,8 +29,10 @@ class SearchService
         return [
             'phone' => $phone,
             'providers' => [
-                'provider' => $this->searchProvider->getName(),
-                'comments' => $comments,
+                [
+                    'provider' => $this->searchProvider->getName(),
+                    'comments' => $comments,
+                ],
             ],
             'from_cache' => $fromCache,
         ];
