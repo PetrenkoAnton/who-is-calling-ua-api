@@ -4,13 +4,20 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use DiDom\Document;
+use App\Helpers\CommentFormatter;
 use DiDom\Element;
 use DiDom\Exceptions\InvalidSelectorException;
 
 class KZSearchProvider implements SearchProviderInterface
 {
     public const NAME = 'ktozvonil.net';
+
+    public function __construct(
+        public readonly DocumentFactory $documentFactory,
+        private readonly CommentFormatter $commentFormatter,
+    )
+    {
+    }
 
     public function getName(): string
     {
@@ -25,13 +32,12 @@ class KZSearchProvider implements SearchProviderInterface
         $outputComments = [];
         $url = 'https://ktozvonil.net/nomer/' . $phone;
 
-        $document = new Document($url, true);
+        $document = $this->documentFactory->create($url);
         $comments = $document->find('.comments .content');
-
 
         foreach ($comments as $comment)
             /** @var $comment Element */
-            $outputComments[] = trim(substr($comment->text(), 3));
+            $outputComments[] = $this->commentFormatter->kzformat($comment->text());
 
         return $outputComments;
     }

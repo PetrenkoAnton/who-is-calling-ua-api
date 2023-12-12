@@ -11,3 +11,7 @@ wic:
 test:
 	docker exec -it wic_php ./vendor/bin/phpunit
 .PHONY: test
+
+test +:
+	docker exec -it wic_php ./vendor/bin/phpunit --group +
+.PHONY: test +
