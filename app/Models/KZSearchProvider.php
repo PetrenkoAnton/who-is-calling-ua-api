@@ -31,7 +31,7 @@ class KZSearchProvider implements SearchProviderInterface
 
         foreach ($comments as $comment)
             /** @var $comment Element */
-            $outputComments[] = $comment->text();
+            $outputComments[] = trim(substr($comment->text(), 3));
 
         return $outputComments;
     }
