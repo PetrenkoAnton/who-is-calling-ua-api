@@ -8,6 +8,6 @@ class CommentFormatter
 {
     public function kzformat(string $comment): string
     {
-        return trim(str_replace("\n", ' ', $comment));
+        return \trim(\str_replace("\n", ' ', $comment));
     }
 }
