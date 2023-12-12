@@ -1,5 +1,7 @@
 <?php
 
+use Laravel\Lumen\Application;
+
 require_once __DIR__.'/../vendor/autoload.php';
 
 (new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
@@ -49,6 +51,14 @@ $app->singleton(
 );
 
 $app->bind(\App\Models\SearchProviderInterface::class, \App\Models\TDSearchProvider::class);
+
+$app->bind(\App\Models\SearchProviderCollection::class, function (Application $app) {
+    return new \App\Models\SearchProviderCollection([
+        $app->make(\App\Models\TDSearchProvider::class),
+        $app->make(\App\Models\KZSearchProvider::class),
+        $app->make(\App\Models\TestSearchProvider::class),
+    ]);
+});
 
 /*
 |--------------------------------------------------------------------------

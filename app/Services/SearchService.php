@@ -3,13 +3,14 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Models\SearchProviderCollection;
 use App\Models\SearchProviderInterface;
 use Illuminate\Support\Facades\Cache;
 use JetBrains\PhpStorm\ArrayShape;
 
 class SearchService
 {
-    public function __construct(private readonly SearchProviderInterface $searchProvider)
+    public function __construct(private readonly SearchProviderCollection $searchProviders)
     {
     }
 
@@ -20,20 +21,24 @@ class SearchService
             Cache::delete($phone);
 
         if ($fromCache = Cache::has($phone)) {
-            $comments = Cache::get($phone);
+            $providers = Cache::get($phone);
         } else {
-            $comments = $this->searchProvider->getComments($phone);
-            Cache::set($phone, $comments);
+            $providers = [];
+
+            foreach ($this->searchProviders as $provider) {
+                $providers[] = [
+                    'provider' => $provider->getName(),
+                    'comments' => $provider->getComments($phone),
+                ];
+            }
+
+            Cache::set($phone, $providers);
         }
+
 
         return [
             'phone' => $phone,
-            'providers' => [
-                [
-                    'provider' => $this->searchProvider->getName(),
-                    'comments' => $comments,
-                ],
-            ],
+            'providers' => $providers,
             'from_cache' => $fromCache,
         ];
     }
