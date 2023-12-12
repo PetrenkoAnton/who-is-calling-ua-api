@@ -3,33 +3,36 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use DiDom\Document;
-use DiDom\Element;
-use DiDom\Exceptions\InvalidSelectorException;
+use App\Models\SearchProviderInterface;
+use Illuminate\Support\Facades\Cache;
 use JetBrains\PhpStorm\ArrayShape;
 
 class SearchService
 {
-    /**
-     * @throws InvalidSelectorException
-     */
-    #[ArrayShape(['phone' => "string", 'comments' => "array", 'from_cache' => "boolean"])]
-    public function search(string $number): array
+    public function __construct(private readonly SearchProviderInterface $searchProvider)
     {
-        $outputComments = [];
-        $url = 'https://www.telefonnyjdovidnyk.com.ua/nomer/' . $number;
+    }
 
-        $document = new Document($url, true);
-        $comments = $document->find('.comment-item .comment .comment-text');
+    #[ArrayShape(['phone' => "string", 'providers' => "array", 'from_cache' => "bool"])]
+    public function search(string $phone, bool $useCache = true): array
+    {
+        if (!$useCache)
+            Cache::delete($phone);
 
-        foreach ($comments as $comment)
-            /** @var $comment Element */
-            $outputComments[] = $comment->text();
+        if ($fromCache = Cache::has($phone)) {
+            $comments = Cache::get($phone);
+        } else {
+            $comments = $this->searchProvider->getComments($phone);
+            Cache::set($phone, $comments);
+        }
 
         return [
-            'phone' => $number,
-            'comments' => $outputComments,
-            'from_cache' => false,
+            'phone' => $phone,
+            'providers' => [
+                'provider' => $this->searchProvider->getName(),
+                'comments' => $comments,
+            ],
+            'from_cache' => $fromCache,
         ];
     }
 }

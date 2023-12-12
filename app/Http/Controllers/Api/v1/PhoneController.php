@@ -13,8 +13,10 @@ class PhoneController extends Controller
         private readonly SearchService $service,
     ) {}
 
-    public function get(string $number): JsonResponse
+    public function get(string $phone): JsonResponse
     {
-        return \response()->json($this->service->search($number));
+        $c = !request()->has('c') || (bool) request()->get('c');
+
+        return \response()->json($this->service->search($phone, $c));
     }
 }

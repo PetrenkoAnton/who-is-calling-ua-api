@@ -12,7 +12,7 @@ $router->get('health-check', [
 
 $router->group(['prefix' => 'api', 'namespace' => 'Api'], function () use ($router) {
     $router->group(['prefix' => 'v1', 'namespace' => 'v1'], function () use ($router) {
-        $router->get('phone/{number}', [
+        $router->get('phone/{phone}', [
             'as' => 'v1/phone', 'uses' => 'PhoneController@get'
         ]);
     });

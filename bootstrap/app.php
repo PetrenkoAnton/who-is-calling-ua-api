@@ -48,6 +48,8 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+$app->bind(\App\Models\SearchProviderInterface::class, \App\Models\TDSearchProvider::class);
+
 /*
 |--------------------------------------------------------------------------
 | Register Config Files
