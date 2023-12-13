@@ -15,14 +15,14 @@ declare(strict_types=1);
  * @apiSuccessExample {json} Success result:
  *     HTTP/1.1 200 OK
  *     {
- *       "phone": "0670000001",
+ *       "phone": "067 000-00-01",
  *       "providers": []
  *     }
  *
  * @apiSuccessExample {json} No providers:
  *     HTTP/1.1 200 OK
  *     {
- *       "phone": "0670000001",
+ *       "phone": "067 000-00-01",
  *       "providers": []
  *     }
  */
