@@ -6,7 +6,7 @@ namespace App\Models;
 
 class TestSearchProvider implements SearchProviderInterface
 {
-    public const NAME = 'test.test';
+    public const NAME = 'test';
 
     public function enable(): bool
     {

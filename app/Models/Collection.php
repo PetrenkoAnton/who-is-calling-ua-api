@@ -109,7 +109,7 @@ class Collection implements \ArrayAccess, \Countable, \Iterator
         return false === $last ? null : $last;
     }
 
-    public function filter(callable $callback, int $mode = 0): self
+    public function filter(callable $callback, int $mode = 0): Collection
     {
         $copy = clone $this;
         $copy->items = \array_filter($this->items, $callback, $mode);

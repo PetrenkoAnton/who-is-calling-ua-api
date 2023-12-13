@@ -10,4 +10,11 @@ class SearchProviderCollection extends Collection
     {
         parent::__construct(SearchProviderInterface::class, $items);
     }
+
+    public function getEnabled(): SearchProviderCollection|Collection
+    {
+        return $this->filter(static function (SearchProviderInterface $searchProvider) {
+            return $searchProvider->enable();
+        });
+    }
 }

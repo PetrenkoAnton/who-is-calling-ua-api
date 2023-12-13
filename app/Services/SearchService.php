@@ -25,13 +25,12 @@ class SearchService
         } else {
             $providers = [];
 
-            foreach ($this->searchProviders as $provider)
+            foreach ($this->searchProviders->getEnabled() as $provider)
                 /** @var SearchProviderInterface $provider */
-                if ($provider->enable())
-                    $providers[] = [
-                        'provider' => $provider->getName(),
-                        'comments' => $provider->getComments($phone),
-                    ];
+                $providers[] = [
+                    'provider' => $provider->getName(),
+                    'comments' => $provider->getComments($phone),
+                ];
 
             Cache::set($phone, $providers);
         }
