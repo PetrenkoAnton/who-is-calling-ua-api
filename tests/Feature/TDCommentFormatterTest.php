@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
-use App\Helpers\KZCommentFormatter;
+use App\Helpers\TDCommentFormatter;
 use Tests\TestCase;
 
-class KZCommentFormatterTest extends TestCase
+class TDCommentFormatterTest extends TestCase
 {
-    private KZCommentFormatter $commentFormatter;
+    private TDCommentFormatter $commentFormatter;
 
     public function setUp(): void
     {
-        $this->commentFormatter = new KZCommentFormatter();
+        $this->commentFormatter = new TDCommentFormatter();
     }
 
     /**
@@ -20,7 +20,7 @@ class KZCommentFormatterTest extends TestCase
      */
     public function testGetExpression()
     {
-        $this->assertEquals('.comments .content', $this->commentFormatter->getExpression());
+        $this->assertEquals('.comment-item .comment .comment-text', $this->commentFormatter->getExpression());
     }
 
     /**
@@ -37,8 +37,7 @@ class KZCommentFormatterTest extends TestCase
         return [
             [
                 'Шахраї !  Не беріть з цього номеру. Краще в спам одразу ж відправляти !',
-                "\n
-                                                                        Шахраї !  Не беріть з цього номеру. Краще в спам одразу ж відправляти !"
+                "Шахраї !  Не беріть з цього номеру. Краще в спам одразу ж відправляти !"
             ],
         ];
     }
