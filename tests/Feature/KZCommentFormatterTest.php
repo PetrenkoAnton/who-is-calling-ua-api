@@ -6,7 +6,7 @@ namespace Tests\Feature;
 use App\Helpers\KZCommentFormatter;
 use Tests\TestCase;
 
-class CommentFormatterTest extends TestCase
+class KZCommentFormatterTest extends TestCase
 {
     /**
      * @group ok

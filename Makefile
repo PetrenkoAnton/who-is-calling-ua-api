@@ -8,9 +8,9 @@ wic:
 	docker exec -it wic_php /bin/bash
 .PHONY: wic
 
-test:
-	docker exec -it wic_php ./vendor/bin/phpunit
-.PHONY: test
+test ok:
+	docker exec -it wic_php ./vendor/bin/phpunit --group ok
+.PHONY: test ok
 
 test +:
 	docker exec -it wic_php ./vendor/bin/phpunit --group +
