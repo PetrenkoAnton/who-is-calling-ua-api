@@ -8,6 +8,11 @@ class TestSearchProvider implements SearchProviderInterface
 {
     public const NAME = 'test.test';
 
+    public function enable(): bool
+    {
+        return (bool) env('TEST_SEARCH_PROVIDER');
+    }
+
     public function getName(): string
     {
         return self::NAME;
