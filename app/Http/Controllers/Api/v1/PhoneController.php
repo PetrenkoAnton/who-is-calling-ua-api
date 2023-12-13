@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Services\SearchService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
 
 class PhoneController extends Controller
@@ -13,10 +14,15 @@ class PhoneController extends Controller
         private readonly SearchService $service,
     ) {}
 
-    public function get(string $phone): JsonResponse
+    public function search(Request $request): JsonResponse
     {
-        $c = !request()->has('c') || (bool) request()->get('c');
+        $this->validate($request, [
+            'c' => 'boolean',
+            'phone' => 'required|numeric|min:440000001|max:999999999'
+        ]);
 
-        return \response()->json($this->service->search($phone, $c));
+        $c = !$request->has('c') || (bool) $request->get('c');
+
+        return \response()->json($this->service->search((string) $request->get('phone'), $c));
     }
 }

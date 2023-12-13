@@ -2,6 +2,8 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+use Laravel\Lumen\Http\Request;
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
@@ -12,8 +14,8 @@ $router->get('health-check', [
 
 $router->group(['prefix' => 'api', 'namespace' => 'Api'], function () use ($router) {
     $router->group(['prefix' => 'v1', 'namespace' => 'v1'], function () use ($router) {
-        $router->get('phone/{phone}', [
-            'as' => 'v1/phone', 'uses' => 'PhoneController@get'
+        $router->get('search', [
+            'as' => 'v1/phone', 'uses' => 'PhoneController@search'
         ]);
     });
 });
