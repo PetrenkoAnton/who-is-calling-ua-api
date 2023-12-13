@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
-use App\Helpers\CommentFormatter;
+use App\Helpers\KZCommentFormatter;
 use Tests\TestCase;
 
 class CommentFormatterTest extends TestCase
@@ -14,8 +14,8 @@ class CommentFormatterTest extends TestCase
      */
     public function testKZformat(string $expected, string $raw)
     {
-        $commentFormatter = new CommentFormatter();
-        $this->assertEquals($expected, $commentFormatter->kzformat($raw));
+        $commentFormatter = new KZCommentFormatter();
+        $this->assertEquals($expected, $commentFormatter->format($raw));
     }
 
     public static function dataProvider(): array

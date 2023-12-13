@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
-use App\Helpers\CommentFormatter;
+use App\Helpers\KZCommentFormatter;
+use App\Helpers\KZUrlFormatter;
 use App\Models\DocumentFactory;
 use App\Models\KZSearchProvider;
 use DiDom\Document;
@@ -18,7 +19,9 @@ class KZSearchProviderTest extends TestCase
      */
     public function testSuccessfulSearchComments(string $phone, array $expectedComments)
     {
-        $url = 'https://ktozvonil.net/nomer/' . $phone;
+        $urlFormatter = new KZUrlFormatter();
+
+        $url = $urlFormatter->format($phone);
 
         $path = __DIR__ . "/../data/kz-$phone.html";
         $document = new Document($path, true);
@@ -29,7 +32,11 @@ class KZSearchProviderTest extends TestCase
             ->with($this->equalTo($url))
             ->willReturn($document);
 
-        $searchProvider = new KZSearchProvider($documentFactory, new CommentFormatter());
+        $searchProvider = new KZSearchProvider(
+            $documentFactory,
+            new KZCommentFormatter(),
+            $urlFormatter
+        );
 
         $comments = $searchProvider->getComments($phone);
 
