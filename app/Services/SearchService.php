@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Models\SearchProviderCollection;
-use App\Models\SearchProviderInterface;
 use Illuminate\Support\Facades\Cache;
 use JetBrains\PhpStorm\ArrayShape;
 
@@ -25,12 +24,11 @@ class SearchService
         } else {
             $providers = [];
 
-            foreach ($this->searchProviders as $provider) {
+            foreach ($this->searchProviders as $provider)
                 $providers[] = [
                     'provider' => $provider->getName(),
                     'comments' => $provider->getComments($phone),
                 ];
-            }
 
             Cache::set($phone, $providers);
         }

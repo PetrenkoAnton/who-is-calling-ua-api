@@ -52,6 +52,22 @@ $app->singleton(
 
 $app->bind(\App\Models\SearchProviderInterface::class, \App\Models\TDSearchProvider::class);
 
+$app->bind(\App\Models\KZSearchProvider::class, function (Application $app) {
+    return new \App\Models\KZSearchProvider(
+        $app->make(\App\Models\DocumentFactory::class),
+        $app->make(\App\Helpers\KZCommentFormatter::class),
+        $app->make(\App\Helpers\KZUrlFormatter::class),
+    );
+});
+
+$app->bind(\App\Models\TDSearchProvider::class, function (Application $app) {
+    return new \App\Models\TDSearchProvider(
+        $app->make(\App\Models\DocumentFactory::class),
+        $app->make(\App\Helpers\TDCommentFormatter::class),
+        $app->make(\App\Helpers\TDUrlFormatter::class),
+    );
+});
+
 $app->bind(\App\Models\SearchProviderCollection::class, function (Application $app) {
     return new \App\Models\SearchProviderCollection([
         $app->make(\App\Models\TDSearchProvider::class),
