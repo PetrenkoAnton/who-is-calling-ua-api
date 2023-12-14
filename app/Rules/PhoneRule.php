@@ -11,14 +11,14 @@ use Illuminate\Contracts\Validation\ValidationRule;
 
 class PhoneRule implements ValidationRule
 {
-    public function __construct(private readonly PhoneNumberValidator $number)
+    public function __construct(private readonly PhoneNumberValidator $numberValidator)
     {
     }
 
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         try {
-            $this->number->validate($value);
+            $this->numberValidator->validate($value);
         } catch (PhoneNumberException $e) {
             $fail($e->getMessage());
         }

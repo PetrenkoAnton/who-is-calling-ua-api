@@ -10,6 +10,11 @@ use App\Exceptions\AppExceptions\PhoneNumberExceptions\UnsupportedCodePhoneNumbe
 
 class PhoneNumberValidator
 {
+    /**
+     * @throws NumericPhoneNumberException
+     * @throws InvalidPhoneNumberFormatException
+     * @throws UnsupportedCodePhoneNumberException
+     */
     public function validate(string $phone): void
     {
         $this->validateNumeric($phone);
@@ -19,23 +24,30 @@ class PhoneNumberValidator
         $this->validateSupportedOperatorCode($phone);
     }
 
+    /**
+     * @throws NumericPhoneNumberException
+     */
     private function validateNumeric(string $phone): void
     {
         if (!is_numeric($phone))
             throw new NumericPhoneNumberException();
     }
 
+    /**
+     * @throws InvalidPhoneNumberFormatException
+     */
     private function validateLength(string $phone): void
     {
-        if (strlen($phone) != 9)
+        if (strlen($phone) !== 9)
             throw new InvalidPhoneNumberFormatException();
     }
 
+    /**
+     * @throws UnsupportedCodePhoneNumberException
+     */
     private function validateSupportedOperatorCode(string $phone): void
     {
-        $code = substr($phone, 0, 2);
-
-        if (!in_array($code, config('phone.supported')))
+        if (!in_array(substr($phone, 0, 2), config('phone.supported')))
             throw new UnsupportedCodePhoneNumberException();
     }
 }

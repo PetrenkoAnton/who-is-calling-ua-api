@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Exceptions\AppExceptions\PhoneNumberExceptions;
@@ -10,6 +11,6 @@ class InvalidPhoneNumberFormatException extends PhoneNumberException
 {
     public function __construct(string $message = "", int $code = 0, ?Throwable $previous = null)
     {
-        parent::__construct('Invalid Phone Number Format', $code, $previous);
+        parent::__construct('Invalid phone number format', $code, $previous);
     }
 }
