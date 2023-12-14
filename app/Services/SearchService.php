@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Helpers\OutputPhoneNumberFormatter;
 use App\Models\SearchProviderCollection;
 use App\Models\SearchProviderInterface;
 use Illuminate\Support\Facades\Cache;
@@ -11,7 +12,10 @@ use JetBrains\PhpStorm\ArrayShape;
 
 class SearchService
 {
-    public function __construct(private readonly SearchProviderCollection $searchProviders)
+    public function __construct(
+        private readonly SearchProviderCollection $searchProviders,
+        private readonly OutputPhoneNumberFormatter $formatter,
+    )
     {
     }
 
@@ -26,7 +30,7 @@ class SearchService
         } else {
             $providers = [];
 
-            foreach ($this->searchProviders->getEnabled() as $provider)
+            foreach ($this->searchProviders->getEnabled()->getItems() as $provider)
                 /** @var SearchProviderInterface $provider */
                 $providers[] = [
                     'provider' => $provider->getName(),
@@ -37,7 +41,7 @@ class SearchService
         }
 
         return [
-            'phone' => $phone,
+            'phone' => $this->formatter->format($phone),
             'providers' => $providers,
             'from_cache' => $fromCache,
         ];

@@ -69,11 +69,11 @@ $app->bind(\App\Models\TDSearchProvider::class, function (Application $app) {
 });
 
 $app->bind(\App\Models\SearchProviderCollection::class, function (Application $app) {
-    return new \App\Models\SearchProviderCollection([
+    return new \App\Models\SearchProviderCollection(
         $app->make(\App\Models\TDSearchProvider::class),
         $app->make(\App\Models\KZSearchProvider::class),
         $app->make(\App\Models\TestSearchProvider::class),
-    ]);
+    );
 });
 
 /*
