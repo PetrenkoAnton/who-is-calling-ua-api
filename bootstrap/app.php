@@ -88,6 +88,7 @@ $app->bind(\App\Models\SearchProviderCollection::class, function (Application $a
 */
 
 $app->configure('app');
+$app->configure('phone');
 
 /*
 |--------------------------------------------------------------------------
