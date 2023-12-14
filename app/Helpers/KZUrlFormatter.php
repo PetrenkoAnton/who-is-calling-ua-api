@@ -8,6 +8,6 @@ class KZUrlFormatter implements UrlFormatterInterface
 {
     public function format(string $phone): string
     {
-        return 'https://ktozvonil.net/nomer/' . $phone;
+        return 'https://ktozvonil.net/nomer/0' . $phone;
     }
 }
