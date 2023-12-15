@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature\SearchProvider;
 
-use App\Helpers\CommentFormatter\KZCommentFormatter;
+use App\Helpers\CommentFormatters\KZCommentFormatter;
 use App\Helpers\UrlFormatter\KZUrlFormatter;
 use App\Models\DocumentFactory;
 use App\Models\SearchProviders\KZSearchProvider;

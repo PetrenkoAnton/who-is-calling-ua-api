@@ -4,20 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models\SearchProviders;
 
-use function env;
-
-class TestSearchProvider implements SearchProviderInterface
+class TestSearchProvider extends AbstractSearchProvider implements SearchProviderInterface
 {
     public const NAME = 'test';
 
     public function enable(): bool
     {
-        return (bool) env('TEST_SEARCH_PROVIDER');
-    }
-
-    public function getName(): string
-    {
-        return self::NAME;
+        return (bool)\env('TEST_SEARCH_PROVIDER');
     }
 
     public function getComments(string $phone): array

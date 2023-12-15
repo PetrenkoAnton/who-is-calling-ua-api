@@ -12,6 +12,6 @@ class KZSearchProvider extends AbstractSearchProvider implements SearchProviderI
 
     public function enable(): bool
     {
-        return (bool)env('KZ_SEARCH_PROVIDER');
+        return (bool)\env('KZ_SEARCH_PROVIDER');
     }
 }

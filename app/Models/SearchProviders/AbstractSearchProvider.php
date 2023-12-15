@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\SearchProviders;
 
-use App\Helpers\CommentFormatter\CommentFormatterInterface;
+use App\Helpers\CommentFormatters\CommentFormatterInterface;
 use App\Helpers\UrlFormatter\UrlFormatterInterface;
 use App\Models\DocumentFactory;
 use DiDom\Element;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Helpers\CommentFormatter;
+namespace App\Helpers\CommentFormatters;
 
 class KZCommentFormatter extends AbstractCommentFormatter implements CommentFormatterInterface
 {

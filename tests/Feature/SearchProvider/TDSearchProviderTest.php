@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature\SearchProvider;
 
-use App\Helpers\CommentFormatter\TDCommentFormatter;
+use App\Helpers\CommentFormatters\TDCommentFormatter;
 use App\Helpers\UrlFormatter\TDUrlFormatter;
 use App\Models\DocumentFactory;
 use App\Models\SearchProviders\TDSearchProvider;

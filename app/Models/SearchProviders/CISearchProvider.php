@@ -12,6 +12,6 @@ class CISearchProvider extends AbstractSearchProvider implements SearchProviderI
 
     public function enable(): bool
     {
-        return (bool)env('CI_SEARCH_PROVIDER');
+        return (bool)\env('CI_SEARCH_PROVIDER');
     }
 }

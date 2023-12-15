@@ -50,18 +50,18 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
-$app->bind(\App\Models\SearchProviders\SearchProviderInterface::class, \App\Models\SearchProviders\TDSearchProvider::class);
+$app->bind(\App\Models\SearchProviders\SearchProviderInterface::class, \App\Models\SearchProviders\AbstractSearchProvider::class);
 
 $app->bind(\App\Helpers\IgnoreMessage\IgnoreMessageInterface::class,
     \App\Helpers\IgnoreMessage\AbstractIgnoreMessage::class);
 
-$app->when(\App\Helpers\CommentFormatter\TDCommentFormatter::class)
+$app->when(\App\Helpers\CommentFormatters\TDCommentFormatter::class)
     ->needs(\App\Helpers\IgnoreMessage\IgnoreMessageInterface::class)
     ->give(function (Application $app) {
         return $app->make(\App\Helpers\IgnoreMessage\TDIgnoreMessage::class);
     });
 
-$app->when(\App\Helpers\CommentFormatter\CICommentFormatter::class)
+$app->when(\App\Helpers\CommentFormatters\CICommentFormatter::class)
     ->needs(\App\Helpers\IgnoreMessage\IgnoreMessageInterface::class)
     ->give(function (Application $app) {
         return $app->make(\App\Helpers\IgnoreMessage\CIIgnoreMessage::class);
@@ -70,7 +70,7 @@ $app->when(\App\Helpers\CommentFormatter\CICommentFormatter::class)
 $app->bind(\App\Models\SearchProviders\KZSearchProvider::class, function (Application $app) {
     return new \App\Models\SearchProviders\KZSearchProvider(
         $app->make(\App\Models\DocumentFactory::class),
-        $app->make(\App\Helpers\CommentFormatter\KZCommentFormatter::class),
+        $app->make(\App\Helpers\CommentFormatters\KZCommentFormatter::class),
         $app->make(\App\Helpers\UrlFormatter\KZUrlFormatter::class),
     );
 });
@@ -78,7 +78,7 @@ $app->bind(\App\Models\SearchProviders\KZSearchProvider::class, function (Applic
 $app->bind(\App\Models\SearchProviders\TDSearchProvider::class, function (Application $app) {
     return new \App\Models\SearchProviders\TDSearchProvider(
         $app->make(\App\Models\DocumentFactory::class),
-        $app->make(\App\Helpers\CommentFormatter\TDCommentFormatter::class),
+        $app->make(\App\Helpers\CommentFormatters\TDCommentFormatter::class),
         $app->make(\App\Helpers\UrlFormatter\TDUrlFormatter::class),
     );
 });
@@ -86,7 +86,7 @@ $app->bind(\App\Models\SearchProviders\TDSearchProvider::class, function (Applic
 $app->bind(\App\Models\SearchProviders\CISearchProvider::class, function (Application $app) {
     return new \App\Models\SearchProviders\CISearchProvider(
         $app->make(\App\Models\DocumentFactory::class),
-        $app->make(\App\Helpers\CommentFormatter\CICommentFormatter::class),
+        $app->make(\App\Helpers\CommentFormatters\CICommentFormatter::class),
         $app->make(\App\Helpers\UrlFormatter\CIUrlFormatter::class),
     );
 });
