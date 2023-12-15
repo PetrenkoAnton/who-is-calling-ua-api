@@ -12,7 +12,8 @@ class TDCommentFormatterTest extends TestCase
 
     public function setUp(): void
     {
-        $this->commentFormatter = new TDCommentFormatter();
+        parent::setUp();
+        $this->commentFormatter = $this->app->make(TDCommentFormatter::class);
     }
 
     /**

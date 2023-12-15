@@ -16,8 +16,8 @@ class PhoneNumberValidatorTest extends TestCase
 
     public function setUp(): void
     {
-        $this->validator = new PhoneNumberValidator();
         parent::setUp();
+        $this->validator = $this->app->make(PhoneNumberValidator::class);
     }
 
     /**

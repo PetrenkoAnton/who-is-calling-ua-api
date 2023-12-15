@@ -19,7 +19,7 @@ class SearchService
     {
     }
 
-    #[ArrayShape(['phone' => "string", 'providers' => "array", 'from_cache' => "bool"])]
+    #[ArrayShape(['phone' => "string", 'comments' => 'array', 'providers' => "array", 'from_cache' => "bool"])]
     public function search(string $phone, bool $useCache = true): array
     {
         if (!$useCache)

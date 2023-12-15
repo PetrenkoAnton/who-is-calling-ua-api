@@ -52,6 +52,21 @@ $app->singleton(
 
 $app->bind(\App\Models\SearchProviderInterface::class, \App\Models\TDSearchProvider::class);
 
+$app->bind(\App\Helpers\IgnoreMessage\IgnoreMessageInterface::class,
+    \App\Helpers\IgnoreMessage\AbstractIgnoreMessage::class);
+
+$app->when(\App\Helpers\TDCommentFormatter::class)
+    ->needs(\App\Helpers\IgnoreMessage\IgnoreMessageInterface::class)
+    ->give(function (Application $app) {
+        return $app->make(\App\Helpers\IgnoreMessage\TDIgnoreMessage::class);
+    });
+
+$app->when(\App\Helpers\CICommentFormatter::class)
+    ->needs(\App\Helpers\IgnoreMessage\IgnoreMessageInterface::class)
+    ->give(function (Application $app) {
+        return $app->make(\App\Helpers\IgnoreMessage\CIIgnoreMessage::class);
+    });
+
 $app->bind(\App\Models\KZSearchProvider::class, function (Application $app) {
     return new \App\Models\KZSearchProvider(
         $app->make(\App\Models\DocumentFactory::class),
@@ -68,10 +83,19 @@ $app->bind(\App\Models\TDSearchProvider::class, function (Application $app) {
     );
 });
 
+$app->bind(\App\Models\CISearchProvider::class, function (Application $app) {
+    return new \App\Models\CISearchProvider(
+        $app->make(\App\Models\DocumentFactory::class),
+        $app->make(\App\Helpers\CICommentFormatter::class),
+        $app->make(\App\Helpers\CIUrlFormatter::class),
+    );
+});
+
 $app->bind(\App\Models\SearchProviderCollection::class, function (Application $app) {
     return new \App\Models\SearchProviderCollection(
         $app->make(\App\Models\TDSearchProvider::class),
         $app->make(\App\Models\KZSearchProvider::class),
+        $app->make(\App\Models\CISearchProvider::class),
         $app->make(\App\Models\TestSearchProvider::class),
     );
 });

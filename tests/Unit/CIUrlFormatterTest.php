@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
-use App\Helpers\KZUrlFormatter;
-use Tests\TestCase;
+use App\Helpers\CIUrlFormatter;
+use PHPUnit\Framework\TestCase;
 
-class KZUrlFormatterTest extends TestCase
+class CIUrlFormatterTest extends TestCase
 {
-    private KZUrlFormatter $kzUrlFormatter;
+    private readonly CIUrlFormatter $formatter;
 
     public function setUp(): void
     {
-        $this->kzUrlFormatter = new KZUrlFormatter();
+        $this->formatter = new CIUrlFormatter();
     }
 
     /**
@@ -22,18 +22,18 @@ class KZUrlFormatterTest extends TestCase
      */
     public function testFormat(string $expected, string $phone)
     {
-        $this->assertEquals($expected, $this->kzUrlFormatter->format($phone));
+        $this->assertEquals($expected, $this->formatter->format($phone));
     }
 
     public static function dataProvider(): array
     {
         return [
             [
-                'https://ktozvonil.net/nomer/0441234567',
+                'https://www.callinsider.com.ua/ua/0441234567',
                 '441234567'
             ],
             [
-                'https://ktozvonil.net/nomer/0677654321',
+                'https://www.callinsider.com.ua/ua/0677654321',
                 '677654321'
             ],
         ];

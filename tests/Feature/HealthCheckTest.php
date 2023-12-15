@@ -17,7 +17,8 @@ class HealthCheckTest extends TestCase
         $this->get('/')->seeStatusCode(Response::HTTP_OK);
 
         $this->assertEquals(
-            $this->app->version(), $this->response->getContent()
+            $this->app->version(),
+            $this->response->getContent()
         );
     }
 

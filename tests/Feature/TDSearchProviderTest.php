@@ -19,11 +19,12 @@ class TDSearchProviderTest extends TestCase
      */
     public function testSuccessfulSearchComments(string $phone, array $expectedComments)
     {
-        $urlFormatter = new TDUrlFormatter();
+        $urlFormatter = $this->app->make(TDUrlFormatter::class);
+        $commentFormatter = $this->app->make(TDCommentFormatter::class);
 
         $url = $urlFormatter->format($phone);
 
-        $path = __DIR__ . "/../data/td-$phone.html";
+        $path = __DIR__ . "/data/td-$phone.html";
         $document = new Document($path, true);
 
         $documentFactory = $this->createMock(DocumentFactory::class);
@@ -34,7 +35,7 @@ class TDSearchProviderTest extends TestCase
 
         $searchProvider = new TDSearchProvider(
             $documentFactory,
-            new TDCommentFormatter(),
+            $commentFormatter,
             $urlFormatter
         );
 

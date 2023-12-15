@@ -12,7 +12,8 @@ class KZCommentFormatterTest extends TestCase
 
     public function setUp(): void
     {
-        $this->commentFormatter = new KZCommentFormatter();
+        parent::setUp();;
+        $this->commentFormatter = $this->app->make(KZCommentFormatter::class);
     }
 
     /**

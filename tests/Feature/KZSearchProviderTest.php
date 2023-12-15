@@ -19,11 +19,12 @@ class KZSearchProviderTest extends TestCase
      */
     public function testSuccessfulSearchComments(string $phone, array $expectedComments)
     {
-        $urlFormatter = new KZUrlFormatter();
+        $urlFormatter = $this->app->make(KZUrlFormatter::class);
+        $commentFormatter = $this->app->make(KZCommentFormatter::class);
 
         $url = $urlFormatter->format($phone);
 
-        $path = __DIR__ . "/../data/kz-$phone.html";
+        $path = __DIR__ . "/data/kz-$phone.html";
         $document = new Document($path, true);
 
         $documentFactory = $this->createMock(DocumentFactory::class);
@@ -34,7 +35,7 @@ class KZSearchProviderTest extends TestCase
 
         $searchProvider = new KZSearchProvider(
             $documentFactory,
-            new KZCommentFormatter(),
+            $commentFormatter,
             $urlFormatter
         );
 

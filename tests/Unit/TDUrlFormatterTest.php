@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
 use App\Helpers\TDUrlFormatter;
-use Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class TDUrlFormatterTest extends TestCase
 {
-    private TDUrlFormatter $tdUrlFormatter;
+    private readonly TDUrlFormatter $tdUrlFormatter;
 
     public function setUp(): void
     {
