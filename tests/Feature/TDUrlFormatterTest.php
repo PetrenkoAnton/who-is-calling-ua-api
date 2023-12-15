@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
-use App\Helpers\KZUrlFormatter;
 use App\Helpers\TDUrlFormatter;
 use Tests\TestCase;
 

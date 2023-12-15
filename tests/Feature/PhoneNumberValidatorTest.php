@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
-use App\Exceptions\AppExceptions\PhoneNumberException;
 use App\Exceptions\AppExceptions\PhoneNumberExceptions\InvalidPhoneNumberFormatException;
 use App\Exceptions\AppExceptions\PhoneNumberExceptions\NumericPhoneNumberException;
 use App\Exceptions\AppExceptions\PhoneNumberExceptions\UnsupportedCodePhoneNumberException;
