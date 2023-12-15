@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Rules\PhoneRule;
-use App\Services\SearchService;
+use App\Core\Services\SearchService;
+use App\Core\Validators\PhoneRule;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;

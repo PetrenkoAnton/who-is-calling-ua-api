@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Services\HealthCheckService;
+use App\Core\Services\HealthCheckService;
 use Illuminate\Http\Response;
 use Laravel\Lumen\Routing\Controller;
 use Symfony\Component\HttpFoundation\Response as BaseResponse;
