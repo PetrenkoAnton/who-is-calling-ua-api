@@ -30,12 +30,24 @@ class SearchService
         } else {
             $providers = [];
 
-            foreach ($this->searchProviders->getEnabled()->getItems() as $provider)
+            foreach ($this->searchProviders->getEnabled()->getItems() as $provider) {
                 /** @var SearchProviderInterface $provider */
+
+                $comments = [];
+                $err = [];
+
+                try {
+                    $comments = $provider->getComments($phone);
+                    // TODO! Temporary error handler.
+                } catch (\RuntimeException $e) {
+                    $err = ['err' => $e->getMessage()];
+                }
+
                 $providers[] = [
-                    'provider' => $provider->getName(),
-                    'comments' => $provider->getComments($phone),
-                ];
+                        'name' => $provider->getName(),
+                        'comments' => $comments,
+                    ] + $err;
+            }
 
             Cache::set($phone, $providers);
         }
