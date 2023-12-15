@@ -15,4 +15,23 @@ class TDCommentFormatter implements CommentFormatterInterface
     {
         return $comment;
     }
+
+    public function ignore(string $comment): bool
+    {
+        $res = false;
+
+        $ignoreMessages = [
+            'Повідомлення від адміністратора сайту telefonnyjdovidnyk.com.ua',
+            'Інші коментарі про цей номер телефону можна знайти на сайті партнера:',
+        ];
+
+        foreach ($ignoreMessages as $ignoreMessage) {
+            if (\str_contains($comment, $ignoreMessage)) {
+                $res = true;
+                break;
+            }
+        }
+
+        return $res;
+    }
 }

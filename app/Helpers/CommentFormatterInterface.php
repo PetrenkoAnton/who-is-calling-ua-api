@@ -9,4 +9,6 @@ interface CommentFormatterInterface
     public function getExpression(): string;
 
     public function format(string $comment): string;
+
+    public function ignore(string $comment): bool;
 }

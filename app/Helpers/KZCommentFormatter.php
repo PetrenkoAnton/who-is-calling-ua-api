@@ -15,4 +15,9 @@ class KZCommentFormatter implements CommentFormatterInterface
     {
         return \trim(\str_replace("\n", ' ', $comment));
     }
+
+    public function ignore(string $comment): bool
+    {
+        return false;
+    }
 }

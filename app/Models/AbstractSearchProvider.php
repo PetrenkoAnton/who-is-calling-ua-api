@@ -30,7 +30,8 @@ abstract class AbstractSearchProvider implements SearchProviderInterface
 
         foreach ($comments as $comment)
             /** @var $comment Element */
-            $outputComments[] = $this->commentFormatter->format($comment->text());
+            if (!$this->commentFormatter->ignore($comment->text()))
+                $outputComments[] = $this->commentFormatter->format($comment->text());
 
         return $outputComments;
     }
