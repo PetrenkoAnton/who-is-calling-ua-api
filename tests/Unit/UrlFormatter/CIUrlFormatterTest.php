@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit;
+namespace Tests\Unit\UrlFormatter;
 
-use App\Helpers\KZUrlFormatter;
+use App\Helpers\CIUrlFormatter;
 use PHPUnit\Framework\TestCase;
 
-class KZUrlFormatterTest extends TestCase
+class CIUrlFormatterTest extends TestCase
 {
-    private readonly KZUrlFormatter $formatter;
+    private readonly CIUrlFormatter $formatter;
 
     public function setUp(): void
     {
-        $this->formatter = new KZUrlFormatter();
+        $this->formatter = new CIUrlFormatter();
     }
 
     /**
@@ -29,11 +29,11 @@ class KZUrlFormatterTest extends TestCase
     {
         return [
             [
-                'https://ktozvonil.net/nomer/0441234567',
+                'https://www.callinsider.com.ua/ua/0441234567',
                 '441234567'
             ],
             [
-                'https://ktozvonil.net/nomer/0677654321',
+                'https://www.callinsider.com.ua/ua/0677654321',
                 '677654321'
             ],
         ];

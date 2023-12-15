@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature;
+namespace Tests\Feature\SearchProvider;
 
-use App\Helpers\KZCommentFormatter;
-use App\Helpers\KZUrlFormatter;
+use App\Helpers\TDCommentFormatter;
+use App\Helpers\TDUrlFormatter;
 use App\Models\DocumentFactory;
-use App\Models\KZSearchProvider;
+use App\Models\TDSearchProvider;
 use DiDom\Document;
 use Tests\TestCase;
 
-class KZSearchProviderTest extends TestCase
+class TDSearchProviderTest extends TestCase
 {
     /**
      * @group ok
@@ -19,12 +19,12 @@ class KZSearchProviderTest extends TestCase
      */
     public function testSuccessfulSearchComments(string $phone, array $expectedComments)
     {
-        $urlFormatter = $this->app->make(KZUrlFormatter::class);
-        $commentFormatter = $this->app->make(KZCommentFormatter::class);
+        $urlFormatter = $this->app->make(TDUrlFormatter::class);
+        $commentFormatter = $this->app->make(TDCommentFormatter::class);
 
         $url = $urlFormatter->format($phone);
 
-        $path = __DIR__ . "/data/kz-$phone.html";
+        $path = __DIR__ . "/../data/td-$phone.html";
         $document = new Document($path, true);
 
         $documentFactory = $this->createMock(DocumentFactory::class);
@@ -33,7 +33,7 @@ class KZSearchProviderTest extends TestCase
             ->with($this->equalTo($url))
             ->willReturn($document);
 
-        $searchProvider = new KZSearchProvider(
+        $searchProvider = new TDSearchProvider(
             $documentFactory,
             $commentFormatter,
             $urlFormatter
@@ -52,19 +52,21 @@ class KZSearchProviderTest extends TestCase
     {
         return [
             [
-                '0730909161',
+                '443630074',
                 [
-                    'Мовчать...',
-                    'Позвонили я ничего не говорила , и сразу же сбросили',
-                    'на лінії тишина',
-                    'Звонят и молчат',
-                    'позвонили, услышали голос и сразу сбросили.',
+                    '"В ведений пароль не вірний" и так по кругу',
+                    'Взяв слухавку, відразу дзвінок прирвався.',
+                    'Воля кабель',
+                    'дзвонять і скидають',
                 ]
             ],
             [
-                '380661230947',
+                '730310246',
                 [
-                    'Шахраї !  Не беріть з цього номеру. Краще в спам одразу ж відправляти !',
+                    'Englishdom',
+                    'школа англійської Englishdom',
+                    'Дзвонять з якоїсь школи англійської',
+                    'Телефонували один раз, слухавку з невідомих номерів не беру',
                 ]
             ],
         ];

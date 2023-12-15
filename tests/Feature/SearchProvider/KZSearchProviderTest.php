@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature;
+namespace Tests\Feature\SearchProvider;
 
-use App\Helpers\TDCommentFormatter;
-use App\Helpers\TDUrlFormatter;
+use App\Helpers\KZCommentFormatter;
+use App\Helpers\KZUrlFormatter;
 use App\Models\DocumentFactory;
-use App\Models\TDSearchProvider;
+use App\Models\KZSearchProvider;
 use DiDom\Document;
 use Tests\TestCase;
 
-class TDSearchProviderTest extends TestCase
+class KZSearchProviderTest extends TestCase
 {
     /**
      * @group ok
@@ -19,12 +19,12 @@ class TDSearchProviderTest extends TestCase
      */
     public function testSuccessfulSearchComments(string $phone, array $expectedComments)
     {
-        $urlFormatter = $this->app->make(TDUrlFormatter::class);
-        $commentFormatter = $this->app->make(TDCommentFormatter::class);
+        $urlFormatter = $this->app->make(KZUrlFormatter::class);
+        $commentFormatter = $this->app->make(KZCommentFormatter::class);
 
         $url = $urlFormatter->format($phone);
 
-        $path = __DIR__ . "/data/td-$phone.html";
+        $path = __DIR__ . "/../data/kz-$phone.html";
         $document = new Document($path, true);
 
         $documentFactory = $this->createMock(DocumentFactory::class);
@@ -33,7 +33,7 @@ class TDSearchProviderTest extends TestCase
             ->with($this->equalTo($url))
             ->willReturn($document);
 
-        $searchProvider = new TDSearchProvider(
+        $searchProvider = new KZSearchProvider(
             $documentFactory,
             $commentFormatter,
             $urlFormatter
@@ -52,21 +52,19 @@ class TDSearchProviderTest extends TestCase
     {
         return [
             [
-                '0443630074',
+                '730909161',
                 [
-                    '"В ведений пароль не вірний" и так по кругу',
-                    'Взяв слухавку, відразу дзвінок прирвався.',
-                    'Воля кабель',
-                    'дзвонять і скидають',
+                    'Мовчать...',
+                    'Позвонили я ничего не говорила , и сразу же сбросили',
+                    'на лінії тишина',
+                    'Звонят и молчат',
+                    'позвонили, услышали голос и сразу сбросили.',
                 ]
             ],
             [
-                '380730310246',
+                '661230947',
                 [
-                    'Englishdom',
-                    'школа англійської Englishdom',
-                    'Дзвонять з якоїсь школи англійської',
-                    'Телефонували один раз, слухавку з невідомих номерів не беру',
+                    'Шахраї !  Не беріть з цього номеру. Краще в спам одразу ж відправляти !',
                 ]
             ],
         ];
