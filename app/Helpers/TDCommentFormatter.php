@@ -23,6 +23,7 @@ class TDCommentFormatter implements CommentFormatterInterface
         $ignoreMessages = [
             'Повідомлення від адміністратора сайту telefonnyjdovidnyk.com.ua',
             'про цей номер телефону можна знайти на сайті партнера:',
+            'Цей коментар був на прохання тимчасово видалений.'
         ];
 
         foreach ($ignoreMessages as $ignoreMessage) {
