@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Exceptions\AppExceptions\PhoneNumberExceptions;
+namespace App\Exceptions\AppException\PhoneNumberException;
 
-use App\Exceptions\AppExceptions\PhoneNumberException;
+use App\Exceptions\AppException\PhoneNumberException;
 use Throwable;
 
 class InvalidPhoneNumberFormatException extends PhoneNumberException

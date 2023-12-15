@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Rules;
 
-use App\Exceptions\AppExceptions\PhoneNumberException;
+use App\Exceptions\AppException\PhoneNumberException;
 use App\Helpers\PhoneNumberValidator;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
