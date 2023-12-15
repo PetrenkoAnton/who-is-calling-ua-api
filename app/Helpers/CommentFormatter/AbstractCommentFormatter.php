@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Helpers;
+namespace App\Helpers\CommentFormatter;
 
 use App\Helpers\IgnoreMessage\IgnoreMessageInterface;
 

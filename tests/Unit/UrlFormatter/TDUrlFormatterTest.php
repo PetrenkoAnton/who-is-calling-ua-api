@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\UrlFormatter;
 
-use App\Helpers\TDUrlFormatter;
+use App\Helpers\UrlFormatter\TDUrlFormatter;
 use PHPUnit\Framework\TestCase;
 
 class TDUrlFormatterTest extends TestCase

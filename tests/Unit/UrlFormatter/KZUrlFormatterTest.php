@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\UrlFormatter;
 
-use App\Helpers\KZUrlFormatter;
+use App\Helpers\UrlFormatter\KZUrlFormatter;
 use PHPUnit\Framework\TestCase;
 
 class KZUrlFormatterTest extends TestCase

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature\CommentFormatter;
 
-use App\Helpers\CICommentFormatter;
+use App\Helpers\CommentFormatter\CICommentFormatter;
 use Tests\TestCase;
 
 class CICommentFormatterTest extends TestCase

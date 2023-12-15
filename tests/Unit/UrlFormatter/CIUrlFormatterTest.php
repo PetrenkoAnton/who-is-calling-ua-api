@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\UrlFormatter;
 
-use App\Helpers\CIUrlFormatter;
+use App\Helpers\UrlFormatter\CIUrlFormatter;
 use PHPUnit\Framework\TestCase;
 
 class CIUrlFormatterTest extends TestCase

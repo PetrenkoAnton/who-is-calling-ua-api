@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature\CommentFormatter;
 
-use App\Helpers\KZCommentFormatter;
+use App\Helpers\CommentFormatter\KZCommentFormatter;
 use Tests\TestCase;
 
 class KZCommentFormatterTest extends TestCase

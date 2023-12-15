@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature\CommentFormatter;
 
-use App\Helpers\TDCommentFormatter;
+use App\Helpers\CommentFormatter\TDCommentFormatter;
 use Tests\TestCase;
 
 class TDCommentFormatterTest extends TestCase

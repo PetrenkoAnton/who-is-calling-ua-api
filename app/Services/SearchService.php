@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Helpers\OutputPhoneNumberFormatter;
-use App\Models\SearchProviderCollection;
-use App\Models\SearchProviderInterface;
+use App\Models\SearchProviders\SearchProviderCollection;
+use App\Models\SearchProviders\SearchProviderInterface;
 use Illuminate\Support\Facades\Cache;
 use JetBrains\PhpStorm\ArrayShape;
 

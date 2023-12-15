@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace App\Models\SearchProviders;
 
-use App\Helpers\CommentFormatterInterface;
-use App\Helpers\UrlFormatterInterface;
+use App\Helpers\CommentFormatter\CommentFormatterInterface;
+use App\Helpers\UrlFormatter\UrlFormatterInterface;
+use App\Models\DocumentFactory;
 use DiDom\Element;
 
 abstract class AbstractSearchProvider implements SearchProviderInterface

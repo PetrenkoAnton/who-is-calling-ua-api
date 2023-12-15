@@ -50,53 +50,53 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
-$app->bind(\App\Models\SearchProviderInterface::class, \App\Models\TDSearchProvider::class);
+$app->bind(\App\Models\SearchProviders\SearchProviderInterface::class, \App\Models\SearchProviders\TDSearchProvider::class);
 
 $app->bind(\App\Helpers\IgnoreMessage\IgnoreMessageInterface::class,
     \App\Helpers\IgnoreMessage\AbstractIgnoreMessage::class);
 
-$app->when(\App\Helpers\TDCommentFormatter::class)
+$app->when(\App\Helpers\CommentFormatter\TDCommentFormatter::class)
     ->needs(\App\Helpers\IgnoreMessage\IgnoreMessageInterface::class)
     ->give(function (Application $app) {
         return $app->make(\App\Helpers\IgnoreMessage\TDIgnoreMessage::class);
     });
 
-$app->when(\App\Helpers\CICommentFormatter::class)
+$app->when(\App\Helpers\CommentFormatter\CICommentFormatter::class)
     ->needs(\App\Helpers\IgnoreMessage\IgnoreMessageInterface::class)
     ->give(function (Application $app) {
         return $app->make(\App\Helpers\IgnoreMessage\CIIgnoreMessage::class);
     });
 
-$app->bind(\App\Models\KZSearchProvider::class, function (Application $app) {
-    return new \App\Models\KZSearchProvider(
+$app->bind(\App\Models\SearchProviders\KZSearchProvider::class, function (Application $app) {
+    return new \App\Models\SearchProviders\KZSearchProvider(
         $app->make(\App\Models\DocumentFactory::class),
-        $app->make(\App\Helpers\KZCommentFormatter::class),
-        $app->make(\App\Helpers\KZUrlFormatter::class),
+        $app->make(\App\Helpers\CommentFormatter\KZCommentFormatter::class),
+        $app->make(\App\Helpers\UrlFormatter\KZUrlFormatter::class),
     );
 });
 
-$app->bind(\App\Models\TDSearchProvider::class, function (Application $app) {
-    return new \App\Models\TDSearchProvider(
+$app->bind(\App\Models\SearchProviders\TDSearchProvider::class, function (Application $app) {
+    return new \App\Models\SearchProviders\TDSearchProvider(
         $app->make(\App\Models\DocumentFactory::class),
-        $app->make(\App\Helpers\TDCommentFormatter::class),
-        $app->make(\App\Helpers\TDUrlFormatter::class),
+        $app->make(\App\Helpers\CommentFormatter\TDCommentFormatter::class),
+        $app->make(\App\Helpers\UrlFormatter\TDUrlFormatter::class),
     );
 });
 
-$app->bind(\App\Models\CISearchProvider::class, function (Application $app) {
-    return new \App\Models\CISearchProvider(
+$app->bind(\App\Models\SearchProviders\CISearchProvider::class, function (Application $app) {
+    return new \App\Models\SearchProviders\CISearchProvider(
         $app->make(\App\Models\DocumentFactory::class),
-        $app->make(\App\Helpers\CICommentFormatter::class),
-        $app->make(\App\Helpers\CIUrlFormatter::class),
+        $app->make(\App\Helpers\CommentFormatter\CICommentFormatter::class),
+        $app->make(\App\Helpers\UrlFormatter\CIUrlFormatter::class),
     );
 });
 
-$app->bind(\App\Models\SearchProviderCollection::class, function (Application $app) {
-    return new \App\Models\SearchProviderCollection(
-        $app->make(\App\Models\TDSearchProvider::class),
-        $app->make(\App\Models\KZSearchProvider::class),
-        $app->make(\App\Models\CISearchProvider::class),
-        $app->make(\App\Models\TestSearchProvider::class),
+$app->bind(\App\Models\SearchProviders\SearchProviderCollection::class, function (Application $app) {
+    return new \App\Models\SearchProviders\SearchProviderCollection(
+        $app->make(\App\Models\SearchProviders\TDSearchProvider::class),
+        $app->make(\App\Models\SearchProviders\KZSearchProvider::class),
+        $app->make(\App\Models\SearchProviders\CISearchProvider::class),
+        $app->make(\App\Models\SearchProviders\TestSearchProvider::class),
     );
 });
 

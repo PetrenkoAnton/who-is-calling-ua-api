@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace App\Models\SearchProviders;
+
+use function env;
 
 class TestSearchProvider implements SearchProviderInterface
 {

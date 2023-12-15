@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\Feature\SearchProvider;
 
-use App\Helpers\KZCommentFormatter;
-use App\Helpers\KZUrlFormatter;
+use App\Helpers\CommentFormatter\KZCommentFormatter;
+use App\Helpers\UrlFormatter\KZUrlFormatter;
 use App\Models\DocumentFactory;
-use App\Models\KZSearchProvider;
+use App\Models\SearchProviders\KZSearchProvider;
 use DiDom\Document;
 use Tests\TestCase;
 
