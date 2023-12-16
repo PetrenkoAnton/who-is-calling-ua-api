@@ -12,6 +12,11 @@ abstract class AbstractCommentHandler implements CommentHandlerInterface
     {
     }
 
+    public function getExpression(): string
+    {
+        return '';
+    }
+
     public function format(string $comment): string
     {
         return \trim(\str_replace("\n", ' ', $comment));

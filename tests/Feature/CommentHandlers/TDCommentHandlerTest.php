@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\CommentFormatters;
+namespace Tests\Feature\CommentHandlers;
 
 use App\Core\CommentHandlers\TDCommentHandler;
 use Tests\TestCase;
 
-class TDCommentFormatterTest extends TestCase
+class TDCommentHandlerTest extends TestCase
 {
     private TDCommentHandler $commentFormatter;
 

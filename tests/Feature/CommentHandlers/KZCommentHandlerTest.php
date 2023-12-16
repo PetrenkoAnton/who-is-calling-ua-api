@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\CommentFormatters;
+namespace Tests\Feature\CommentHandlers;
 
 use App\Core\CommentHandlers\KZCommentHandler;
 use Tests\TestCase;
 
-class KZCommentFormatterTest extends TestCase
+class KZCommentHandlerTest extends TestCase
 {
     private KZCommentHandler $commentFormatter;
 

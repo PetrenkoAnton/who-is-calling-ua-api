@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Core\CommentHandlers\AbstractCommentHandler;
 use App\Core\CommentHandlers\CICommentHandler;
+use App\Core\CommentHandlers\CommentHandlerInterface;
 use App\Core\CommentHandlers\KZCommentHandler;
 use App\Core\CommentHandlers\TDCommentHandler;
 use App\Core\DocumentFactory;
@@ -19,7 +21,6 @@ use App\Core\SearchProviders\KZSearchProvider;
 use App\Core\SearchProviders\SearchProviderCollection;
 use App\Core\SearchProviders\SearchProviderInterface;
 use App\Core\SearchProviders\TDSearchProvider;
-use App\Core\SearchProviders\TestSearchProvider;
 use Laravel\Lumen\Application;
 
 require_once __DIR__.'/../vendor/autoload.php';
@@ -71,9 +72,8 @@ $app->singleton(
 );
 
 $app->bind(SearchProviderInterface::class, AbstractSearchProvider::class);
-
-$app->bind(IgnoreCommentInterface::class,
-    AbstractIgnoreComment::class);
+$app->bind(IgnoreCommentInterface::class,AbstractIgnoreComment::class);
+$app->bind(CommentHandlerInterface::class, AbstractCommentHandler::class);
 
 $app->when(TDCommentHandler::class)
     ->needs(IgnoreCommentInterface::class)
@@ -116,7 +116,6 @@ $app->bind(SearchProviderCollection::class, function (Application $app) {
         $app->make(TDSearchProvider::class),
         $app->make(KZSearchProvider::class),
         $app->make(CISearchProvider::class),
-        $app->make(TestSearchProvider::class),
     );
 });
 

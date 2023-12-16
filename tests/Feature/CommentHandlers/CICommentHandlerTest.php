@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\CommentFormatters;
+namespace Tests\Feature\CommentHandlers;
 
 use App\Core\CommentHandlers\CICommentHandler;
 use Tests\TestCase;
 
-class CICommentFormatterTest extends TestCase
+class CICommentHandlerTest extends TestCase
 {
     private CICommentHandler $commentFormatter;
 
