@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /** @var Router $router */
 
 use Laravel\Lumen\Routing\Router;

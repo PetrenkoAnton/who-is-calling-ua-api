@@ -1,7 +1,7 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    ->exclude(['bootstrap', 'storage', 'vendor'])
+    ->exclude(['storage', 'vendor'])
     ->notPath('*')
     ->in(__DIR__);
 
@@ -20,6 +20,7 @@ return (new PhpCsFixer\Config)
         'class_definition' => true,
         'concat_space' => ['spacing' => 'none'],
         'declare_equal_normalize' => ['space' => 'none'],
+        'declare_strict_types' => true,
         'elseif' => true,
         'encoding' => true,
         'full_opening_tag' => true,

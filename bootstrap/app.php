@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Core\CommentHandlers\CICommentHandler;
 use App\Core\CommentHandlers\KZCommentHandler;
 use App\Core\CommentHandlers\TDCommentHandler;
@@ -180,7 +182,7 @@ $app->register(Illuminate\Redis\RedisServiceProvider::class);
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
-], function () {
+], function ($router) {
     require __DIR__ . '/../routes/web.php';
 });
 
