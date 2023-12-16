@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\SearchProviders;
+namespace App\Core\Providers;
 
-class TDSearchProvider extends AbstractSearchProvider implements SearchProviderInterface
+class TDProvider extends AbstractProvider implements ProviderInterface
 {
     public const NAME = 'telefonnyjdovidnyk.com.ua';
 

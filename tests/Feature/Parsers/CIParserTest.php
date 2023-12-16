@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\CommentHandlers;
+namespace Tests\Feature\Parsers;
 
-use App\Core\CommentHandlers\CICommentHandler;
+use App\Core\Parsers\CIParser;
 use Tests\TestCase;
 
-class CICommentHandlerTest extends TestCase
+class CIParserTest extends TestCase
 {
-    private CICommentHandler $commentFormatter;
+    private CIParser $commentFormatter;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->commentFormatter = $this->app->make(CICommentHandler::class);
+        $this->commentFormatter = $this->app->make(CIParser::class);
     }
 
     /**

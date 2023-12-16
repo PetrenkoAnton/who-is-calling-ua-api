@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\CommentHandlers;
+namespace App\Core\Parsers;
 
-class KZCommentHandler extends AbstractCommentHandler implements CommentHandlerInterface
+class KZParser extends AbstractParser implements ParserInterface
 {
     public function getExpression(): string
     {

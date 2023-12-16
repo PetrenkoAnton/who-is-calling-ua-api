@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Core\Validators;
 
-use App\Exceptions\AppException\PhoneNumberException\InvalidPhoneNumberFormatException;
-use App\Exceptions\AppException\PhoneNumberException\NumericPhoneNumberException;
-use App\Exceptions\AppException\PhoneNumberException\UnsupportedCodePhoneNumberException;
+use App\Exceptions\AppException\PNException\InvalidPNFormatException;
+use App\Exceptions\AppException\PNException\NumericPNException;
+use App\Exceptions\AppException\PNException\UnsupportedCodePNException;
 
 class PhoneNumberValidator
 {
     /**
-     * @throws NumericPhoneNumberException
-     * @throws InvalidPhoneNumberFormatException
-     * @throws UnsupportedCodePhoneNumberException
+     * @throws NumericPNException
+     * @throws InvalidPNFormatException
+     * @throws UnsupportedCodePNException
      */
     public function validate(string $phone): void
     {
@@ -25,29 +25,29 @@ class PhoneNumberValidator
     }
 
     /**
-     * @throws NumericPhoneNumberException
+     * @throws NumericPNException
      */
     private function validateNumeric(string $phone): void
     {
         if (!is_numeric($phone))
-            throw new NumericPhoneNumberException();
+            throw new NumericPNException();
     }
 
     /**
-     * @throws InvalidPhoneNumberFormatException
+     * @throws InvalidPNFormatException
      */
     private function validateLength(string $phone): void
     {
         if (strlen($phone) !== 9)
-            throw new InvalidPhoneNumberFormatException();
+            throw new InvalidPNFormatException();
     }
 
     /**
-     * @throws UnsupportedCodePhoneNumberException
+     * @throws UnsupportedCodePNException
      */
     private function validateSupportedOperatorCode(string $phone): void
     {
         if (!in_array(substr($phone, 0, 2), config('phone.supported')))
-            throw new UnsupportedCodePhoneNumberException();
+            throw new UnsupportedCodePNException();
     }
 }

@@ -4,28 +4,28 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
-use App\Core\Formatters\OutputPhoneNumberFormatter;
+use App\Core\Formatters\OutputPNFormatter;
 use PHPUnit\Framework\TestCase;
 
-class OutputPhoneNumberFormatterTest extends TestCase
+class OutputPNFormatterTest extends TestCase
 {
-    private readonly OutputPhoneNumberFormatter $formatter;
+    private readonly OutputPNFormatter $formatter;
 
     public function setUp(): void
     {
-        $this->formatter = new OutputPhoneNumberFormatter();
+        $this->formatter = new OutputPNFormatter();
     }
 
     /**
      * @group ok
-     * @dataProvider dataProvider
+     * @dataProvider dp
      */
     public function testFormat(string $phone, string $expected)
     {
         $this->assertEquals($expected, $this->formatter->format($phone));
     }
 
-    public static function dataProvider(): array
+    public static function dp(): array
     {
         return [
             [

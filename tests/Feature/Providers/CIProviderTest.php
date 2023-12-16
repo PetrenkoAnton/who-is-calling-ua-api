@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\SearchProviders;
+namespace Tests\Feature\Providers;
 
-use App\Core\CommentHandlers\CICommentHandler;
+use App\Core\Parsers\CIParser;
 use App\Core\DocumentFactory;
 use App\Core\Formatters\UrlFormatters\CIUrlFormatter;
-use App\Core\SearchProviders\CISearchProvider;
+use App\Core\Providers\CIProvider;
 use DiDom\Document;
 use Tests\TestCase;
 
-class CISearchProviderTest extends TestCase
+class CIProviderTest extends TestCase
 {
     /**
      * @group ok
-     * @dataProvider dataProvider
+     * @dataProvider dp
      */
-    public function testSuccessfulSearchComments(string $phone, array $expectedComments)
+    public function testSuccessfulParseComments(string $phone, array $expectedComments)
     {
         $urlFormatter = $this->app->make(CIUrlFormatter::class);
-        $commentFormatter = $this->app->make(CICommentHandler::class);
+        $commentFormatter = $this->app->make(CIParser::class);
 
         $url = $urlFormatter->format($phone);
 
@@ -33,7 +33,7 @@ class CISearchProviderTest extends TestCase
             ->with($this->equalTo($url))
             ->willReturn($document);
 
-        $searchProvider = new CISearchProvider(
+        $searchProvider = new CIProvider(
             $documentFactory,
             $commentFormatter,
             $urlFormatter
@@ -48,7 +48,7 @@ class CISearchProviderTest extends TestCase
             $this->assertEquals($value, $comments[$key]);
     }
 
-    public static function dataProvider(): array
+    public static function dp(): array
     {
         return [
             [

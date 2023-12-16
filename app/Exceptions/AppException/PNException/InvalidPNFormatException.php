@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Exceptions\AppException\PhoneNumberException;
+namespace App\Exceptions\AppException\PNException;
 
-use App\Exceptions\AppException\PhoneNumberException;
+use App\Exceptions\AppException\PNException;
 use Throwable;
 
-class InvalidPhoneNumberFormatException extends PhoneNumberException
+class InvalidPNFormatException extends PNException
 {
     public function __construct(int $code = 0, ?Throwable $previous = null)
     {

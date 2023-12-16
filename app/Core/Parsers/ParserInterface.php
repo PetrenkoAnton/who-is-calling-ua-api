@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\CommentHandlers;
+namespace App\Core\Parsers;
 
-interface CommentHandlerInterface
+interface ParserInterface
 {
     public function getExpression(): string;
 

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Tests\Feature;
 
 use App\Core\Validators\PhoneNumberValidator;
-use App\Exceptions\AppException\PhoneNumberException\InvalidPhoneNumberFormatException;
-use App\Exceptions\AppException\PhoneNumberException\NumericPhoneNumberException;
-use App\Exceptions\AppException\PhoneNumberException\UnsupportedCodePhoneNumberException;
+use App\Exceptions\AppException\PNException\InvalidPNFormatException;
+use App\Exceptions\AppException\PNException\NumericPNException;
+use App\Exceptions\AppException\PNException\UnsupportedCodePNException;
 use Tests\TestCase;
 
 class PhoneNumberValidatorTest extends TestCase
@@ -22,7 +22,7 @@ class PhoneNumberValidatorTest extends TestCase
 
     /**
      * @group ok
-     * @dataProvider validDataProvider
+     * @dataProvider dpValid
      */
     public function testValidateSuccess(string $phone)
     {
@@ -30,7 +30,7 @@ class PhoneNumberValidatorTest extends TestCase
         $this->expectNotToPerformAssertions();
     }
 
-    public static function validDataProvider(): array
+    public static function dpValid(): array
     {
         return [
             [
@@ -45,7 +45,7 @@ class PhoneNumberValidatorTest extends TestCase
 
     /**
      * @group ok
-     * @dataProvider invalidDataProvider
+     * @dataProvider dpInvalid
      */
     public function testValidateThrowsException(string $phone, string $e)
     {
@@ -53,21 +53,21 @@ class PhoneNumberValidatorTest extends TestCase
         $this->validator->validate($phone);
     }
 
-    public static function invalidDataProvider(): array
+    public static function dpInvalid(): array
     {
         return [
-            ['qwerty', NumericPhoneNumberException::class],
-            ['q', NumericPhoneNumberException::class],
-            ['q71234567', NumericPhoneNumberException::class],
+            ['qwerty', NumericPNException::class],
+            ['q', NumericPNException::class],
+            ['q71234567', NumericPNException::class],
 
-            ['0', InvalidPhoneNumberFormatException::class],
-            ['000', InvalidPhoneNumberFormatException::class],
-            ['123123', InvalidPhoneNumberFormatException::class],
-            ['0010000000000000000000', InvalidPhoneNumberFormatException::class],
+            ['0', InvalidPNFormatException::class],
+            ['000', InvalidPNFormatException::class],
+            ['123123', InvalidPNFormatException::class],
+            ['0010000000000000000000', InvalidPNFormatException::class],
 
-            ['001000000', UnsupportedCodePhoneNumberException::class],
-            ['431234567', UnsupportedCodePhoneNumberException::class],
-            ['927654321', UnsupportedCodePhoneNumberException::class],
+            ['001000000', UnsupportedCodePNException::class],
+            ['431234567', UnsupportedCodePNException::class],
+            ['927654321', UnsupportedCodePNException::class],
         ];
     }
 

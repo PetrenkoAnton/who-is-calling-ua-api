@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\SearchProviders;
+namespace Tests\Feature\Providers;
 
-use App\Core\CommentHandlers\KZCommentHandler;
+use App\Core\Parsers\KZParser;
 use App\Core\DocumentFactory;
 use App\Core\Formatters\UrlFormatters\KZUrlFormatter;
-use App\Core\SearchProviders\KZSearchProvider;
+use App\Core\Providers\KZProvider;
 use DiDom\Document;
 use Tests\TestCase;
 
-class KZSearchProviderTest extends TestCase
+class KZProviderTest extends TestCase
 {
     /**
      * @group ok
-     * @dataProvider dataProvider
+     * @dataProvider dp
      */
-    public function testSuccessfulSearchComments(string $phone, array $expectedComments)
+    public function testSuccessfulParseComments(string $phone, array $expectedComments)
     {
         $urlFormatter = $this->app->make(KZUrlFormatter::class);
-        $commentFormatter = $this->app->make(KZCommentHandler::class);
+        $commentFormatter = $this->app->make(KZParser::class);
 
         $url = $urlFormatter->format($phone);
 
@@ -33,7 +33,7 @@ class KZSearchProviderTest extends TestCase
             ->with($this->equalTo($url))
             ->willReturn($document);
 
-        $searchProvider = new KZSearchProvider(
+        $searchProvider = new KZProvider(
             $documentFactory,
             $commentFormatter,
             $urlFormatter
@@ -48,7 +48,7 @@ class KZSearchProviderTest extends TestCase
             $this->assertEquals($value, $comments[$key]);
     }
 
-    public static function dataProvider(): array
+    public static function dp(): array
     {
         return [
             [

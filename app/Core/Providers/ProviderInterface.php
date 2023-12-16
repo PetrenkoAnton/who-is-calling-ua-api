@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\SearchProviders;
+namespace App\Core\Providers;
 
-interface SearchProviderInterface
+interface ProviderInterface
 {
     public function enable(): bool;
 

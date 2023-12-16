@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\SearchProviders;
+namespace App\Core\Providers;
 
-class KZSearchProvider extends AbstractSearchProvider implements SearchProviderInterface
+class KZProvider extends AbstractProvider implements ProviderInterface
 {
     public const NAME = 'ktozvonil.net';
 

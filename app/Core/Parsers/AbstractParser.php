@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Core\CommentHandlers;
+namespace App\Core\Parsers;
 
 use App\Core\IgnoreComments\IgnoreCommentInterface;
 
-abstract class AbstractCommentHandler implements CommentHandlerInterface
+abstract class AbstractParser implements ParserInterface
 {
     public function __construct(protected IgnoreCommentInterface $ignoreMessage)
     {

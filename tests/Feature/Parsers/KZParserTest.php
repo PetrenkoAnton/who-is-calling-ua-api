@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\CommentHandlers;
+namespace Tests\Feature\Parsers;
 
-use App\Core\CommentHandlers\KZCommentHandler;
+use App\Core\Parsers\KZParser;
 use Tests\TestCase;
 
-class KZCommentHandlerTest extends TestCase
+class KZParserTest extends TestCase
 {
-    private KZCommentHandler $commentFormatter;
+    private KZParser $commentFormatter;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->commentFormatter = $this->app->make(KZCommentHandler::class);
+        $this->commentFormatter = $this->app->make(KZParser::class);
     }
 
     /**

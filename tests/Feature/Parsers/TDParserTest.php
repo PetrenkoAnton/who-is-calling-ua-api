@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\CommentHandlers;
+namespace Tests\Feature\Parsers;
 
-use App\Core\CommentHandlers\TDCommentHandler;
+use App\Core\Parsers\TDParser;
 use Tests\TestCase;
 
-class TDCommentHandlerTest extends TestCase
+class TDParserTest extends TestCase
 {
-    private TDCommentHandler $commentFormatter;
+    private TDParser $commentFormatter;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->commentFormatter = $this->app->make(TDCommentHandler::class);
+        $this->commentFormatter = $this->app->make(TDParser::class);
     }
 
     /**

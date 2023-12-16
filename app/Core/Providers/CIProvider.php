@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\SearchProviders;
+namespace App\Core\Providers;
 
-class CISearchProvider extends AbstractSearchProvider implements SearchProviderInterface
+class CIProvider extends AbstractProvider implements ProviderInterface
 {
     public const NAME = 'callinsider.com.ua';
 

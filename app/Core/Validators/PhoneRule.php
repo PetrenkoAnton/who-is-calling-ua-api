@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Validators;
 
-use App\Exceptions\AppException\PhoneNumberException;
+use App\Exceptions\AppException\PNException;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 
@@ -18,7 +18,7 @@ class PhoneRule implements ValidationRule
     {
         try {
             $this->numberValidator->validate($value);
-        } catch (PhoneNumberException $e) {
+        } catch (PNException $e) {
             $fail($e->getMessage());
         }
     }

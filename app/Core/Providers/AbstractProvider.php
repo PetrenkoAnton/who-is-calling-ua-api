@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Core\SearchProviders;
+namespace App\Core\Providers;
 
-use App\Core\CommentHandlers\CommentHandlerInterface;
+use App\Core\Parsers\ParserInterface;
 use App\Core\DocumentFactory;
 use App\Core\Formatters\UrlFormatters\UrlFormatterInterface;
 use DiDom\Element;
 
-abstract class AbstractSearchProvider implements SearchProviderInterface
+abstract class AbstractProvider implements ProviderInterface
 {
     public function __construct(
         private readonly DocumentFactory $documentFactory,
-        private readonly CommentHandlerInterface $commentFormatter,
+        private readonly ParserInterface $commentFormatter,
         private readonly UrlFormatterInterface $urlFormatter,
     ) {}
 

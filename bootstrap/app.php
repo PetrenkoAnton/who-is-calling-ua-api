@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use App\Core\CommentHandlers\AbstractCommentHandler;
-use App\Core\CommentHandlers\CICommentHandler;
-use App\Core\CommentHandlers\CommentHandlerInterface;
-use App\Core\CommentHandlers\KZCommentHandler;
-use App\Core\CommentHandlers\TDCommentHandler;
+use App\Core\Parsers\AbstractParser;
+use App\Core\Parsers\CIParser;
+use App\Core\Parsers\ParserInterface;
+use App\Core\Parsers\KZParser;
+use App\Core\Parsers\TDParser;
 use App\Core\DocumentFactory;
 use App\Core\Formatters\UrlFormatters\CIUrlFormatter;
 use App\Core\Formatters\UrlFormatters\KZUrlFormatter;
@@ -15,12 +15,12 @@ use App\Core\IgnoreComments\AbstractIgnoreComment;
 use App\Core\IgnoreComments\CIIgnoreComment;
 use App\Core\IgnoreComments\IgnoreCommentInterface;
 use App\Core\IgnoreComments\TDIgnoreComment;
-use App\Core\SearchProviders\AbstractSearchProvider;
-use App\Core\SearchProviders\CISearchProvider;
-use App\Core\SearchProviders\KZSearchProvider;
-use App\Core\SearchProviders\SearchProviderCollection;
-use App\Core\SearchProviders\SearchProviderInterface;
-use App\Core\SearchProviders\TDSearchProvider;
+use App\Core\Providers\AbstractProvider;
+use App\Core\Providers\CIProvider;
+use App\Core\Providers\KZProvider;
+use App\Core\Providers\ProviderCollection;
+use App\Core\Providers\ProviderInterface;
+use App\Core\Providers\TDProvider;
 use Laravel\Lumen\Application;
 
 require_once __DIR__.'/../vendor/autoload.php';
@@ -71,51 +71,51 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
-$app->bind(SearchProviderInterface::class, AbstractSearchProvider::class);
+$app->bind(ProviderInterface::class, AbstractProvider::class);
 $app->bind(IgnoreCommentInterface::class,AbstractIgnoreComment::class);
-$app->bind(CommentHandlerInterface::class, AbstractCommentHandler::class);
+$app->bind(ParserInterface::class, AbstractParser::class);
 
-$app->when(TDCommentHandler::class)
+$app->when(TDParser::class)
     ->needs(IgnoreCommentInterface::class)
     ->give(function (Application $app) {
         return $app->make(TDIgnoreComment::class);
     });
 
-$app->when(CICommentHandler::class)
+$app->when(CIParser::class)
     ->needs(IgnoreCommentInterface::class)
     ->give(function (Application $app) {
         return $app->make(CIIgnoreComment::class);
     });
 
-$app->bind(KZSearchProvider::class, function (Application $app) {
-    return new KZSearchProvider(
+$app->bind(KZProvider::class, function (Application $app) {
+    return new KZProvider(
         $app->make(DocumentFactory::class),
-        $app->make(KZCommentHandler::class),
+        $app->make(KZParser::class),
         $app->make(KZUrlFormatter::class),
     );
 });
 
-$app->bind(TDSearchProvider::class, function (Application $app) {
-    return new TDSearchProvider(
+$app->bind(TDProvider::class, function (Application $app) {
+    return new TDProvider(
         $app->make(DocumentFactory::class),
-        $app->make(TDCommentHandler::class),
+        $app->make(TDParser::class),
         $app->make(TDUrlFormatter::class),
     );
 });
 
-$app->bind(CISearchProvider::class, function (Application $app) {
-    return new CISearchProvider(
+$app->bind(CIProvider::class, function (Application $app) {
+    return new CIProvider(
         $app->make(DocumentFactory::class),
-        $app->make(CICommentHandler::class),
+        $app->make(CIParser::class),
         $app->make(CIUrlFormatter::class),
     );
 });
 
-$app->bind(SearchProviderCollection::class, function (Application $app) {
-    return new SearchProviderCollection(
-        $app->make(TDSearchProvider::class),
-        $app->make(KZSearchProvider::class),
-        $app->make(CISearchProvider::class),
+$app->bind(ProviderCollection::class, function (Application $app) {
+    return new ProviderCollection(
+        $app->make(TDProvider::class),
+        $app->make(KZProvider::class),
+        $app->make(CIProvider::class),
     );
 });
 

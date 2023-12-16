@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\SearchProviders;
+namespace Tests\Feature\Providers;
 
-use App\Core\CommentHandlers\TDCommentHandler;
+use App\Core\Parsers\TDParser;
 use App\Core\DocumentFactory;
 use App\Core\Formatters\UrlFormatters\TDUrlFormatter;
-use App\Core\SearchProviders\TDSearchProvider;
+use App\Core\Providers\TDProvider;
 use DiDom\Document;
 use Tests\TestCase;
 
-class TDSearchProviderTest extends TestCase
+class TDProviderTest extends TestCase
 {
     /**
      * @group ok
-     * @dataProvider dataProvider
+     * @dataProvider dp
      */
-    public function testSuccessfulSearchComments(string $phone, array $expectedComments)
+    public function testSuccessfulParseComments(string $phone, array $expectedComments)
     {
         $urlFormatter = $this->app->make(TDUrlFormatter::class);
-        $commentFormatter = $this->app->make(TDCommentHandler::class);
+        $commentFormatter = $this->app->make(TDParser::class);
 
         $url = $urlFormatter->format($phone);
 
@@ -33,7 +33,7 @@ class TDSearchProviderTest extends TestCase
             ->with($this->equalTo($url))
             ->willReturn($document);
 
-        $searchProvider = new TDSearchProvider(
+        $searchProvider = new TDProvider(
             $documentFactory,
             $commentFormatter,
             $urlFormatter
@@ -48,7 +48,7 @@ class TDSearchProviderTest extends TestCase
             $this->assertEquals($value, $comments[$key]);
     }
 
-    public static function dataProvider(): array
+    public static function dp(): array
     {
         return [
             [

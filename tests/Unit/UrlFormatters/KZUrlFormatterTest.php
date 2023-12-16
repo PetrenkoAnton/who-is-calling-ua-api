@@ -18,14 +18,14 @@ class KZUrlFormatterTest extends TestCase
 
     /**
      * @group ok
-     * @dataProvider dataProvider
+     * @dataProvider dp
      */
     public function testFormat(string $expected, string $phone)
     {
         $this->assertEquals($expected, $this->formatter->format($phone));
     }
 
-    public static function dataProvider(): array
+    public static function dp(): array
     {
         return [
             [
