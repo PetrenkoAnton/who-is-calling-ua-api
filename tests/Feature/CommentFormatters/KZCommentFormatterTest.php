@@ -12,7 +12,7 @@ class KZCommentFormatterTest extends TestCase
 
     public function setUp(): void
     {
-        parent::setUp();;
+        parent::setUp();
         $this->commentFormatter = $this->app->make(KZCommentHandler::class);
     }
 

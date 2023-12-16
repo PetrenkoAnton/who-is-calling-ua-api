@@ -1,5 +1,23 @@
 <?php
 
+use App\Core\CommentHandlers\CICommentHandler;
+use App\Core\CommentHandlers\KZCommentHandler;
+use App\Core\CommentHandlers\TDCommentHandler;
+use App\Core\DocumentFactory;
+use App\Core\Formatters\UrlFormatters\CIUrlFormatter;
+use App\Core\Formatters\UrlFormatters\KZUrlFormatter;
+use App\Core\Formatters\UrlFormatters\TDUrlFormatter;
+use App\Core\IgnoreComments\AbstractIgnoreComment;
+use App\Core\IgnoreComments\CIIgnoreComment;
+use App\Core\IgnoreComments\IgnoreCommentInterface;
+use App\Core\IgnoreComments\TDIgnoreComment;
+use App\Core\SearchProviders\AbstractSearchProvider;
+use App\Core\SearchProviders\CISearchProvider;
+use App\Core\SearchProviders\KZSearchProvider;
+use App\Core\SearchProviders\SearchProviderCollection;
+use App\Core\SearchProviders\SearchProviderInterface;
+use App\Core\SearchProviders\TDSearchProvider;
+use App\Core\SearchProviders\TestSearchProvider;
 use Laravel\Lumen\Application;
 
 require_once __DIR__.'/../vendor/autoload.php';
@@ -50,53 +68,53 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
-$app->bind(\App\Core\SearchProviders\SearchProviderInterface::class, \App\Core\SearchProviders\AbstractSearchProvider::class);
+$app->bind(SearchProviderInterface::class, AbstractSearchProvider::class);
 
-$app->bind(\App\Core\IgnoreComments\IgnoreCommentInterface::class,
-    \App\Core\IgnoreComments\AbstractIgnoreComment::class);
+$app->bind(IgnoreCommentInterface::class,
+    AbstractIgnoreComment::class);
 
-$app->when(\App\Core\CommentHandlers\TDCommentHandler::class)
-    ->needs(\App\Core\IgnoreComments\IgnoreCommentInterface::class)
+$app->when(TDCommentHandler::class)
+    ->needs(IgnoreCommentInterface::class)
     ->give(function (Application $app) {
-        return $app->make(\App\Core\IgnoreComments\TDIgnoreComment::class);
+        return $app->make(TDIgnoreComment::class);
     });
 
-$app->when(\App\Core\CommentHandlers\CICommentHandler::class)
-    ->needs(\App\Core\IgnoreComments\IgnoreCommentInterface::class)
+$app->when(CICommentHandler::class)
+    ->needs(IgnoreCommentInterface::class)
     ->give(function (Application $app) {
-        return $app->make(\App\Core\IgnoreComments\CIIgnoreComment::class);
+        return $app->make(CIIgnoreComment::class);
     });
 
-$app->bind(\App\Core\SearchProviders\KZSearchProvider::class, function (Application $app) {
-    return new \App\Core\SearchProviders\KZSearchProvider(
-        $app->make(\App\Core\DocumentFactory::class),
-        $app->make(\App\Core\CommentHandlers\KZCommentHandler::class),
-        $app->make(\App\Core\Formatters\UrlFormatters\KZUrlFormatter::class),
+$app->bind(KZSearchProvider::class, function (Application $app) {
+    return new KZSearchProvider(
+        $app->make(DocumentFactory::class),
+        $app->make(KZCommentHandler::class),
+        $app->make(KZUrlFormatter::class),
     );
 });
 
-$app->bind(\App\Core\SearchProviders\TDSearchProvider::class, function (Application $app) {
-    return new \App\Core\SearchProviders\TDSearchProvider(
-        $app->make(\App\Core\DocumentFactory::class),
-        $app->make(\App\Core\CommentHandlers\TDCommentHandler::class),
-        $app->make(\App\Core\Formatters\UrlFormatters\TDUrlFormatter::class),
+$app->bind(TDSearchProvider::class, function (Application $app) {
+    return new TDSearchProvider(
+        $app->make(DocumentFactory::class),
+        $app->make(TDCommentHandler::class),
+        $app->make(TDUrlFormatter::class),
     );
 });
 
-$app->bind(\App\Core\SearchProviders\CISearchProvider::class, function (Application $app) {
-    return new \App\Core\SearchProviders\CISearchProvider(
-        $app->make(\App\Core\DocumentFactory::class),
-        $app->make(\App\Core\CommentHandlers\CICommentHandler::class),
-        $app->make(\App\Core\Formatters\UrlFormatters\CIUrlFormatter::class),
+$app->bind(CISearchProvider::class, function (Application $app) {
+    return new CISearchProvider(
+        $app->make(DocumentFactory::class),
+        $app->make(CICommentHandler::class),
+        $app->make(CIUrlFormatter::class),
     );
 });
 
-$app->bind(\App\Core\SearchProviders\SearchProviderCollection::class, function (Application $app) {
-    return new \App\Core\SearchProviders\SearchProviderCollection(
-        $app->make(\App\Core\SearchProviders\TDSearchProvider::class),
-        $app->make(\App\Core\SearchProviders\KZSearchProvider::class),
-        $app->make(\App\Core\SearchProviders\CISearchProvider::class),
-        $app->make(\App\Core\SearchProviders\TestSearchProvider::class),
+$app->bind(SearchProviderCollection::class, function (Application $app) {
+    return new SearchProviderCollection(
+        $app->make(TDSearchProvider::class),
+        $app->make(KZSearchProvider::class),
+        $app->make(CISearchProvider::class),
+        $app->make(TestSearchProvider::class),
     );
 });
 
@@ -162,7 +180,7 @@ $app->register(Illuminate\Redis\RedisServiceProvider::class);
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
-], function ($router) {
+], function () {
     require __DIR__ . '/../routes/web.php';
 });
 

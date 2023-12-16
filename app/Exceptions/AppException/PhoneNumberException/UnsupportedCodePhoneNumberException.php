@@ -9,7 +9,7 @@ use Throwable;
 
 class UnsupportedCodePhoneNumberException extends PhoneNumberException
 {
-    public function __construct(string $message = "", int $code = 0, ?Throwable $previous = null)
+    public function __construct(int $code = 0, ?Throwable $previous = null)
     {
         parent::__construct('Unsupported operator code', $code, $previous);
     }

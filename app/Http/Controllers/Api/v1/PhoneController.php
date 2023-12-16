@@ -23,7 +23,7 @@ class PhoneController extends Controller
             'p' => ['required', $this->phoneRule],
         ]);
 
-        $c = !$request->has('c') || (bool) $request->get('c');
+        $c = !$request->has('c') || $request->get('c');
 
         return \response()->json($this->service->search((string) $request->get('p'), $c));
     }

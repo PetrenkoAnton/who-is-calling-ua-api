@@ -21,14 +21,9 @@ class Handler extends ExceptionHandler
         ValidationException::class,
     ];
 
-    public function report(Throwable $exception)
+    public function render($request, Throwable $exception): JsonResponse
     {
-        parent::report($exception);
-    }
-
-    public function render($request, Throwable $e): JsonResponse
-    {
-        $rendered = parent::render($request, $e);
+        $rendered = parent::render($request, $exception);
         return \response()->json(['error' => json_decode($rendered->content())], $rendered->getStatusCode());
     }
 }

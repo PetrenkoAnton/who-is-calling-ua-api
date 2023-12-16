@@ -9,7 +9,7 @@ use Throwable;
 
 class InvalidPhoneNumberFormatException extends PhoneNumberException
 {
-    public function __construct(string $message = "", int $code = 0, ?Throwable $previous = null)
+    public function __construct(int $code = 0, ?Throwable $previous = null)
     {
         parent::__construct('Invalid phone number format', $code, $previous);
     }
