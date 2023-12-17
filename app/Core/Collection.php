@@ -21,6 +21,13 @@ abstract class Collection
         return $this->items;
     }
 
+    public function first(): mixed
+    {
+        $first = \reset($this->items);
+
+        return false == $first ? null : $first;
+    }
+
     public function count(): int
     {
         return \count($this->items);

@@ -10,6 +10,6 @@ class DocumentFactory
 {
     public function create(string $url): Document
     {
-        return new Document($url, true);
+        return new Document($url, false);
     }
 }
