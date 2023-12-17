@@ -9,6 +9,8 @@ use App\Core\Parsers\ParserInterface;
 use App\Core\DocumentFactory;
 use App\Core\Formatters\UrlFormatters\UrlFormatterInterface;
 use DiDom\Element;
+use DiDom\Exceptions\InvalidSelectorException;
+use Psr\Http\Client\ClientExceptionInterface;
 
 abstract class AbstractProvider implements ProviderInterface
 {
@@ -24,14 +26,15 @@ abstract class AbstractProvider implements ProviderInterface
         return $this::NAME;
     }
 
+    /**
+     * @throws InvalidSelectorException
+     * @throws ClientExceptionInterface
+     */
     public function getComments(string $phone): array
     {
         $outputComments = [];
 
         $content = $this->httpClient->getContent($this->urlFormatter->format($phone));
-
-        var_dump($content);
-        die;
 
         $document = $this->documentFactory->create($content);
         $comments = $document->find($this->commentFormatter->getExpression());
