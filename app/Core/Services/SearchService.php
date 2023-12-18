@@ -19,13 +19,13 @@ class SearchService
     {
     }
 
-    #[ArrayShape(['pn' => "string", 'providers' => "array", 'c' => "bool"])]
+    #[ArrayShape(['pn' => "string", 'providers' => "array", 'cache' => "bool"])]
     public function search(string $phone, bool $useCache = true): array
     {
         if (!$useCache)
             Cache::delete($phone);
 
-        if ($c = Cache::has($phone)) {
+        if ($cache = Cache::has($phone)) {
             $providers = Cache::get($phone);
         } else {
             $providers = [];
@@ -56,7 +56,7 @@ class SearchService
         return [
             'pn' => $this->formatter->format($phone),
             'providers' => $providers,
-            'c' => $c,
+            'cache' => $cache,
         ];
     }
 }
