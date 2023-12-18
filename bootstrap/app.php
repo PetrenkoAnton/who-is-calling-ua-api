@@ -161,7 +161,7 @@ $app->bind(ProviderCollection::class, function (Application $app) {
 */
 
 $app->configure('app');
-$app->configure('phone');
+$app->configure('pn');
 
 /*
 |--------------------------------------------------------------------------
