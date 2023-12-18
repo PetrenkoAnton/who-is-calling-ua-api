@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 return [
-    'supported' => [
+    'supported_codes' => [
         // vodafone
         50, 66, 95, 99,
         // life

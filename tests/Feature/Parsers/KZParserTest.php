@@ -27,14 +27,14 @@ class KZParserTest extends TestCase
 
     /**
      * @group ok
-     * @dataProvider dataProvider
+     * @dataProvider dp
      */
     public function testFormat(string $expected, string $raw)
     {
         $this->assertEquals($expected, $this->commentFormatter->format($raw));
     }
 
-    public static function dataProvider(): array
+    public static function dp(): array
     {
         return [
             [

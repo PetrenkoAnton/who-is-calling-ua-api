@@ -27,14 +27,14 @@ class TDParserTest extends TestCase
 
     /**
      * @group ok
-     * @dataProvider dataProviderFormat
+     * @dataProvider dp
      */
     public function testFormat(string $expected, string $raw)
     {
         $this->assertEquals($expected, $this->commentFormatter->format($raw));
     }
 
-    public static function dataProviderFormat(): array
+    public static function dp(): array
     {
         return [
             [
@@ -46,14 +46,14 @@ class TDParserTest extends TestCase
 
     /**
      * @group ok
-     * @dataProvider dataProviderIgnore
+     * @dataProvider dpIgnore
      */
     public function testIgnore(bool $expected, string $comment)
     {
         $this->assertEquals($expected, $this->commentFormatter->ignore($comment));
     }
 
-    public static function dataProviderIgnore(): array
+    public static function dpIgnore(): array
     {
         return [
             [

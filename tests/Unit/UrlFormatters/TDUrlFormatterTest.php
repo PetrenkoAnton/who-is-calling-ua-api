@@ -20,9 +20,9 @@ class TDUrlFormatterTest extends TestCase
      * @group ok
      * @dataProvider dp
      */
-    public function testFormat(string $expected, string $phone)
+    public function testFormat(string $expected, string $pn)
     {
-        $this->assertEquals($expected, $this->tdUrlFormatter->format($phone));
+        $this->assertEquals($expected, $this->tdUrlFormatter->format($pn));
     }
 
     public static function dp(): array

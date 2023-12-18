@@ -20,9 +20,9 @@ class SLUrlFormatterTest extends TestCase
      * @group ok
      * @dataProvider dp
      */
-    public function testFormat(string $expected, string $phone)
+    public function testFormat(string $expected, string $pn)
     {
-        $this->assertEquals($expected, $this->formatter->format($phone));
+        $this->assertEquals($expected, $this->formatter->format($pn));
     }
 
     public static function dp(): array

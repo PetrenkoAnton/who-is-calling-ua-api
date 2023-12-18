@@ -4,29 +4,29 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
-use App\Core\Validators\PhoneNumberValidator;
+use App\Core\Validators\PNValidator;
 use App\Exceptions\AppException\PNException\InvalidPNFormatException;
 use App\Exceptions\AppException\PNException\NumericPNException;
 use App\Exceptions\AppException\PNException\UnsupportedCodePNException;
 use Tests\TestCase;
 
-class PhoneNumberValidatorTest extends TestCase
+class PNValidatorTest extends TestCase
 {
-    private PhoneNumberValidator $validator;
+    private PNValidator $validator;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->validator = $this->app->make(PhoneNumberValidator::class);
+        $this->validator = $this->app->make(PNValidator::class);
     }
 
     /**
      * @group ok
      * @dataProvider dpValid
      */
-    public function testValidateSuccess(string $phone)
+    public function testValidateSuccess(string $pn)
     {
-        $this->validator->validate($phone);
+        $this->validator->validate($pn);
         $this->expectNotToPerformAssertions();
     }
 
@@ -47,10 +47,10 @@ class PhoneNumberValidatorTest extends TestCase
      * @group ok
      * @dataProvider dpInvalid
      */
-    public function testValidateThrowsException(string $phone, string $e)
+    public function testValidateThrowsException(string $pn, string $e)
     {
         $this->expectException($e);
-        $this->validator->validate($phone);
+        $this->validator->validate($pn);
     }
 
     public static function dpInvalid(): array

@@ -8,46 +8,46 @@ use App\Exceptions\AppException\PNException\InvalidPNFormatException;
 use App\Exceptions\AppException\PNException\NumericPNException;
 use App\Exceptions\AppException\PNException\UnsupportedCodePNException;
 
-class PhoneNumberValidator
+class PNValidator
 {
     /**
      * @throws NumericPNException
      * @throws InvalidPNFormatException
      * @throws UnsupportedCodePNException
      */
-    public function validate(string $phone): void
+    public function validate(string $pn): void
     {
-        $this->validateNumeric($phone);
+        $this->validateNumeric($pn);
 
-        $this->validateLength($phone);
+        $this->validateLength($pn);
 
-        $this->validateSupportedOperatorCode($phone);
+        $this->validateSupportedOperatorCode($pn);
     }
 
     /**
      * @throws NumericPNException
      */
-    private function validateNumeric(string $phone): void
+    private function validateNumeric(string $pn): void
     {
-        if (!is_numeric($phone))
+        if (!is_numeric($pn))
             throw new NumericPNException();
     }
 
     /**
      * @throws InvalidPNFormatException
      */
-    private function validateLength(string $phone): void
+    private function validateLength(string $pn): void
     {
-        if (strlen($phone) !== 9)
+        if (strlen($pn) !== 9)
             throw new InvalidPNFormatException();
     }
 
     /**
      * @throws UnsupportedCodePNException
      */
-    private function validateSupportedOperatorCode(string $phone): void
+    private function validateSupportedOperatorCode(string $pn): void
     {
-        if (!in_array(substr($phone, 0, 2), config('phone.supported')))
+        if (!in_array(substr($pn, 0, 2), config('pn.supported_codes')))
             throw new UnsupportedCodePNException();
     }
 }

@@ -20,9 +20,9 @@ class OutputPNFormatterTest extends TestCase
      * @group ok
      * @dataProvider dp
      */
-    public function testFormat(string $phone, string $expected)
+    public function testFormat(string $pn, string $expected)
     {
-        $this->assertEquals($expected, $this->formatter->format($phone));
+        $this->assertEquals($expected, $this->formatter->format($pn));
     }
 
     public static function dp(): array
