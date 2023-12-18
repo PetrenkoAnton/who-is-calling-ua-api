@@ -21,7 +21,7 @@ class PNValidatorTest extends TestCase
     }
 
     /**
-     * @group +
+     * @group ok
      * @dataProvider dpValid
      */
     public function testValidateSuccess(string $pn)
