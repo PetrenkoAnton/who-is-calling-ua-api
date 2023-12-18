@@ -4,48 +4,20 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Providers;
 
-use App\Core\Parsers\TDParser;
-use App\Core\DocumentFactory;
-use App\Core\Formatters\UrlFormatters\TDUrlFormatter;
 use App\Core\Providers\TDProvider;
-use DiDom\Document;
-use Tests\TestCase;
 
-class TDProviderTest extends TestCase
+class TDProviderTest extends AbstractProviderTest
 {
+    protected const PREFIX = 'td';
+    protected const PROVIDER_CLASS = TDProvider::class;
+
     /**
      * @group ok
      * @dataProvider dp
      */
     public function testSuccessfulParseComments(string $phone, array $expectedComments)
     {
-        $urlFormatter = $this->app->make(TDUrlFormatter::class);
-        $commentFormatter = $this->app->make(TDParser::class);
-
-        $url = $urlFormatter->format($phone);
-
-        $path = __DIR__ . "/../data/td-$phone.html";
-        $document = new Document($path, true);
-
-        $documentFactory = $this->createMock(DocumentFactory::class);
-        $documentFactory
-            ->method('create')
-            ->with($this->equalTo($url))
-            ->willReturn($document);
-
-        $searchProvider = new TDProvider(
-            $documentFactory,
-            $commentFormatter,
-            $urlFormatter
-        );
-
-        $comments = $searchProvider->getComments($phone);
-
-        $this->assertIsArray($comments);
-        $this->assertCount(count($expectedComments), $comments);
-
-        foreach ($expectedComments as $key => $value)
-            $this->assertEquals($value, $comments[$key]);
+        parent::testSuccessfulParseComments($phone, $expectedComments);
     }
 
     public static function dp(): array
@@ -54,6 +26,11 @@ class TDProviderTest extends TestCase
             [
                 '443630074',
                 [
+                    'Коли ліг Київстар дзвонили і автомат повідомляв що введений пароль не коректний. Що це було?',
+                    'Машло',
+                    'Воля кабель, про підкючення каналів та пакетів, крутили запис (робот), спам.',
+                    'Спам сплошной',
+                    'Сбрасывают',
                     '"В ведений пароль не вірний" и так по кругу',
                     'Взяв слухавку, відразу дзвінок прирвався.',
                     'Воля кабель',

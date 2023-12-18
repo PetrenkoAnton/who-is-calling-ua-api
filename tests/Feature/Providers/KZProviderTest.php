@@ -4,48 +4,20 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Providers;
 
-use App\Core\Parsers\KZParser;
-use App\Core\DocumentFactory;
-use App\Core\Formatters\UrlFormatters\KZUrlFormatter;
 use App\Core\Providers\KZProvider;
-use DiDom\Document;
-use Tests\TestCase;
 
-class KZProviderTest extends TestCase
+class KZProviderTest extends AbstractProviderTest
 {
+    protected const PREFIX = 'kz';
+    protected const PROVIDER_CLASS = KZProvider::class;
+
     /**
      * @group ok
      * @dataProvider dp
      */
     public function testSuccessfulParseComments(string $phone, array $expectedComments)
     {
-        $urlFormatter = $this->app->make(KZUrlFormatter::class);
-        $commentFormatter = $this->app->make(KZParser::class);
-
-        $url = $urlFormatter->format($phone);
-
-        $path = __DIR__ . "/../data/kz-$phone.html";
-        $document = new Document($path, true);
-
-        $documentFactory = $this->createMock(DocumentFactory::class);
-        $documentFactory
-            ->method('create')
-            ->with($this->equalTo($url))
-            ->willReturn($document);
-
-        $searchProvider = new KZProvider(
-            $documentFactory,
-            $commentFormatter,
-            $urlFormatter
-        );
-
-        $comments = $searchProvider->getComments($phone);
-
-        $this->assertIsArray($comments);
-        $this->assertCount(count($expectedComments), $comments);
-
-        foreach ($expectedComments as $key => $value)
-            $this->assertEquals($value, $comments[$key]);
+        parent::testSuccessfulParseComments($phone, $expectedComments);
     }
 
     public static function dp(): array
@@ -62,9 +34,9 @@ class KZProviderTest extends TestCase
                 ]
             ],
             [
-                '661230947',
+                '969402323',
                 [
-                    'Шахраї !  Не беріть з цього номеру. Краще в спам одразу ж відправляти !',
+                    'Обережно! Шахрай, берег передплату за товар, але посилку не відсилає! На дзвінки, після отримання коштів, не відповідає!',
                 ]
             ],
         ];

@@ -6,6 +6,7 @@ namespace App\Core\HttpClient;
 
 use App\Core\HttpClient\UserAgent\UserAgentInterface;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 
 class DefaultHttpClient implements HttpClientInterface
 {
@@ -15,7 +16,7 @@ class DefaultHttpClient implements HttpClientInterface
     }
 
     /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function getContent(string $url): string
     {

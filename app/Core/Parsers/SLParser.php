@@ -8,6 +8,6 @@ class SLParser extends AbstractParser implements ParserInterface
 {
     public function getExpression(): string
     {
-        return '.comment';
+        return '.comment .content p';
     }
 }
