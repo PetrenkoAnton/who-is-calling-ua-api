@@ -33,7 +33,7 @@ abstract class AbstractProvider implements ProviderInterface
 
     public function enable(): bool
     {
-        $key = sprintf('%s_SEARCH_PROVIDER', strtoupper($this->getCode()));
+        $key = sprintf('%s_PROVIDER', strtoupper($this->getCode()));
         return (bool)\env($key);
     }
 

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Core\Formatters\UrlFormatters\CFUrlFormatter;
 use App\Core\Formatters\UrlFormatters\KCUrlFormatter;
 use App\Core\Formatters\UrlFormatters\SLUrlFormatter;
 use App\Core\HttpClient\DefaultHttpClient;
@@ -10,6 +11,7 @@ use App\Core\HttpClient\UserAgent\DefaultUserAgent;
 use App\Core\HttpClient\UserAgent\UserAgentCollection;
 use App\Core\HttpClient\UserAgent\UserAgentInterface;
 use App\Core\Parsers\AbstractParser;
+use App\Core\Parsers\CFParser;
 use App\Core\Parsers\CIParser;
 use App\Core\Parsers\KCParser;
 use App\Core\Parsers\ParserInterface;
@@ -26,6 +28,7 @@ use App\Core\IgnoreComments\IgnoreCommentInterface;
 use App\Core\IgnoreComments\TDIgnoreComment;
 use App\Core\Providers\AbstractProvider;
 use App\Core\Providers\CIProvider;
+use App\Core\Providers\CFProvider;
 use App\Core\Providers\KCProvider;
 use App\Core\Providers\KZProvider;
 use App\Core\Providers\ProviderCollection;
@@ -106,6 +109,15 @@ $app->bind(KCProvider::class, function (Application $app) {
     );
 });
 
+$app->bind(CFProvider::class, function (Application $app) {
+    return new CFProvider(
+        $app->make(HttpClientInterface::class),
+        $app->make(DocumentFactory::class),
+        $app->make(CFParser::class),
+        $app->make(CFUrlFormatter::class),
+    );
+});
+
 $app->bind(ProviderCollection::class, function (Application $app) {
     return new ProviderCollection(
         $app->make(TDProvider::class),
@@ -113,5 +125,6 @@ $app->bind(ProviderCollection::class, function (Application $app) {
         $app->make(CIProvider::class),
         $app->make(SLProvider::class),
         $app->make(KCProvider::class),
+        $app->make(CFProvider::class),
     );
 });
