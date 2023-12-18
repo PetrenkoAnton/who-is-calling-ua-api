@@ -10,6 +10,7 @@ use App\Core\HttpClient\HttpClientInterface;
 use App\Core\HttpClient\UserAgent\DefaultUserAgent;
 use App\Core\HttpClient\UserAgent\UserAgentCollection;
 use App\Core\HttpClient\UserAgent\UserAgentInterface;
+use App\Core\IgnoreComments\CFIgnoreComment;
 use App\Core\Parsers\AbstractParser;
 use App\Core\Parsers\CFParser;
 use App\Core\Parsers\CIParser;
@@ -62,6 +63,12 @@ $app->when(CIParser::class)
     ->needs(IgnoreCommentInterface::class)
     ->give(function (Application $app) {
         return $app->make(CIIgnoreComment::class);
+    });
+
+$app->when(CFParser::class)
+    ->needs(IgnoreCommentInterface::class)
+    ->give(function (Application $app) {
+        return $app->make(CFIgnoreComment::class);
     });
 
 $app->bind(TDProvider::class, function (Application $app) {
