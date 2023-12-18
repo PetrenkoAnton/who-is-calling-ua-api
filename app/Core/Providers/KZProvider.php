@@ -7,9 +7,5 @@ namespace App\Core\Providers;
 class KZProvider extends AbstractProvider implements ProviderInterface
 {
     public const NAME = 'ktozvonil.net';
-
-    public function enable(): bool
-    {
-        return (bool)\env('KZ_SEARCH_PROVIDER');
-    }
+    public const CODE = 'KZ';
 }

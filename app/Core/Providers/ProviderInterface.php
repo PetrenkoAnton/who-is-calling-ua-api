@@ -10,5 +10,7 @@ interface ProviderInterface
 
     public function getName(): string;
 
+    public function getCode(): string;
+
     public function getComments(string $phone): array;
 }

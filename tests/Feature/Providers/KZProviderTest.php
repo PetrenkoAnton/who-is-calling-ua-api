@@ -8,7 +8,6 @@ use App\Core\Providers\KZProvider;
 
 class KZProviderTest extends AbstractProviderTest
 {
-    protected const PREFIX = 'kz';
     protected const PROVIDER_CLASS = KZProvider::class;
 
     /**

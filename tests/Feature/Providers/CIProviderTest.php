@@ -8,7 +8,6 @@ use App\Core\Providers\CIProvider;
 
 class CIProviderTest extends AbstractProviderTest
 {
-    protected const PREFIX = 'ci';
     protected const PROVIDER_CLASS = CIProvider::class;
 
     /**

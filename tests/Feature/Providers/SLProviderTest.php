@@ -8,7 +8,6 @@ use App\Core\Providers\SLProvider;
 
 class SLProviderTest extends AbstractProviderTest
 {
-    protected const PREFIX = 'sl';
     protected const PROVIDER_CLASS = SLProvider::class;
 
     /**

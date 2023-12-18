@@ -26,6 +26,17 @@ abstract class AbstractProvider implements ProviderInterface
         return $this::NAME;
     }
 
+    public function getCode(): string
+    {
+        return $this::CODE;
+    }
+
+    public function enable(): bool
+    {
+        $key = sprintf('%s_SEARCH_PROVIDER', strtoupper($this->getCode()));
+        return (bool)\env($key);
+    }
+
     /**
      * @throws InvalidSelectorException
      * @throws ClientExceptionInterface

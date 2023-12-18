@@ -8,7 +8,6 @@ use App\Core\Providers\TDProvider;
 
 class TDProviderTest extends AbstractProviderTest
 {
-    protected const PREFIX = 'td';
     protected const PROVIDER_CLASS = TDProvider::class;
 
     /**

@@ -45,6 +45,7 @@ class SearchService
 
                 $providers[] = [
                         'name' => $provider->getName(),
+                        'code' => $provider->getCode(),
                         'comments' => $comments,
                     ] + $err;
             }

@@ -8,6 +8,6 @@ class KCParser extends AbstractParser implements ParserInterface
 {
     public function getExpression(): string
     {
-        return '.comments .content';
+        return '.item .body';
     }
 }
