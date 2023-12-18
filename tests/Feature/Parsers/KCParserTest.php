@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Parsers;
 
-use App\Core\Parsers\CIParser;
+use App\Core\Parsers\KCParser;
 use Tests\TestCase;
 
-class CIParserTest extends TestCase
+class KCParserTest extends TestCase
 {
-    private CIParser $parser;
+    private KCParser $parser;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->parser = $this->app->make(CIParser::class);
+        $this->parser = $this->app->make(KCParser::class);
     }
 
     /**
@@ -22,6 +22,6 @@ class CIParserTest extends TestCase
      */
     public function testGetExpression()
     {
-        $this->assertEquals('.comment .summary p', $this->parser->getExpression());
+        $this->assertEquals('.item .body', $this->parser->getExpression());
     }
 }
