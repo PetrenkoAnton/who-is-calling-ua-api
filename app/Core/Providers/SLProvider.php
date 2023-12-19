@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace App\Core\Providers;
 
+use App\Core\ProviderEnum;
+
 class SLProvider extends AbstractProvider implements ProviderInterface
 {
-    public const NAME = 'slick.ly';
-    public const CODE = 'SL';
+    public function getEnum(): ProviderEnum
+    {
+        return ProviderEnum::SL;
+    }
 }

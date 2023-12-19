@@ -44,8 +44,8 @@ class SearchService
                 }
 
                 $providers[] = [
-                        'name' => $provider->getName(),
-                        'code' => $provider->getCode(),
+                        'name' => $provider->getEnum()->value,
+                        'code' => $provider->getEnum()->name,
                         'comments' => $comments,
                     ] + $err;
             }

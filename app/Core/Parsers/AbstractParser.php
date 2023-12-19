@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace App\Core\Parsers;
 
 use App\Core\IgnoreComments\IgnoreCommentInterface;
+use App\Core\ProviderEnum;
 
 abstract class AbstractParser implements ParserInterface
 {
-    public function __construct(protected IgnoreCommentInterface $ignoreMessage)
+    public function __construct(protected IgnoreCommentInterface $ignoreComment)
     {
     }
 
-    public function getExpression(): string
-    {
-        return '';
-    }
+    abstract public function is(ProviderEnum $provider): bool;
+
+    abstract public function getExpression(): string;
 
     public function format(string $comment): string
     {
@@ -24,13 +24,13 @@ abstract class AbstractParser implements ParserInterface
 
     public function ignore(string $comment): bool
     {
-        if (!$this->ignoreMessage->getList()) {
+        if (!$this->ignoreComment->getList()) {
             return false;
         }
 
         $res = false;
 
-        foreach ($this->ignoreMessage->getList() as $ignoreMessage) {
+        foreach ($this->ignoreComment->getList() as $ignoreMessage) {
             if (\str_contains($comment, $ignoreMessage)) {
                 $res = true;
                 break;

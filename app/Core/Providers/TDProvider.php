@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace App\Core\Providers;
 
+use App\Core\ProviderEnum;
+
 class TDProvider extends AbstractProvider implements ProviderInterface
 {
-    public const NAME = 'telefonnyjdovidnyk.com.ua';
-    public const CODE = 'TD';
+    public function getEnum(): ProviderEnum
+    {
+        return ProviderEnum::TD;
+    }
 }
