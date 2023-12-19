@@ -13,7 +13,7 @@ class SLUrlFormatter implements UrlFormatterInterface
         return 'https://slick.ly/ua/0' . $phone;
     }
 
-    public function is(ProviderEnum $provider): bool
+    public function for(ProviderEnum $provider): bool
     {
         return $provider === ProviderEnum::SL;
     }

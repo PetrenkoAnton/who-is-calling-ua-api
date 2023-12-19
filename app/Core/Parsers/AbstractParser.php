@@ -13,7 +13,7 @@ abstract class AbstractParser implements ParserInterface
     {
     }
 
-    abstract public function is(ProviderEnum $provider): bool;
+    abstract public function for(ProviderEnum $provider): bool;
 
     abstract public function getExpression(): string;
 

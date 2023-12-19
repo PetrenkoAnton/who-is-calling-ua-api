@@ -13,7 +13,7 @@ class TDUrlFormatter implements UrlFormatterInterface
         return 'https://www.telefonnyjdovidnyk.com.ua/nomer/0' . $phone;
     }
 
-    public function is(ProviderEnum $provider): bool
+    public function for(ProviderEnum $provider): bool
     {
         return $provider === ProviderEnum::TD;
     }

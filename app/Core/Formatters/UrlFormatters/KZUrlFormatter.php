@@ -13,7 +13,7 @@ class KZUrlFormatter implements UrlFormatterInterface
         return 'https://ktozvonil.net/nomer/0' . $phone;
     }
 
-    public function is(ProviderEnum $provider): bool
+    public function for(ProviderEnum $provider): bool
     {
         return $provider === ProviderEnum::KZ;
     }

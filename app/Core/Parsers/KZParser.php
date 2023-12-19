@@ -13,7 +13,7 @@ class KZParser extends AbstractParser implements ParserInterface
         return '.comments .content';
     }
 
-    public function is(ProviderEnum $provider): bool
+    public function for(ProviderEnum $provider): bool
     {
         return $provider === ProviderEnum::KZ;
     }

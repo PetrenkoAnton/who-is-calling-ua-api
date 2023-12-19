@@ -19,7 +19,7 @@ class UrlFormatterCollection extends Collection
     public function getFirstFor(ProviderEnum $enum): UrlFormatterInterface
     {
         return $this->filter(static function (UrlFormatterInterface $formatter) use ($enum) {
-            return $formatter->is($enum);
+            return $formatter->for($enum);
         })->first();
     }
 }

@@ -13,7 +13,7 @@ class KCParser extends AbstractParser implements ParserInterface
         return '.item .body';
     }
 
-    public function is(ProviderEnum $provider): bool
+    public function for(ProviderEnum $provider): bool
     {
         return $provider === ProviderEnum::KC;
     }

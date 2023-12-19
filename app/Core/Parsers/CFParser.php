@@ -13,7 +13,7 @@ class CFParser extends AbstractParser implements ParserInterface
         return '.review .review_comment';
     }
 
-    public function is(ProviderEnum $provider): bool
+    public function for(ProviderEnum $provider): bool
     {
         return $provider === ProviderEnum::CF;
     }

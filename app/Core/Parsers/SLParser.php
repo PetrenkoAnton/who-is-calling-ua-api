@@ -13,7 +13,7 @@ class SLParser extends AbstractParser implements ParserInterface
         return '.comment .content p';
     }
 
-    public function is(ProviderEnum $provider): bool
+    public function for(ProviderEnum $provider): bool
     {
         return $provider === ProviderEnum::SL;
     }

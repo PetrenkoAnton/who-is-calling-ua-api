@@ -10,5 +10,5 @@ interface UrlFormatterInterface
 {
     public function format(string $phone): string;
 
-    public function is(ProviderEnum $provider): bool;
+    public function for(ProviderEnum $provider): bool;
 }

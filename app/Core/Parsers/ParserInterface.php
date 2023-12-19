@@ -8,7 +8,7 @@ use App\Core\ProviderEnum;
 
 interface ParserInterface
 {
-    public function is(ProviderEnum $provider): bool;
+    public function for(ProviderEnum $provider): bool;
 
     public function getExpression(): string;
 

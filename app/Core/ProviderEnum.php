@@ -12,4 +12,19 @@ enum ProviderEnum: string
     case KZ = 'ktozvonil.net';
     case SL = 'slick.ly';
     case TD = 'telefonnyjdovidnyk.com.ua';
+
+    public static function getAllExceptOne(ProviderEnum $except): array
+    {
+        $arr = self::cases();
+
+        foreach ($arr as $k => $enum)
+        {
+            if ($enum === $except) {
+                unset ($arr[$k]);
+                break;
+            }
+        }
+
+        return $arr;
+    }
 }

@@ -13,7 +13,7 @@ class TDParser extends AbstractParser implements ParserInterface
         return '.comment-item .comment .comment-text';
     }
 
-    public function is(ProviderEnum $provider): bool
+    public function for(ProviderEnum $provider): bool
     {
         return $provider === ProviderEnum::TD;
     }

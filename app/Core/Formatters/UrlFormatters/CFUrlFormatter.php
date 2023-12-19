@@ -13,7 +13,7 @@ class CFUrlFormatter implements UrlFormatterInterface
         return 'https://callfilter.app/380' . $phone;
     }
 
-    public function is(ProviderEnum $provider): bool
+    public function for(ProviderEnum $provider): bool
     {
         return $provider === ProviderEnum::CF;
     }

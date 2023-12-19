@@ -19,7 +19,7 @@ class ParserCollection extends Collection
     public function getFirstFor(ProviderEnum $enum): ParserInterface
     {
         return $this->filter(static function (ParserInterface $parser) use ($enum) {
-            return $parser->is($enum);
+            return $parser->for($enum);
         })->first();
     }
 }

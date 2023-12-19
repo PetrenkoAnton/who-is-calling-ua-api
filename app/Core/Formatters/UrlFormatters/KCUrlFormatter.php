@@ -16,7 +16,7 @@ class KCUrlFormatter implements UrlFormatterInterface
         return sprintf('http://kto-zvonil.com.ua/number/0%s/%s', $code, $num);
     }
 
-    public function is(ProviderEnum $provider): bool
+    public function for(ProviderEnum $provider): bool
     {
         return $provider === ProviderEnum::KC;
     }

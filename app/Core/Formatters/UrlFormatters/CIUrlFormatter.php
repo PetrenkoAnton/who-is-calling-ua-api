@@ -13,7 +13,7 @@ class CIUrlFormatter implements UrlFormatterInterface
         return 'https://www.callinsider.com.ua/ua/0' . $phone;
     }
 
-    public function is(ProviderEnum $provider): bool
+    public function for(ProviderEnum $provider): bool
     {
         return $provider === ProviderEnum::CI;
     }

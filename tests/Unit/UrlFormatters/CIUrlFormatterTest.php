@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\UrlFormatters;
 
 use App\Core\Formatters\UrlFormatters\CIUrlFormatter;
+use App\Core\ProviderEnum;
 use PHPUnit\Framework\TestCase;
 
 class CIUrlFormatterTest extends TestCase
@@ -39,4 +40,20 @@ class CIUrlFormatterTest extends TestCase
         ];
     }
 
+    /**
+     * @group ok
+     * @dataProvider dpFor
+     */
+    public function testFor(ProviderEnum $invalidProvider)
+    {
+        $this->assertTrue($this->formatter->for(ProviderEnum::CI));
+        $this->assertFalse($this->formatter->for($invalidProvider));
+    }
+
+    public static function dpFor(): array
+    {
+        return [
+            ProviderEnum::getAllExceptOne(ProviderEnum::CI)
+        ];
+    }
 }

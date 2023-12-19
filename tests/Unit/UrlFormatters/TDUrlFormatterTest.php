@@ -5,15 +5,16 @@ declare(strict_types=1);
 namespace Tests\Unit\UrlFormatters;
 
 use App\Core\Formatters\UrlFormatters\TDUrlFormatter;
+use App\Core\ProviderEnum;
 use PHPUnit\Framework\TestCase;
 
 class TDUrlFormatterTest extends TestCase
 {
-    private readonly TDUrlFormatter $tdUrlFormatter;
+    private readonly TDUrlFormatter $formatter;
 
     public function setUp(): void
     {
-        $this->tdUrlFormatter = new TDUrlFormatter();
+        $this->formatter = new TDUrlFormatter();
     }
 
     /**
@@ -22,7 +23,7 @@ class TDUrlFormatterTest extends TestCase
      */
     public function testFormat(string $expected, string $pn)
     {
-        $this->assertEquals($expected, $this->tdUrlFormatter->format($pn));
+        $this->assertEquals($expected, $this->formatter->format($pn));
     }
 
     public static function dp(): array
@@ -39,4 +40,21 @@ class TDUrlFormatterTest extends TestCase
         ];
     }
 
+
+    /**
+     * @group ok
+     * @dataProvider dpFor
+     */
+    public function testFor(ProviderEnum $invalidProvider)
+    {
+        $this->assertTrue($this->formatter->for(ProviderEnum::TD));
+        $this->assertFalse($this->formatter->for($invalidProvider));
+    }
+
+    public static function dpFor(): array
+    {
+        return [
+            ProviderEnum::getAllExceptOne(ProviderEnum::TD)
+        ];
+    }
 }
