@@ -26,7 +26,7 @@ class AbstractProviderTest  extends TestCase
     {
         $providerClass = $this::PROVIDER_CLASS;
 
-        $path = __DIR__ . \sprintf('/../data/%s-%s.html', $providerClass::CODE, $phone);
+        $path = __DIR__ . \sprintf('/../data/%s-%s.html', $providerClass::getEnum()->name, $phone);
         $content = \file_get_contents($path);
 
         $httpClient = $this->createMock(DefaultHttpClient::class);

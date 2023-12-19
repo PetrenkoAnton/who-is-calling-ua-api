@@ -8,7 +8,7 @@ use App\Core\ProviderEnum;
 
 interface ProviderInterface
 {
-    public function getEnum(): ProviderEnum;
+    public static function getEnum(): ProviderEnum;
 
     public function enable(): bool;
 

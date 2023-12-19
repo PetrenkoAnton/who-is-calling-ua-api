@@ -8,7 +8,7 @@ use App\Core\ProviderEnum;
 
 class KCProvider extends AbstractProvider implements ProviderInterface
 {
-    public function getEnum(): ProviderEnum
+    public static function getEnum(): ProviderEnum
     {
         return ProviderEnum::KC;
     }

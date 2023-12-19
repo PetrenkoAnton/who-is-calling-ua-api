@@ -22,7 +22,7 @@ abstract class AbstractProvider implements ProviderInterface
         private readonly UrlFormatterCollection $urlFormatters,
     ) {}
 
-    abstract function getEnum(): ProviderEnum;
+    abstract static function getEnum(): ProviderEnum;
 
     public function enable(): bool
     {
