@@ -25,6 +25,6 @@ class PhoneController extends Controller
 
         $c = !$request->has('c') || $request->get('c');
 
-        return \response()->json($this->service->search((string) $request->get('p'), $c));
+        return \response()->json($this->service->search((string)$request->get('p'), $c));
     }
 }
