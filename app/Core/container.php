@@ -37,9 +37,13 @@ use App\Core\Providers\ProviderCollection;
 use App\Core\Providers\ProviderInterface;
 use App\Core\Providers\SLProvider;
 use App\Core\Providers\TDProvider;
+use App\Core\CommentsService\CommentsService;
+use App\Core\CommentsService\CommentsServiceInterface;
 use Laravel\Lumen\Application;
 
 /** @var Application $app */
+
+$app->bind(CommentsServiceInterface::class, CommentsService::class);
 
 $app->bind(UserAgentInterface::class, DefaultUserAgent::class);
 

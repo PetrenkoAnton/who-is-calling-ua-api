@@ -7,6 +7,7 @@ namespace App\Core\Services;
 use App\Core\Formatters\OutputPNFormatter;
 use App\Core\Providers\ProviderCollection;
 use App\Core\Providers\ProviderInterface;
+use App\Core\CommentsService\CommentsServiceInterface;
 use Illuminate\Support\Facades\Cache;
 use JetBrains\PhpStorm\ArrayShape;
 
@@ -15,18 +16,19 @@ class SearchService
     public function __construct(
         private readonly ProviderCollection $searchProviders,
         private readonly OutputPNFormatter $formatter,
+        private CommentsServiceInterface $commentsService,
     )
     {
     }
 
     #[ArrayShape(['pn' => "string", 'providers' => "array", 'cache' => "bool"])]
-    public function search(string $phone, bool $useCache = true): array
+    public function search(string $phone, bool $useCache = true,): array
     {
         if (!$useCache)
             Cache::delete($phone);
 
         if ($cache = Cache::has($phone)) {
-            $providers = Cache::get($phone);
+            $data = Cache::get($phone);
         } else {
             $providers = [];
 
@@ -37,7 +39,7 @@ class SearchService
                 $err = [];
 
                 try {
-                    $comments = $provider->getComments($phone);
+                    $this->commentsService->addComments(($comments = $provider->getComments($phone)));
                     // TODO! Temporary error handler.
                 } catch (\RuntimeException $e) {
                     $err = ['err' => $e->getMessage()];
@@ -50,13 +52,14 @@ class SearchService
                     ] + $err;
             }
 
-            Cache::set($phone, $providers);
+            $data = ['comments' => $this->commentsService->getUniqueComments()] + ['providers' => $providers];
+
+            Cache::set($phone, $data);
         }
 
         return [
-            'pn' => $this->formatter->format($phone),
-            'providers' => $providers,
-            'cache' => $cache,
-        ];
+                'pn' => $this->formatter->format($phone),
+                'cache' => $cache,
+            ] + $data;
     }
 }
