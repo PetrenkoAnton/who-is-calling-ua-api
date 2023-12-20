@@ -2,6 +2,8 @@
 
 ### Providers
 
+See file [ProviderEnum.php](app/Core/ProviderEnum.php)
+
 | Url                       | Internal Code |
 |:--------------------------|:-------------:|
 | ktozvonil.net             |      KZ       |
