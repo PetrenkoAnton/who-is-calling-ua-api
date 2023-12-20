@@ -2,11 +2,11 @@
 .NOTPARALLEL:
 
 ## Settings
-.DEFAULT_GOAL := wic
+.DEFAULT_GOAL := inside
 
-wic:
+inside:
 	docker exec -it wic_php /bin/bash
-.PHONY: wic
+.PHONY: inside
 
 test ok:
 	docker exec -it wic_php ./vendor/bin/phpunit --group ok
