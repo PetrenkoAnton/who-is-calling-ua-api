@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Providers;
 
+use App\Core\Formatters\UrlFormatters\UrlFormatterCollection;
 use App\Core\HttpClient\DefaultHttpClient;
 use App\Core\HttpClient\HttpClientInterface;
-use App\Core\Providers\CIProvider;
 use App\Core\Providers\ProviderInterface;
 use Tests\TestCase;
 
@@ -26,17 +26,23 @@ class AbstractProviderTest extends TestCase
     private function getProvider(string $phone): ProviderInterface
     {
         $providerClass = $this->getProviderClass();
+        $providerEnum = $providerClass::getEnum();
 
-        $path = __DIR__ . \sprintf('/../data/%s-%s.html', $providerClass::getEnum()->name, $phone);
+        $path = __DIR__ . \sprintf('/../data/%s-%s.html', $providerEnum->name, $phone);
         $content = \file_get_contents($path);
+
+        $urlFormatters = $this->app->make(UrlFormatterCollection::class);
+
+        $url = $urlFormatters->getFirstFor($providerEnum)->format($phone);
 
         $httpClient = $this->createMock(DefaultHttpClient::class);
         $httpClient
             ->method('getContent')
+            ->with($url)
             ->willReturn($content);
 
         $this->app
-            ->when(CIProvider::class)
+            ->when($providerClass)
             ->needs(HttpClientInterface::class)
             ->give(function () use ($httpClient) {
                 return $httpClient;
