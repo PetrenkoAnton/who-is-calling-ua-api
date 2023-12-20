@@ -6,9 +6,12 @@ namespace Tests\Feature\Providers;
 
 use App\Core\Providers\KCProvider;
 
-class KCProviderTest extends AbstractProviderTest
+class KCProviderTest extends AbstractProviderTest implements ProviderTestInterface
 {
-    protected const PROVIDER_CLASS = KCProvider::class;
+    public function getProviderClass(): string
+    {
+        return KCProvider::class;
+    }
 
     /**
      * @group ok

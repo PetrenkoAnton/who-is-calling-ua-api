@@ -6,10 +6,11 @@ namespace Tests\Feature\Providers;
 
 use App\Core\HttpClient\DefaultHttpClient;
 use App\Core\HttpClient\HttpClientInterface;
+use App\Core\Providers\CIProvider;
 use App\Core\Providers\ProviderInterface;
 use Tests\TestCase;
 
-class AbstractProviderTest  extends TestCase
+class AbstractProviderTest extends TestCase
 {
     public function testSuccessfulParseComments(string $phone, array $expectedComments)
     {
@@ -22,9 +23,9 @@ class AbstractProviderTest  extends TestCase
             $this->assertEquals($value, $comments[$key]);
     }
 
-    protected function getProvider(string $phone): ProviderInterface
+    private function getProvider(string $phone): ProviderInterface
     {
-        $providerClass = $this::PROVIDER_CLASS;
+        $providerClass = $this->getProviderClass();
 
         $path = __DIR__ . \sprintf('/../data/%s-%s.html', $providerClass::getEnum()->name, $phone);
         $content = \file_get_contents($path);
@@ -35,9 +36,11 @@ class AbstractProviderTest  extends TestCase
             ->willReturn($content);
 
         $this->app
-            ->when($providerClass)
+            ->when(CIProvider::class)
             ->needs(HttpClientInterface::class)
-            ->give($httpClient);
+            ->give(function () use ($httpClient) {
+                return $httpClient;
+            });
 
         return $this->app->make($providerClass);
     }

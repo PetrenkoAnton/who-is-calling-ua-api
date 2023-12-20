@@ -6,9 +6,12 @@ namespace Tests\Feature\Providers;
 
 use App\Core\Providers\TDProvider;
 
-class TDProviderTest extends AbstractProviderTest
+class TDProviderTest extends AbstractProviderTest implements ProviderTestInterface
 {
-    protected const PROVIDER_CLASS = TDProvider::class;
+    public function getProviderClass(): string
+    {
+        return TDProvider::class;
+    }
 
     /**
      * @group ok
@@ -25,6 +28,9 @@ class TDProviderTest extends AbstractProviderTest
             [
                 '443630074',
                 [
+                    'заблокировал',
+                    'Скидують не дочекавшись відповіді',
+                    'Пиздюки',
                     'Коли ліг Київстар дзвонили і автомат повідомляв що введений пароль не коректний. Що це було?',
                     'Машло',
                     'Воля кабель, про підкючення каналів та пакетів, крутили запис (робот), спам.',

@@ -6,9 +6,12 @@ namespace Tests\Feature\Providers;
 
 use App\Core\Providers\SLProvider;
 
-class SLProviderTest extends AbstractProviderTest
+class SLProviderTest extends AbstractProviderTest implements ProviderTestInterface
 {
-    protected const PROVIDER_CLASS = SLProvider::class;
+    public function getProviderClass(): string
+    {
+        return SLProvider::class;
+    }
 
     /**
      * @group ok

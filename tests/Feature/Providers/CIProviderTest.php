@@ -6,9 +6,12 @@ namespace Tests\Feature\Providers;
 
 use App\Core\Providers\CIProvider;
 
-class CIProviderTest extends AbstractProviderTest
+class CIProviderTest extends AbstractProviderTest implements ProviderTestInterface
 {
-    protected const PROVIDER_CLASS = CIProvider::class;
+    public function getProviderClass(): string
+    {
+        return CIProvider::class;
+    }
 
     /**
      * @group ok

@@ -6,9 +6,12 @@ namespace Tests\Feature\Providers;
 
 use App\Core\Providers\KZProvider;
 
-class KZProviderTest extends AbstractProviderTest
+class KZProviderTest extends AbstractProviderTest implements ProviderTestInterface
 {
-    protected const PROVIDER_CLASS = KZProvider::class;
+    public function getProviderClass(): string
+    {
+        return KZProvider::class;
+    }
 
     /**
      * @group ok

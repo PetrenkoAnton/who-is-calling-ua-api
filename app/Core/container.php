@@ -21,7 +21,6 @@ use App\Core\Parsers\ParserInterface;
 use App\Core\Parsers\KZParser;
 use App\Core\Parsers\SLParser;
 use App\Core\Parsers\TDParser;
-use App\Core\DocumentFactory;
 use App\Core\Formatters\UrlFormatters\CIUrlFormatter;
 use App\Core\Formatters\UrlFormatters\KZUrlFormatter;
 use App\Core\Formatters\UrlFormatters\TDUrlFormatter;
