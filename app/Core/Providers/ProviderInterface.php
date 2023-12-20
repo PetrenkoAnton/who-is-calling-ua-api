@@ -13,4 +13,6 @@ interface ProviderInterface
     public function enable(): bool;
 
     public function getComments(string $phone): array;
+
+    public function getUrl(string $phone): string;
 }

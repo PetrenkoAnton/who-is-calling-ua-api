@@ -24,6 +24,13 @@ abstract class AbstractProvider implements ProviderInterface
 
     abstract static function getEnum(): ProviderEnum;
 
+    // TODO! Add test
+    public function getUrl(string $phone): string
+    {
+
+        return $this->urlFormatters->getFirstFor($this->getEnum())->format($phone);
+    }
+
     public function enable(): bool
     {
         $key = sprintf('%s_PROVIDER', strtoupper($this->getEnum()->name));
@@ -41,7 +48,7 @@ abstract class AbstractProvider implements ProviderInterface
         $enum = $this->getEnum();
         $parser = $this->parsers->getFirstFor($enum);
 
-        $content = $this->httpClient->getContent($this->urlFormatters->getFirstFor($enum)->format($phone));
+        $content = $this->httpClient->getContent($this->getUrl($phone));
 
         $document = $this->documentFactory->create($content);
         $comments = $document->find($parser->getExpression());

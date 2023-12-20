@@ -47,6 +47,7 @@ class SearchService
 
                 $providers[] = [
                         'name' => $provider->getEnum()->value,
+                        'url' => $provider->getUrl($phone),
                         'code' => $provider->getEnum()->name,
                         'comments' => $comments,
                     ] + $err;
