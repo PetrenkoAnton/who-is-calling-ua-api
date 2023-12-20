@@ -17,7 +17,7 @@ $router->get('health-check', [
 $router->group(['prefix' => 'api', 'namespace' => 'Api'], function () use ($router) {
     $router->group(['prefix' => 'v1', 'namespace' => 'v1'], function () use ($router) {
         $router->get('search', [
-            'as' => 'v1/phone', 'uses' => 'PhoneController@search'
+            'as' => 'v1/search', 'uses' => 'SearchController@search'
         ]);
     });
 });

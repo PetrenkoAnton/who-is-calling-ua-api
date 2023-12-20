@@ -9,7 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
 
-class PhoneController extends Controller
+class SearchController extends Controller
 {
     public function __construct(
         private readonly SearchService $service,
@@ -20,11 +20,11 @@ class PhoneController extends Controller
     {
         $this->validate($request, [
             'c' => 'boolean',
-            'p' => ['required', $this->phoneRule],
+            'pn' => ['required', $this->phoneRule],
         ]);
 
         $c = !$request->has('c') || $request->get('c');
 
-        return \response()->json($this->service->search((string)$request->get('p'), $c));
+        return \response()->json($this->service->search((string)$request->get('pn'), $c));
     }
 }
