@@ -20,6 +20,6 @@ class HealthCheckService
 
         Cache::put($key, $input);
 
-        return $input === Cache::pull($key);
+        return $input === (int)Cache::pull($key);
     }
 }
