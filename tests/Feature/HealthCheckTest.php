@@ -24,7 +24,7 @@ class HealthCheckTest extends TestCase
     }
 
     /**
-     * @group +
+     * @group hc
      * @group ok
      */
     public function testHealthCheckEndpointReturnsASuccessfulResponse()

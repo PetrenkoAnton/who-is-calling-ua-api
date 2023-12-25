@@ -65,7 +65,6 @@ require __DIR__ . '/../app/Core/container.php';
 
 $app->configure('app');
 $app->configure('pn');
-$app->configure('database');
 
 /*
 |--------------------------------------------------------------------------

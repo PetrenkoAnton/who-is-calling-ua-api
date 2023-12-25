@@ -25,7 +25,6 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
 RUN pecl install xdebug && docker-php-ext-enable xdebug
-RUN pecl install redis && docker-php-ext-enable redis
 RUN docker-php-ext-install pdo pdo_mysql zip mbstring intl sockets bcmath
 
 # Get latest Composer

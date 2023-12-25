@@ -22,13 +22,13 @@ class SearchService
     }
 
     #[ArrayShape(['pn' => "string", 'providers' => "array", 'cache' => "bool"])]
-    public function search(string $pn, bool $useCache = true,): array
+    public function search(string $phone, bool $useCache = true,): array
     {
         if (!$useCache)
-            Cache::delete($pn);
+            Cache::delete($phone);
 
-        if ($cache = Cache::has($pn)) {
-            $data = Cache::get($pn);
+        if ($cache = Cache::has($phone)) {
+            $data = Cache::get($phone);
         } else {
             $providers = [];
 
@@ -39,7 +39,7 @@ class SearchService
                 $err = [];
 
                 try {
-                    $this->commentsService->addComments(($comments = $provider->getComments($pn)));
+                    $this->commentsService->addComments(($comments = $provider->getComments($phone)));
                     // TODO! Temporary error handler.
                 } catch (\RuntimeException $e) {
                     $err = ['err' => $e->getMessage()];
@@ -47,7 +47,7 @@ class SearchService
 
                 $providers[] = [
                         'name' => $provider->getEnum()->value,
-                        'url' => $provider->getUrl($pn),
+                        'url' => $provider->getUrl($phone),
                         'code' => $provider->getEnum()->name,
                         'comments' => $comments,
                     ] + $err;
@@ -55,11 +55,11 @@ class SearchService
 
             $data = ['comments' => $this->commentsService->getUniqueComments()] + ['providers' => $providers];
 
-            Cache::set($pn, $data);
+            Cache::set($phone, $data);
         }
 
         return [
-                'pn' => $this->formatter->format($pn),
+                'pn' => $this->formatter->format($phone),
                 'cache' => $cache,
             ] + $data;
     }
