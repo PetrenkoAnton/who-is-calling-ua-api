@@ -16,7 +16,7 @@ class SearchController extends Controller
         private readonly PNRule $phoneRule,
     ) {}
 
-    public function search(Request $request): JsonResponse
+    public function search(Request $request): array
     {
         $this->validate($request, [
             'c' => 'boolean',
@@ -25,6 +25,6 @@ class SearchController extends Controller
 
         $c = !$request->has('c') || $request->get('c');
 
-        return \response()->json($this->service->search((string)$request->get('pn'), $c));
+        return $this->service->search((string)$request->get('pn'), $c);
     }
 }

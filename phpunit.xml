@@ -14,5 +14,11 @@
     </testsuites>
     <php>
         <env name="APP_ENV" value="test"/>
+        <env name="CF_PROVIDER" value="true"/>
+        <env name="CI_PROVIDER" value="true"/>
+        <env name="KC_PROVIDER" value="true"/>
+        <env name="KZ_PROVIDER" value="true"/>
+        <env name="SL_PROVIDER" value="true"/>
+        <env name="TD_PROVIDER" value="true"/>
     </php>
 </phpunit>

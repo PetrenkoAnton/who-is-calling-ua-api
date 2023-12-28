@@ -19,5 +19,9 @@ $router->group(['prefix' => 'api', 'namespace' => 'Api'], function () use ($rout
         $router->get('search', [
             'as' => 'v1/search', 'uses' => 'SearchController@search'
         ]);
+
+        $router->get('info', [
+            'as' => 'v1/info', 'uses' => 'InfoController@info'
+        ]);
     });
 });
