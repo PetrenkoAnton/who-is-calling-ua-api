@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature;
+namespace Tests\Feature\Http;
 
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
@@ -10,7 +10,6 @@ use Tests\TestCase;
 class HealthCheckTest extends TestCase
 {
     /**
-     * @group hc
      * @group ok
      */
     public function testTheApplicationReturnsASuccessfulResponse()
@@ -24,7 +23,6 @@ class HealthCheckTest extends TestCase
     }
 
     /**
-     * @group hc
      * @group ok
      */
     public function testHealthCheckEndpointReturnsASuccessfulResponse()
