@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb60b926e3d0460e9e8cf7adda5aa16c",
+    "content-hash": "098796bb87b3721103326401ac84254b",
     "packages": [
         {
             "name": "brick/math",
@@ -3062,6 +3062,55 @@
                 }
             ],
             "time": "2023-02-08T01:06:31+00:00"
+        },
+        {
+            "name": "petrenkoanton/php-collection",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PetrenkoAnton/php-collection.git",
+                "reference": "736fe303a8b05a6761dc2fd91562ed9849b3b5a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PetrenkoAnton/php-collection/zipball/736fe303a8b05a6761dc2fd91562ed9849b3b5a1",
+                "reference": "736fe303a8b05a6761dc2fd91562ed9849b3b5a1",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Collection\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Petrenko",
+                    "email": "antptrnk@gmail.com",
+                    "homepage": "https://github.com/petrenkoanton",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Custom collection implementation",
+            "keywords": [
+                "collection",
+                "structure"
+            ],
+            "support": {
+                "issues": "https://github.com/PetrenkoAnton/php-collection/issues",
+                "source": "https://github.com/PetrenkoAnton/php-collection/tree/v1.0.1"
+            },
+            "time": "2024-01-11T13:00:15+00:00"
         },
         {
             "name": "phpoption/phpoption",

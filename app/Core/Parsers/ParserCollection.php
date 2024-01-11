@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core\Parsers;
 
-use App\Core\Collection;
 use App\Core\ProviderEnum;
+use Collection\Collection;
 
 class ParserCollection extends Collection
 {
@@ -13,13 +13,11 @@ class ParserCollection extends Collection
 
     public function __construct(ParserInterface ...$items)
     {
-        $this->items = $items;
+        parent::__construct(... $items);
     }
 
     public function getFirstFor(ProviderEnum $enum): ParserInterface
     {
-        return $this->filter(static function (ParserInterface $parser) use ($enum) {
-            return $parser->for($enum);
-        })->first();
+        return $this->filter(fn (ParserInterface $parser) => $parser->for($enum))->first();
     }
 }

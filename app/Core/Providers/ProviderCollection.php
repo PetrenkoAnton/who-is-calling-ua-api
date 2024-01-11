@@ -4,19 +4,17 @@ declare(strict_types=1);
 
 namespace App\Core\Providers;
 
-use App\Core\Collection;
+use Collection\Collection;
 
 class ProviderCollection extends Collection
 {
     public function __construct(ProviderInterface ...$items)
     {
-        $this->items = $items;
+        parent::__construct(... $items);
     }
 
     public function getEnabled(): ProviderCollection
     {
-        return $this->filter(static function (ProviderInterface $searchProvider) {
-            return $searchProvider->enable();
-        });
+        return $this->filter(fn (ProviderInterface $searchProvider) => $searchProvider->enable());
     }
 }

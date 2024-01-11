@@ -60,21 +60,15 @@ $app->bind(HttpClientInterface::class, DefaultHttpClient::class);
 
 $app->when(TDParser::class)
     ->needs(IgnoreCommentInterface::class)
-    ->give(function (Application $app) {
-        return $app->make(TDIgnoreComment::class);
-    });
+    ->give(fn (Application $app) => $app->make(TDIgnoreComment::class));
 
 $app->when(CIParser::class)
     ->needs(IgnoreCommentInterface::class)
-    ->give(function (Application $app) {
-        return $app->make(CIIgnoreComment::class);
-    });
+    ->give(fn (Application $app) => $app->make(CIIgnoreComment::class));
 
 $app->when(CFParser::class)
     ->needs(IgnoreCommentInterface::class)
-    ->give(function (Application $app) {
-        return $app->make(CFIgnoreComment::class);
-    });
+    ->give(fn (Application $app) => $app->make(CFIgnoreComment::class));
 
 $app->bind(UrlFormatterCollection::class, function (Application $app) {
     return new UrlFormatterCollection(

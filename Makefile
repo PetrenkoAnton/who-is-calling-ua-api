@@ -16,6 +16,14 @@ down:
 	docker-compose down
 .PHONY: down
 
+test:
+	docker exec -it wic_api_php ./vendor/bin/phpunit
+.PHONY: test
+
+composer-test:
+	docker exec -it php-collection composer test
+.PHONY: composer-test
+
 test-ok:
 	docker exec -it wic_api_php ./vendor/bin/phpunit --group ok
 .PHONY: test-ok

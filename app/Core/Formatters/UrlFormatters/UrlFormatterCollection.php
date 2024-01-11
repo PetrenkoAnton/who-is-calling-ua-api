@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core\Formatters\UrlFormatters;
 
-use App\Core\Collection;
 use App\Core\ProviderEnum;
+use Collection\Collection;
 
 class UrlFormatterCollection extends Collection
 {
@@ -13,13 +13,11 @@ class UrlFormatterCollection extends Collection
 
     public function __construct(UrlFormatterInterface ...$items)
     {
-        $this->items = $items;
+        parent::__construct(... $items);
     }
 
     public function getFirstFor(ProviderEnum $enum): UrlFormatterInterface
     {
-        return $this->filter(static function (UrlFormatterInterface $formatter) use ($enum) {
-            return $formatter->for($enum);
-        })->first();
+        return $this->filter(fn (UrlFormatterInterface $formatter) => $formatter->for($enum))->first();
     }
 }
