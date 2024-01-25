@@ -45,4 +45,4 @@ The [who-is-calling-ua-api](https://github.com/PetrenkoAnton/who-is-calling-ua-a
 ## Related projects
 
 - [PetrenkoAnton/php-collection](https://github.com/PetrenkoAnton/php-collection)
-- [PetrenkoAnton/who-is-calling-ua-api](https://github.com/PetrenkoAnton/who-is-calling-ua-api)
+- [PetrenkoAnton/php-dto](https://github.com/PetrenkoAnton/php-dto)
