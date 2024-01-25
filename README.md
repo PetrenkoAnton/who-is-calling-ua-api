@@ -16,7 +16,7 @@
 
 ### Providers
 
-See file [ProviderEnum.php](app/Core/ProviderEnum.php)
+[ProviderEnum.php](./app/Core/ProviderEnum.php)
 
 | Url                       | Internal Code |
 |:--------------------------|:-------------:|
@@ -29,7 +29,7 @@ See file [ProviderEnum.php](app/Core/ProviderEnum.php)
 
 ### Supported phone number codes
 
-See file [config/pn.php](config/pn.php)
+[config/pn.php](./config/pn.php)
 
 | Providers | Codes              |
 |:----------|:-------------------|
