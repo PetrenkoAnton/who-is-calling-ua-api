@@ -1,7 +1,7 @@
 {
-    "name": "laravel/lumen",
-    "description": "The Laravel Lumen Framework.",
-    "keywords": ["framework", "laravel", "lumen"],
+    "name": "petrenkoanton/who-is-calling-ua-api",
+    "description": "Who is calling UA API",
+    "keywords": ["lumen", "api", "parser", "calls"],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -16,7 +16,10 @@
         "fakerphp/faker": "^1.9.1",
         "mockery/mockery": "^1.4.4",
         "phpunit/phpunit": "^10.0",
-        "ramsey/coding-standard": "^2.2",
+        "php-coveralls/php-coveralls": "^2.7",
+        "vimeo/psalm": "^5.16",
+        "psalm/plugin-phpunit": "^0.18.4",
+        "ramsey/coding-standard": "^2.1",
         "squizlabs/php_codesniffer": "^3.8"
     },
     "autoload": {
@@ -34,7 +37,16 @@
     "scripts": {
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ]
+        ],
+        "check-all": [
+            "composer install",
+            "@test",
+            "@psalm",
+            "@phpcs"
+        ],
+        "test": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-text",
+        "psalm": "./vendor/bin/psalm",
+        "phpcs": "./vendor/bin/phpcs -v"
     },
     "config": {
         "optimize-autoloader": true,

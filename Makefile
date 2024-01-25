@@ -34,7 +34,7 @@ test:
 .PHONY: test
 
 test-c:
-	docker exec -it ${APP_NAME}_php ./vendor/bin/phpunit --coverage-text
+	docker exec -it ${APP_NAME}_php /bin/bash -c "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-text"
 .PHONY: test-c
 
 test-ok:
