@@ -34,7 +34,7 @@ test:
 .PHONY: test
 
 test-c:
-	docker exec -it ${APP_NAME}_php /bin/bash -c "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-text"
+	docker exec -it ${APP_NAME}_php ./vendor/bin/phpunit --coverage-text
 .PHONY: test-c
 
 test-ok:
@@ -44,6 +44,10 @@ test-ok:
 test+:
 	docker exec -it ${APP_NAME}_php ./vendor/bin/phpunit --group +
 .PHONY: test+
+
+test-xd:
+	docker exec -it ${APP_NAME}_php ./vendor/bin/phpunit --group xd
+.PHONY: test-xd
 
 psalm:
 	docker exec -it ${APP_NAME}_php ./vendor/bin/psalm --show-info=true --no-cache

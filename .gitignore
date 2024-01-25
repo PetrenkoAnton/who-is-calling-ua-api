@@ -2,3 +2,6 @@
 .idea
 .env
 .phpunit.result.cache
+.phpunit.cache
+/tests/output
+!/tests/output/.gitkeep
