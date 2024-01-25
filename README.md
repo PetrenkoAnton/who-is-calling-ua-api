@@ -1,5 +1,19 @@
 # who-is-calling-ua-api
 
+[![PHP Version](https://img.shields.io/packagist/php-v/petrenkoanton/who-is-calling-ua-api)](https://packagist.org/packages/petrenkoanton/who-is-calling-ua-api)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/petrenkoanton/who-is-calling-ua-api.svg)](https://packagist.org/packages/petrenkoanton/who-is-calling-ua-api)
+[![Total Downloads](https://img.shields.io/packagist/dt/petrenkoanton/who-is-calling-ua-api.svg)](https://packagist.org/packages/petrenkoanton/who-is-calling-ua-api)
+[![License](https://img.shields.io/packagist/l/petrenkoanton/who-is-calling-ua-api)](https://packagist.org/packages/petrenkoanton/who-is-calling-ua-api)
+
+[![PHP Composer](https://github.com/petrenkoanton/who-is-calling-ua-api/actions/workflows/tests.yml/badge.svg)](https://github.com/petrenkoanton/who-is-calling-ua-api/actions/workflows/tests.yml)
+[![Coverage Status](https://coveralls.io/repos/github/PetrenkoAnton/who-is-calling-ua-api/badge.svg?branch=main)](https://coveralls.io/github/PetrenkoAnton/who-is-calling-ua-api?branch=main)
+[![type-coverage](https://shepherd.dev/github/petrenkoanton/who-is-calling-ua-api/coverage.svg)](https://shepherd.dev/github/petrenkoanton/who-is-calling-ua-api)
+[![psalm-level](https://shepherd.dev/github/petrenkoanton/who-is-calling-ua-api/level.svg)](https://shepherd.dev/github/petrenkoanton/who-is-calling-ua-api)
+[![Build Status](https://github.com/petrenkoanton/who-is-calling-ua-api/workflows/coding-style/badge.svg)](https://github.com/petrenkoanton/who-is-calling-ua-api/actions)
+
+[Installation](#installation) | [Functionality](#functionality) | [Usage](#usage) | [For developers](#for-developers)
+| [License](#license) | [Related projects](#related-projects)
+
 ### Providers
 
 See file [ProviderEnum.php](app/Core/ProviderEnum.php)
@@ -23,3 +37,12 @@ See file [config/pn.php](config/pn.php)
 | lifecell  | 63, 73, 93         |
 | kyivstar  | 67, 68, 96, 97, 98 |
 | etc       | 44                 |
+
+## License
+
+The [who-is-calling-ua-api](https://github.com/PetrenkoAnton/who-is-calling-ua-api) project is open-sourced software licensed under the [MIT license](./LICENSE).
+
+## Related projects
+
+- [PetrenkoAnton/php-collection](https://github.com/PetrenkoAnton/php-collection)
+- [PetrenkoAnton/who-is-calling-ua-api](https://github.com/PetrenkoAnton/who-is-calling-ua-api)
