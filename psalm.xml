@@ -19,10 +19,10 @@
         <directory name="./app" useStrictTypes="true"/>
         <directory name="./bootstrap" useStrictTypes="true"/>
         <directory name="./config" useStrictTypes="true"/>
+        <directory name="./database" useStrictTypes="true"/>
         <directory name="./routes" useStrictTypes="true"/>
         <directory name="./tests" useStrictTypes="true"/>
         <ignoreFiles>
-            <directory name="./database"/>
             <directory name="./doc"/>
             <directory name="./public"/>
             <directory name="./recources"/>
