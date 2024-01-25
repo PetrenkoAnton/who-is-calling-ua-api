@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Core\Services;
 
+use App\Core\CommentsService\CommentsServiceInterface;
 use App\Core\Formatters\OutputPNFormatter;
 use App\Core\Providers\ProviderCollection;
 use App\Core\Providers\ProviderInterface;
-use App\Core\CommentsService\CommentsServiceInterface;
 use Illuminate\Support\Facades\Cache;
 use JetBrains\PhpStorm\ArrayShape;
+use RuntimeException;
 
 class SearchService
 {
@@ -17,15 +18,15 @@ class SearchService
         private readonly ProviderCollection $searchProviders,
         private readonly OutputPNFormatter $formatter,
         private CommentsServiceInterface $commentsService,
-    )
-    {
+    ) {
     }
 
-    #[ArrayShape(['pn' => "string", 'providers' => "array", 'cache' => "bool"])]
+    #[ArrayShape(['pn' => 'string', 'providers' => 'array', 'cache' => 'bool'])]
     public function search(string $phone, bool $useCache = true,): array
     {
-        if (!$useCache)
+        if (!$useCache) {
             Cache::delete($phone);
+        }
 
         if ($cache = Cache::has($phone)) {
             $data = Cache::get($phone);
@@ -36,21 +37,25 @@ class SearchService
                 /** @var ProviderInterface $provider */
 
                 $comments = [];
-                $err = [];
+                $err = null;
 
                 try {
                     $this->commentsService->addComments(($comments = $provider->getComments($phone)));
                     // TODO! Temporary error handler.
-                } catch (\RuntimeException $e) {
-                    $err = ['err' => $e->getMessage()];
+                } catch (RuntimeException $e) {
+                    $err = [
+                        'code' => $e->getCode(),
+                        'message' => $e->getMessage(),
+                    ];
                 }
 
                 $providers[] = [
-                        'name' => $provider->getEnum()->value,
-                        'url' => $provider->getUrl($phone),
-                        'code' => $provider->getEnum()->name,
-                        'comments' => $comments,
-                    ] + $err;
+                    'name' => $provider->getEnum()->value,
+                    'url' => $provider->getUrl($phone),
+                    'code' => $provider->getEnum()->name,
+                    'comments' => $comments,
+                    'err' => $err,
+                ];
             }
 
             $data = ['comments' => $this->commentsService->getUniqueComments()] + ['providers' => $providers];
@@ -59,8 +64,8 @@ class SearchService
         }
 
         return [
-                'pn' => $this->formatter->format($phone),
-                'cache' => $cache,
-            ] + $data;
+            'pn' => $this->formatter->format($phone),
+            'cache' => $cache,
+        ] + $data;
     }
 }

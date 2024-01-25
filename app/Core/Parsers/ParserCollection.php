@@ -9,11 +9,9 @@ use Collection\Collection;
 
 class ParserCollection extends Collection
 {
-    protected array $items;
-
     public function __construct(ParserInterface ...$items)
     {
-        parent::__construct(... $items);
+        parent::__construct(...$items);
     }
 
     public function getFirstFor(ProviderEnum $enum): ParserInterface

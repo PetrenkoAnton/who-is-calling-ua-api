@@ -8,10 +8,14 @@ use App\Core\Formatters\UrlFormatters\UrlFormatterCollection;
 use App\Core\HttpClient\DefaultHttpClient;
 use App\Core\HttpClient\HttpClientInterface;
 use App\Core\Providers\ProviderInterface;
+use PHPUnit\Framework\MockObject\Exception;
 use Tests\TestCase;
 
 class AbstractProviderTest extends TestCase
 {
+    /**
+     * @throws Exception
+     */
     public function testSuccessfulParseComments(string $phone, array $expectedComments)
     {
         $comments = $this->getProvider($phone)->getComments($phone);
@@ -23,6 +27,9 @@ class AbstractProviderTest extends TestCase
             $this->assertEquals($value, $comments[$key]);
     }
 
+    /**
+     * @throws Exception
+     */
     private function getProvider(string $phone): ProviderInterface
     {
         $providerClass = $this->getProviderClass();
@@ -44,9 +51,8 @@ class AbstractProviderTest extends TestCase
         $this->app
             ->when($providerClass)
             ->needs(HttpClientInterface::class)
-            ->give(function () use ($httpClient) {
-                return $httpClient;
-            });
+            ->give(fn () => $httpClient);
+
 
         return $this->app->make($providerClass);
     }
