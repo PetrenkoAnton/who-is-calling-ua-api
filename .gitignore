@@ -1,8 +1,8 @@
-.vendor
-.idea
+./vendor
+./.idea
 .env
 .phpunit.result.cache
 .phpunit.cache
-/tests/output
-!/tests/output/.gitkeep
+./tests/output
+!./tests/output/.gitkeep
 phpstan.neon
