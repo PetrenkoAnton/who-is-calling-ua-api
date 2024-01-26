@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class OutputPNFormatterTest extends TestCase
 {
-    private readonly OutputPNFormatter $formatter;
+    private OutputPNFormatter $formatter;
 
     public function setUp(): void
     {

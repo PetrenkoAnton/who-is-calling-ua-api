@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class TDUrlFormatterTest extends TestCase
 {
-    private readonly TDUrlFormatter $formatter;
+    private TDUrlFormatter $formatter;
 
     public function setUp(): void
     {

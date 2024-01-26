@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class CIUrlFormatterTest extends TestCase
 {
-    private readonly CIUrlFormatter $formatter;
+    private CIUrlFormatter $formatter;
 
     public function setUp(): void
     {

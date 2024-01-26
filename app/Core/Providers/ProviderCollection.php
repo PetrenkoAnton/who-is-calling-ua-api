@@ -13,7 +13,7 @@ class ProviderCollection extends Collection
         parent::__construct(... $items);
     }
 
-    public function getEnabled(): ProviderCollection
+    public function getEnabled(): self
     {
         return $this->filter(fn (ProviderInterface $searchProvider) => $searchProvider->enable());
     }

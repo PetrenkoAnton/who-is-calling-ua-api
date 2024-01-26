@@ -21,7 +21,6 @@ class SearchService
     ) {
     }
 
-    #[ArrayShape(['pn' => 'string', 'providers' => 'array', 'cache' => 'bool'])]
     public function search(string $phone, bool $useCache = true,): array
     {
         if (!$useCache) {

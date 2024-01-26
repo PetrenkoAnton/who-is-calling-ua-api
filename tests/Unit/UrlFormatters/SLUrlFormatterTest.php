@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class SLUrlFormatterTest extends TestCase
 {
-    private readonly SLUrlFormatter $formatter;
+    private SLUrlFormatter $formatter;
 
     public function setUp(): void
     {

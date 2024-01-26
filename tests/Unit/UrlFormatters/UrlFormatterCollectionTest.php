@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 class UrlFormatterCollectionTest extends TestCase
 {
-    private readonly UrlFormatterCollection $collection;
+    private UrlFormatterCollection $collection;
 
     public function setUp(): void
     {

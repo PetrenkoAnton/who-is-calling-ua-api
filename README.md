@@ -8,7 +8,7 @@
 [![PHP Composer](https://github.com/petrenkoanton/who-is-calling-ua-api/actions/workflows/tests.yml/badge.svg)](https://github.com/petrenkoanton/who-is-calling-ua-api/actions/workflows/tests.yml)
 [![Coverage Status](https://coveralls.io/repos/github/PetrenkoAnton/who-is-calling-ua-api/badge.svg?branch=main)](https://coveralls.io/github/PetrenkoAnton/who-is-calling-ua-api?branch=main)
 [![type-coverage](https://shepherd.dev/github/petrenkoanton/who-is-calling-ua-api/coverage.svg)](https://shepherd.dev/github/petrenkoanton/who-is-calling-ua-api)
-[![PHPStan Level 0](https://img.shields.io/badge/PHPStan-Level%209-brightgreen)](https://github.com/petrenkoanton/who-is-calling-ua-api)
+#[![PHPStan Level 0](https://img.shields.io/badge/PHPStan-Level%200-brightgreen)](https://github.com/petrenkoanton/who-is-calling-ua-api)
 [![Build Status](https://github.com/petrenkoanton/who-is-calling-ua-api/workflows/coding-style/badge.svg)](https://github.com/petrenkoanton/who-is-calling-ua-api/actions)
 
 [Installation](#installation) | [Functionality](#functionality) | [Usage](#usage) | [For developers](#for-developers)

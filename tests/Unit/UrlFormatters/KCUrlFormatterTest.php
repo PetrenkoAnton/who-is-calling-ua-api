@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class KCUrlFormatterTest extends TestCase
 {
-    private readonly KCUrlFormatter $formatter;
+    private KCUrlFormatter $formatter;
 
     public function setUp(): void
     {

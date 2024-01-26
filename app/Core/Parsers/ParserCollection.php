@@ -6,6 +6,8 @@ namespace App\Core\Parsers;
 
 use App\Core\ProviderEnum;
 use Collection\Collection;
+use Collection\Collectable;
+use Collection\Exception\CollectionException\InvalidKeyException;
 
 class ParserCollection extends Collection
 {
@@ -14,6 +16,9 @@ class ParserCollection extends Collection
         parent::__construct(...$items);
     }
 
+    /**
+     * @throws InvalidKeyException
+     */
     public function getFirstFor(ProviderEnum $enum): ParserInterface
     {
         return $this->filter(fn (ParserInterface $parser) => $parser->for($enum))->first();

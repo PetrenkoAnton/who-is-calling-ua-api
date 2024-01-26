@@ -2405,16 +2405,16 @@
         },
         {
             "name": "petrenkoanton/php-collection",
-            "version": "v1.1.0",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PetrenkoAnton/php-collection.git",
-                "reference": "af2876de1e07684a287071d373bebd5b15113547"
+                "reference": "05ede9a4cda04045352df24e0755cacb703a7f98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PetrenkoAnton/php-collection/zipball/af2876de1e07684a287071d373bebd5b15113547",
-                "reference": "af2876de1e07684a287071d373bebd5b15113547",
+                "url": "https://api.github.com/repos/PetrenkoAnton/php-collection/zipball/05ede9a4cda04045352df24e0755cacb703a7f98",
+                "reference": "05ede9a4cda04045352df24e0755cacb703a7f98",
                 "shasum": ""
             },
             "require": {
@@ -2453,9 +2453,9 @@
             ],
             "support": {
                 "issues": "https://github.com/PetrenkoAnton/php-collection/issues",
-                "source": "https://github.com/PetrenkoAnton/php-collection/tree/v1.1.0"
+                "source": "https://github.com/PetrenkoAnton/php-collection/tree/v1.1.2"
             },
-            "time": "2024-01-23T22:29:50+00:00"
+            "time": "2024-01-26T19:55:35+00:00"
         },
         {
             "name": "phpoption/phpoption",

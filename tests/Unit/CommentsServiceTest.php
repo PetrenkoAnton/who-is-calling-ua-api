@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class CommentsServiceTest extends TestCase
 {
-    private readonly CommentsService $service;
+    private CommentsService $service;
 
     public function setUp(): void
     {

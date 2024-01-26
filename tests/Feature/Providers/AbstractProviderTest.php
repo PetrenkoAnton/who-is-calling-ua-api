@@ -11,8 +11,10 @@ use App\Core\Providers\ProviderInterface;
 use PHPUnit\Framework\MockObject\Exception;
 use Tests\TestCase;
 
-class AbstractProviderTest extends TestCase
+abstract class AbstractProviderTest extends TestCase
 {
+    abstract public function getProviderClass(): string;
+
     /**
      * @throws Exception
      */
