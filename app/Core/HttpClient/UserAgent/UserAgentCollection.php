@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\HttpClient\UserAgent;
 
-use App\Core\Collection;
+use Collection\Collection;
 
 class UserAgentCollection extends Collection
 {
