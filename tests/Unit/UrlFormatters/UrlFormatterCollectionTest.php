@@ -34,7 +34,7 @@ class UrlFormatterCollectionTest extends TestCase
      * @group ok
      * @dataProvider dp
      */
-    public function testGetFirstFor(string $expected, ProviderEnum $enum)
+    public function testGetFirstFor(string $expected, ProviderEnum $enum): void
     {
         $this->assertEquals($expected, get_class($this->collection->getFirstFor($enum)));
     }

@@ -19,7 +19,7 @@ class CIProviderTest extends AbstractProviderTest implements ProviderTestInterfa
      * @dataProvider dp
      * @throws Exception
      */
-    public function testSuccessfulParseComments(string $phone, array $expectedComments)
+    public function testSuccessfulParseComments(string $phone, array $expectedComments): void
     {
         parent::testSuccessfulParseComments($phone, $expectedComments);
     }

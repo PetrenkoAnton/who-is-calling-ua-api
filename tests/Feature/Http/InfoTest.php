@@ -12,7 +12,7 @@ class InfoTest extends TestCase
     /**
      * @group ok
      */
-    public function testInfoEndpointReturnsASuccessfulResponse()
+    public function testInfoEndpointReturnsASuccessfulResponse(): void
     {
         // TODO! Add more asserts
         $this

@@ -1,5 +1,4 @@
 parameters:
-  editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
   paths:
     - app
     - bootstrap

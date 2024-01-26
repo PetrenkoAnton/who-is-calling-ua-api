@@ -12,7 +12,7 @@ class HealthCheckTest extends TestCase
     /**
      * @group ok
      */
-    public function testTheApplicationReturnsASuccessfulResponse()
+    public function testTheApplicationReturnsASuccessfulResponse(): void
     {
         $this->get('/')->seeStatusCode(Response::HTTP_OK);
 
@@ -25,7 +25,7 @@ class HealthCheckTest extends TestCase
     /**
      * @group ok
      */
-    public function testHealthCheckEndpointReturnsASuccessfulResponse()
+    public function testHealthCheckEndpointReturnsASuccessfulResponse(): void
     {
         $this->get(route('healthCheck'))->seeStatusCode(Response::HTTP_OK);
     }

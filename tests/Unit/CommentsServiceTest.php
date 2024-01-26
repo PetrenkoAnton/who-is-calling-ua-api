@@ -20,7 +20,7 @@ class CommentsServiceTest extends TestCase
      * @group ok
      * @dataProvider dp
      */
-    public function testGetUniqueComments(array $expectedUniqueComments, array $allComments)
+    public function testGetUniqueComments(array $expectedUniqueComments, array $allComments): void
     {
         $this->service->addComments($allComments);
         $this->assertEquals($expectedUniqueComments, $this->service->getUniqueComments());

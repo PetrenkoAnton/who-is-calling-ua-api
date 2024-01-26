@@ -17,7 +17,7 @@ class KCProviderTest extends AbstractProviderTest implements ProviderTestInterfa
      * @group ok
      * @dataProvider dp
      */
-    public function testSuccessfulParseComments(string $phone, array $expectedComments)
+    public function testSuccessfulParseComments(string $phone, array $expectedComments): void
     {
         parent::testSuccessfulParseComments($phone, $expectedComments);
     }

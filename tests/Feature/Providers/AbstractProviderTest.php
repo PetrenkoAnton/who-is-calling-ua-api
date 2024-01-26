@@ -18,7 +18,7 @@ abstract class AbstractProviderTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testSuccessfulParseComments(string $phone, array $expectedComments)
+    public function testSuccessfulParseComments(string $phone, array $expectedComments): void
     {
         $comments = $this->getProvider($phone)->getComments($phone);
 

@@ -20,7 +20,7 @@ class TDParserTest extends TestCase
     /**
      * @group ok
      */
-    public function testGetExpression()
+    public function testGetExpression(): void
     {
         $this->assertEquals('.comment-item .comment .comment-text', $this->commentFormatter->getExpression());
     }
@@ -29,7 +29,7 @@ class TDParserTest extends TestCase
      * @group ok
      * @dataProvider dp
      */
-    public function testFormat(string $expected, string $raw)
+    public function testFormat(string $expected, string $raw): void
     {
         $this->assertEquals($expected, $this->commentFormatter->format($raw));
     }
@@ -48,7 +48,7 @@ class TDParserTest extends TestCase
      * @group ok
      * @dataProvider dpIgnore
      */
-    public function testIgnore(bool $expected, string $comment)
+    public function testIgnore(bool $expected, string $comment): void
     {
         $this->assertEquals($expected, $this->commentFormatter->ignore($comment));
     }

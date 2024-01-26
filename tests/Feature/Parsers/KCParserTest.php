@@ -20,7 +20,7 @@ class KCParserTest extends TestCase
     /**
      * @group ok
      */
-    public function testGetExpression()
+    public function testGetExpression(): void
     {
         $this->assertEquals('.item .body', $this->parser->getExpression());
     }

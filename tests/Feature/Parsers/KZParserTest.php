@@ -20,7 +20,7 @@ class KZParserTest extends TestCase
     /**
      * @group ok
      */
-    public function testGetExpression()
+    public function testGetExpression(): void
     {
         $this->assertEquals('.comments .content', $this->commentFormatter->getExpression());
     }
@@ -29,7 +29,7 @@ class KZParserTest extends TestCase
      * @group ok
      * @dataProvider dp
      */
-    public function testFormat(string $expected, string $raw)
+    public function testFormat(string $expected, string $raw): void
     {
         $this->assertEquals($expected, $this->commentFormatter->format($raw));
     }

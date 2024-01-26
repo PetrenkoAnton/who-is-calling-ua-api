@@ -24,7 +24,7 @@ class PNValidatorTest extends TestCase
      * @group ok
      * @dataProvider dpValid
      */
-    public function testValidateSuccess(string $pn)
+    public function testValidateSuccess(string $pn): void
     {
         $this->validator->validate($pn);
         $this->expectNotToPerformAssertions();
@@ -47,7 +47,7 @@ class PNValidatorTest extends TestCase
      * @group ok
      * @dataProvider dpInvalid
      */
-    public function testValidateThrowsException(string $pn, string $e)
+    public function testValidateThrowsException(string $pn, string $e): void
     {
         $this->expectException($e);
         $this->validator->validate($pn);

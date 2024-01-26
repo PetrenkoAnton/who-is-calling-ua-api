@@ -21,7 +21,7 @@ class KCUrlFormatterTest extends TestCase
      * @group ok
      * @dataProvider dp
      */
-    public function testFormat(string $expected, string $pn)
+    public function testFormat(string $expected, string $pn): void
     {
         $this->assertEquals($expected, $this->formatter->format($pn));
     }
@@ -44,7 +44,7 @@ class KCUrlFormatterTest extends TestCase
      * @group ok
      * @dataProvider dpFor
      */
-    public function testFor(ProviderEnum $invalidProvider)
+    public function testFor(ProviderEnum $invalidProvider): void
     {
         $this->assertTrue($this->formatter->for(ProviderEnum::KC));
         $this->assertFalse($this->formatter->for($invalidProvider));
