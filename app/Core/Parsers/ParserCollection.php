@@ -21,6 +21,8 @@ class ParserCollection extends Collection
      */
     public function getFirstFor(ProviderEnum $enum): ParserInterface
     {
+        // TODO! Change to the "@phpstan-ignore return.type" after phpstan 1.11 will be in stable release
+        // @phpstan-ignore-next-line
         return $this->filter(fn (ParserInterface $parser) => $parser->for($enum))->first();
     }
 }

@@ -50,7 +50,7 @@ test-xd:
 .PHONY: test-xd
 
 phpstan:
-	docker exec -it ${APP_NAME}_php ./vendor/bin/phpstan
+	docker exec -it ${APP_NAME}_php ./vendor/bin/phpstan --error-format=table -v
 .PHONY: phpstan
 
 phpcs:

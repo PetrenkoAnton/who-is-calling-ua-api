@@ -1,4 +1,5 @@
 parameters:
+  editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
   paths:
     - app
     - bootstrap
@@ -6,15 +7,8 @@ parameters:
     - database
     - routes
     - tests
-  level: 0
+  level: 9
   ignoreErrors:
-    - "#\\(void\\) is used#"
-    - "#Access to an undefined property#"
-    - "#Call to an undefined method#"
-    - "#but return statement is missing.#"
-    - "#Caught class [a-zA-Z0-9\\\\_]+ not found.#"
-    - "#Class [a-zA-Z0-9\\\\_]+ not found.#"
-    - "#has invalid type#"
-    - "#should always throw an exception or terminate script execution#"
-    - "#Instantiated class [a-zA-Z0-9\\\\_]+ not found.#"
-    - "#Unsafe usage of new static#"
+     -
+         message: "#type has no value type specified in iterable type array.#"
+         path: tests/*
