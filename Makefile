@@ -49,9 +49,9 @@ test-xd:
 	docker exec -it ${APP_NAME}_php ./vendor/bin/phpunit --group xd
 .PHONY: test-xd
 
-psalm:
-	docker exec -it ${APP_NAME}_php ./vendor/bin/psalm --show-info=true --no-cache
-.PHONY: psalm
+phpstan:
+	docker exec -it ${APP_NAME}_php ./vendor/bin/phpstan
+.PHONY: phpstan
 
 phpcs:
 	docker exec -it ${APP_NAME}_php ./vendor/bin/phpcs -v

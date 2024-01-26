@@ -13,15 +13,14 @@
         "petrenkoanton/php-collection": "^1.0"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.13",
         "fakerphp/faker": "^1.9.1",
-        "lctrs/psalm-psr-container-plugin": "^1.10",
         "mockery/mockery": "^1.4.4",
         "php-coveralls/php-coveralls": "^2.7",
+        "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^10.0",
-        "psalm/plugin-phpunit": "^0.18.4",
         "ramsey/coding-standard": "^2.1",
-        "squizlabs/php_codesniffer": "^3.8",
-        "vimeo/psalm": "^5.16"
+        "squizlabs/php_codesniffer": "^3.8"
     },
     "autoload": {
         "psr-4": {
@@ -42,11 +41,11 @@
         "check-all": [
             "composer install",
             "@test",
-            "@psalm",
+            "@phpstan",
             "@phpcs"
         ],
         "test": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-text",
-        "psalm": "./vendor/bin/psalm",
+        "phpstan": "./vendor/bin/phpstan",
         "phpcs": "./vendor/bin/phpcs -v"
     },
     "config": {

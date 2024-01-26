@@ -1,0 +1,20 @@
+parameters:
+  paths:
+    - app
+    - bootstrap
+    - config
+    - database
+    - routes
+    - tests
+  level: 0
+  ignoreErrors:
+    - "#\\(void\\) is used#"
+    - "#Access to an undefined property#"
+    - "#Call to an undefined method#"
+    - "#but return statement is missing.#"
+    - "#Caught class [a-zA-Z0-9\\\\_]+ not found.#"
+    - "#Class [a-zA-Z0-9\\\\_]+ not found.#"
+    - "#has invalid type#"
+    - "#should always throw an exception or terminate script execution#"
+    - "#Instantiated class [a-zA-Z0-9\\\\_]+ not found.#"
+    - "#Unsafe usage of new static#"
