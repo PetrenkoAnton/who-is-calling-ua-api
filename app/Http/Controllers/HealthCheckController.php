@@ -17,6 +17,6 @@ class HealthCheckController extends Controller
     {
         $status = $this->service->check() ? BaseResponse::HTTP_OK : BaseResponse::HTTP_INTERNAL_SERVER_ERROR;
 
-        return \response('', $status);
+        return (new Response('', $status));
     }
 }

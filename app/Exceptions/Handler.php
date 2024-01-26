@@ -24,6 +24,6 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception): JsonResponse
     {
         $rendered = parent::render($request, $exception);
-        return \response()->json(['error' => json_decode($rendered->content())], $rendered->getStatusCode());
+        return \response()->json(['error' => json_decode($rendered->getContent())], $rendered->getStatusCode());
     }
 }
