@@ -54,9 +54,6 @@ class PNValidatorTest extends TestCase
         $this->validator->validate($pn);
     }
 
-    /**
-     * @return array<list{string, AppException}>
-     */
     public static function dpInvalid(): array
     {
         return [
