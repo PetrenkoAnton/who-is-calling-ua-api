@@ -12,3 +12,4 @@ phpstan.neon
 !/storage/framework/cache/.gitkeep
 !/storage/framework/views/.gitkeep
 !/storage/logs/.gitkeep
+!/.phpstorm.meta.php
