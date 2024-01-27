@@ -12,6 +12,9 @@ class InfoService
     {
     }
 
+    /**
+     * @return array{version:string,providers:array<string>,supported_codes:array<int>}
+     */
     public function getInfo(): array
     {
         return [
@@ -26,6 +29,9 @@ class InfoService
         return \trim(\file_get_contents(\realpath(__DIR__.'/../../../VERSION')));
     }
 
+    /**
+     * @return array<string>
+     */
     private function getProviders(): array
     {
         $res = [];
@@ -38,6 +44,9 @@ class InfoService
         return $res;
     }
 
+    /**
+     * @return array<int>
+     */
     private function getSupportedCodes(): array
     {
         $codes = \config('pn.supported_codes');

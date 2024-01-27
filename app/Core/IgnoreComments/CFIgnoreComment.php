@@ -6,6 +6,9 @@ namespace App\Core\IgnoreComments;
 
 class CFIgnoreComment implements IgnoreCommentInterface
 {
+    /**
+     * @return array<string>
+     */
     public function getList(): array
     {
         return [

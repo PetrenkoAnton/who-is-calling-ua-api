@@ -6,5 +6,8 @@ namespace App\Core\IgnoreComments;
 
 interface IgnoreCommentInterface
 {
+    /**
+     * @return array<string>
+     */
     public function getList(): array;
 }

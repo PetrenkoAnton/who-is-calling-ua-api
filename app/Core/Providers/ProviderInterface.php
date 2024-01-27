@@ -13,6 +13,9 @@ interface ProviderInterface extends Collectable
 
     public function enable(): bool;
 
+    /**
+     * @return array<string>
+     */
     public function getComments(string $phone): array;
 
     public function getUrl(string $phone): string;

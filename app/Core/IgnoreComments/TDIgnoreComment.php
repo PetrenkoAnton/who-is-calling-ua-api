@@ -6,6 +6,9 @@ namespace App\Core\IgnoreComments;
 
 class TDIgnoreComment implements IgnoreCommentInterface
 {
+    /**
+     * @return array<string>
+     */
     public function getList(): array
     {
         return [

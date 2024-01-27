@@ -12,6 +12,9 @@ class InfoController extends Controller
         private readonly InfoService $service,
     ) {}
 
+    /**
+     * @return array{version:string,providers:array<string>,supported_codes:array<int>}
+     */
     public function info(): array
     {
         return $this->service->getInfo();

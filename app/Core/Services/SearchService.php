@@ -21,7 +21,10 @@ class SearchService
     ) {
     }
 
-    public function search(string $phone, bool $useCache = true,): array
+    /**
+     * @return array<string, mixed>
+     */
+    public function search(string $phone, bool $useCache = true): array
     {
         if (!$useCache) {
             Cache::delete($phone);

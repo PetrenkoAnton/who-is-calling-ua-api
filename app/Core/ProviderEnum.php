@@ -13,6 +13,9 @@ enum ProviderEnum: string
     case SL = 'slick.ly';
     case TD = 'telefonnyjdovidnyk.com.ua';
 
+    /**
+     * @return array<int,ProviderEnum>
+     */
     public static function getAllExceptOne(ProviderEnum $except): array
     {
         $arr = self::cases();

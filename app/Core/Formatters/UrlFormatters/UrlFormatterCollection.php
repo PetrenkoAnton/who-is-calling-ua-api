@@ -10,6 +10,9 @@ use Collection\Collection;
 
 class UrlFormatterCollection extends Collection
 {
+    /**
+     * @var array<UrlFormatterInterface>
+     */
     protected array $items;
 
     public function __construct(UrlFormatterInterface ...$items)

@@ -16,6 +16,9 @@ class SearchController extends Controller
         private readonly PNRule $phoneRule,
     ) {}
 
+    /**
+     * @return array<string, mixed>
+     */
     public function search(Request $request): array
     {
         $this->validate($request, [

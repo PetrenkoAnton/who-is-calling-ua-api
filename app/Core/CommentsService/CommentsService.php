@@ -6,6 +6,9 @@ namespace App\Core\CommentsService;
 
 class CommentsService implements CommentsServiceInterface
 {
+    /**
+     * @var array<string>
+     */
     private array $comments;
 
     public function __construct(string ...$comments)
@@ -18,6 +21,9 @@ class CommentsService implements CommentsServiceInterface
         $this->comments[] = $comment;
     }
 
+    /**
+     * @param array<string> $comments
+     */
     public function addComments(array $comments): void
     {
         foreach ($comments as $comment) {
@@ -25,6 +31,9 @@ class CommentsService implements CommentsServiceInterface
         }
     }
 
+    /**
+     * @return array<string>
+     */
     public function getUniqueComments(): array
     {
         return \array_values(\array_unique($this->comments));

@@ -45,6 +45,8 @@ abstract class AbstractProvider implements ProviderInterface
     /**
      * @throws InvalidSelectorException
      * @throws ClientExceptionInterface
+     *
+     * @return array<string>
      */
     public function getComments(string $phone): array
     {

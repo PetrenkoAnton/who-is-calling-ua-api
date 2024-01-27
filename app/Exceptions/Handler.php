@@ -14,6 +14,9 @@ use Throwable;
 
 class Handler extends ExceptionHandler
 {
+    /**
+     * @var array<string>
+     */
     protected $dontReport = [
         AuthorizationException::class,
         HttpException::class,
