@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Feature;
 
 use App\Core\Validators\PNValidator;
+use App\Exceptions\AppException;
 use App\Exceptions\AppException\PNException\InvalidPNFormatException;
 use App\Exceptions\AppException\PNException\NumericPNException;
 use App\Exceptions\AppException\PNException\UnsupportedCodePNException;
@@ -47,28 +48,30 @@ class PNValidatorTest extends TestCase
      * @group ok
      * @dataProvider dpInvalid
      */
-    public function testValidateThrowsException(string $pn, string $e): void
+    public function testValidateThrowsException(string $pn, AppException $e): void
     {
-        $this->expectException($e);
+        $this->expectException($e::class);
         $this->validator->validate($pn);
     }
 
+    /**
+     * @return array<list{string, AppException}>
+     */
     public static function dpInvalid(): array
     {
         return [
-            ['qwerty', NumericPNException::class],
-            ['q', NumericPNException::class],
-            ['q71234567', NumericPNException::class],
+            ['qwerty', new NumericPNException],
+            ['q', new NumericPNException],
+            ['q71234567', new NumericPNException],
 
-            ['0', InvalidPNFormatException::class],
-            ['000', InvalidPNFormatException::class],
-            ['123123', InvalidPNFormatException::class],
-            ['0010000000000000000000', InvalidPNFormatException::class],
+            ['0', new InvalidPNFormatException],
+            ['000', new InvalidPNFormatException],
+            ['123123', new InvalidPNFormatException],
+            ['0010000000000000000000', new InvalidPNFormatException],
 
-            ['001000000', UnsupportedCodePNException::class],
-            ['431234567', UnsupportedCodePNException::class],
-            ['927654321', UnsupportedCodePNException::class],
+            ['001000000', new UnsupportedCodePNException],
+            ['431234567', new UnsupportedCodePNException],
+            ['927654321', new UnsupportedCodePNException],
         ];
     }
-
 }

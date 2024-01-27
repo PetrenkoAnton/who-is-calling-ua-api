@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Core\Services;
 
 use App\Core\Providers\ProviderCollection;
+use App\Exceptions\Internal\InternalException;
 
 class InfoService
 {
@@ -24,9 +25,16 @@ class InfoService
         ];
     }
 
+    /**
+     * @throws InternalException
+     */
     private function getVersion(): string
     {
-        return \trim(\file_get_contents(\realpath(__DIR__.'/../../../VERSION')));
+        $file = \realpath(__DIR__.'/../../../VERSION')
+            ?: throw new InternalException('VERSION file not found');
+        $versionFileContent = \file_get_contents($file)
+            ?: throw new InternalException('Invalid VERSION file content');
+        return \trim($versionFileContent);
     }
 
     /**
