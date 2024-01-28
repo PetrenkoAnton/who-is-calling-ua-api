@@ -20,9 +20,9 @@ class KZParserTest extends TestCase
     /**
      * @group ok
      */
-    public function testGetExpression(): void
+    public function testGetCommentsExpression(): void
     {
-        $this->assertEquals('.comments .content', $this->commentFormatter->getExpression());
+        $this->assertEquals('.comments .content', $this->commentFormatter->getCommentsExpression());
     }
 
     /**

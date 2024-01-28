@@ -20,8 +20,8 @@ class CIParserTest extends TestCase
     /**
      * @group ok
      */
-    public function testGetExpression(): void
+    public function testGetCommentsExpression(): void
     {
-        $this->assertEquals('.comment .summary p', $this->parser->getExpression());
+        $this->assertEquals('.comment .summary p', $this->parser->getCommentsExpression());
     }
 }

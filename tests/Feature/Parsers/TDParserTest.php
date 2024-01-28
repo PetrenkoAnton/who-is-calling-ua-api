@@ -20,9 +20,9 @@ class TDParserTest extends TestCase
     /**
      * @group ok
      */
-    public function testGetExpression(): void
+    public function testGetCommentsExpression(): void
     {
-        $this->assertEquals('.comment-item .comment .comment-text', $this->commentFormatter->getExpression());
+        $this->assertEquals('.comment-item .comment .comment-text', $this->commentFormatter->getCommentsExpression());
     }
 
     /**

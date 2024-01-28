@@ -20,8 +20,8 @@ class SLParserTest extends TestCase
     /**
      * @group ok
      */
-    public function testGetExpression(): void
+    public function testGetCommentsExpression(): void
     {
-        $this->assertEquals('.comment .content p', $this->parser->getExpression());
+        $this->assertEquals('.comment .content p', $this->parser->getCommentsExpression());
     }
 }

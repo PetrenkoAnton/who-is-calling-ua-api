@@ -15,7 +15,7 @@ abstract class AbstractParser implements ParserInterface
 
     abstract public function for(ProviderEnum $provider): bool;
 
-    abstract public function getExpression(): string;
+    abstract public function getCommentsExpression(): string;
 
     public function format(string $comment): string
     {

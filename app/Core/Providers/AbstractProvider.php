@@ -58,7 +58,7 @@ abstract class AbstractProvider implements ProviderInterface
         $content = $this->httpClient->getContent($this->getUrl($phone));
 
         $document = $this->documentFactory->create($content);
-        $comments = $document->find($parser->getExpression());
+        $comments = $document->find($parser->getCommentsExpression());
 
         foreach ($comments as $comment) {
             /** @var Element $comment */

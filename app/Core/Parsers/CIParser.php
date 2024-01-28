@@ -8,7 +8,7 @@ use App\Core\ProviderEnum;
 
 class CIParser extends AbstractParser implements ParserInterface
 {
-    public function getExpression(): string
+    public function getCommentsExpression(): string
     {
         return '.comment .summary p';
     }

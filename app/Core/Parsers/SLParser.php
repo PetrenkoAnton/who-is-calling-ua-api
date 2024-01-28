@@ -8,7 +8,7 @@ use App\Core\ProviderEnum;
 
 class SLParser extends AbstractParser implements ParserInterface
 {
-    public function getExpression(): string
+    public function getCommentsExpression(): string
     {
         return '.comment .content p';
     }

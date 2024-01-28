@@ -8,7 +8,7 @@ use App\Core\ProviderEnum;
 
 class CFParser extends AbstractParser implements ParserInterface
 {
-    public function getExpression(): string
+    public function getCommentsExpression(): string
     {
         return '.review .review_comment';
     }

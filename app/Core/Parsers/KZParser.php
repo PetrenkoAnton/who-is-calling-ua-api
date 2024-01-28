@@ -8,7 +8,7 @@ use App\Core\ProviderEnum;
 
 class KZParser extends AbstractParser implements ParserInterface
 {
-    public function getExpression(): string
+    public function getCommentsExpression(): string
     {
         return '.comments .content';
     }
