@@ -42,8 +42,12 @@ test-ok:
 .PHONY: test-ok
 
 test+:
-	docker exec -it ${APP_NAME}_php ./vendor/bin/phpunit --group +
+	docker exec -it ${APP_NAME}_php ./vendor/bin/phpunit --group + --display-skipped
 .PHONY: test+
+
+test-smoke:
+	docker exec -it ${APP_NAME}_php ./vendor/bin/phpunit --group smoke --display-skipped
+.PHONY: test-smoke
 
 test-xd:
 	docker exec -it ${APP_NAME}_php ./vendor/bin/phpunit --group xd
