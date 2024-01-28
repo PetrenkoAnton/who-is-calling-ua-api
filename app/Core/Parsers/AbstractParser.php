@@ -9,7 +9,7 @@ use App\Core\ProviderEnum;
 
 abstract class AbstractParser implements ParserInterface
 {
-    public function __construct(protected IgnoreCommentInterface $ignoreComment)
+    public function __construct(protected readonly IgnoreCommentInterface $ignoreComment)
     {
     }
 

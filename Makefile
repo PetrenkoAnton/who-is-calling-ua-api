@@ -6,7 +6,7 @@
 .DEFAULT_GOAL := inside
 
 init:
-	cp ./.env.example ./.env && echo Created ./.env
+	cp ./.env.example ./.env && cp ./phpstan.neon.dist ./phpstan.neon && echo "Created ./.env && ./.phpstan.neon files"
 .PHONY: init
 
 inside:
