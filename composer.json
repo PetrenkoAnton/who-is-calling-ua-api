@@ -1,7 +1,12 @@
 {
     "name": "petrenkoanton/who-is-calling-ua-api",
     "description": "Who is calling UA API",
-    "keywords": ["lumen", "api", "parser", "calls"],
+    "keywords": [
+        "lumen",
+        "api",
+        "parser",
+        "calls"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -14,6 +19,10 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",
+        "codeception/codeception": "^5.0",
+        "codeception/module-asserts": "*",
+        "codeception/module-phpbrowser": "*",
+        "codeception/module-rest": "^3.3",
         "fakerphp/faker": "^1.9.1",
         "mockery/mockery": "^1.4.4",
         "php-coveralls/php-coveralls": "^2.7",

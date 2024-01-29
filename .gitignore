@@ -3,8 +3,8 @@ storage
 .env
 .phpunit.result.cache
 .phpunit.cache
-/tests/output
-!/tests/output/.gitkeep
+/tests/_output
+!/tests/_output/.gitkeep
 phpstan.neon
 /vendor/
 /storage/

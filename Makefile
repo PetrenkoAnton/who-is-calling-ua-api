@@ -45,6 +45,18 @@ test+:
 	docker exec -it ${APP_NAME}_php ./vendor/bin/phpunit --group +
 .PHONY: test+
 
+cest:
+	docker exec -it ${APP_NAME}_php ./vendor/bin/codecept run
+.PHONY: cest
+
+cest+:
+	docker exec -it ${APP_NAME}_php ./vendor/bin/codecept run -g +
+.PHONY: cest+
+
+cest-smoke:
+	docker exec -it ${APP_NAME}_php ./vendor/bin/codecept run -g smoke
+.PHONY: cest-smoke
+
 test-smoke:
 	docker exec -it ${APP_NAME}_php ./vendor/bin/phpunit --group smoke --display-skipped --display-incomplete --testdox
 .PHONY: test-smoke

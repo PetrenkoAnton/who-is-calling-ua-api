@@ -5,15 +5,10 @@ declare(strict_types=1);
 namespace Tests\Acceptance;
 
 use App\Core\DocumentFactory;
-use App\Core\Formatters\OutputPNFormatter;
-use App\Core\Formatters\UrlFormatters\CFUrlFormatter;
 use App\Core\Formatters\UrlFormatters\UrlFormatterCollection;
 use App\Core\HttpClient\HttpClientInterface;
-use App\Core\Parsers\CIParser;
 use App\Core\Parsers\ParserCollection;
 use App\Core\ProviderEnum;
-use App\Core\Providers\AbstractProvider;
-use App\Core\Providers\CFProvider;
 use GuzzleHttp\Exception\ClientException;
 use Psr\Http\Message\ResponseInterface;
 use Tests\TestCase;
