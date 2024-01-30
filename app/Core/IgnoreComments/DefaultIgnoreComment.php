@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\IgnoreComments;
 
-class AbstractIgnoreComment implements IgnoreCommentInterface
+class DefaultIgnoreComment implements IgnoreCommentInterface
 {
     /**
      * @return array{}

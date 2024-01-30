@@ -6,5 +6,5 @@ namespace App\Core\HttpClient\UserAgent;
 
 interface UserAgentInterface
 {
-    public function getAgent(): string;
+    public function getValue(): string;
 }

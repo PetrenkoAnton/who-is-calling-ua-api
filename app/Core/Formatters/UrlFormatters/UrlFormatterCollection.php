@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Core\Formatters\UrlFormatters;
 
 use App\Core\ProviderEnum;
-use Collection\Collectable;
 use Collection\Collection;
 
 class UrlFormatterCollection extends Collection

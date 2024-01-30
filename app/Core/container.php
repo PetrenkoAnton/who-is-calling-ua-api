@@ -9,7 +9,6 @@ use App\Core\Formatters\UrlFormatters\UrlFormatterCollection;
 use App\Core\HttpClient\DefaultHttpClient;
 use App\Core\HttpClient\HttpClientInterface;
 use App\Core\HttpClient\UserAgent\DefaultUserAgent;
-use App\Core\HttpClient\UserAgent\UserAgentCollection;
 use App\Core\HttpClient\UserAgent\UserAgentInterface;
 use App\Core\IgnoreComments\CFIgnoreComment;
 use App\Core\Parsers\AbstractParser;
@@ -24,7 +23,7 @@ use App\Core\Parsers\TDParser;
 use App\Core\Formatters\UrlFormatters\CIUrlFormatter;
 use App\Core\Formatters\UrlFormatters\KZUrlFormatter;
 use App\Core\Formatters\UrlFormatters\TDUrlFormatter;
-use App\Core\IgnoreComments\AbstractIgnoreComment;
+use App\Core\IgnoreComments\DefaultIgnoreComment;
 use App\Core\IgnoreComments\CIIgnoreComment;
 use App\Core\IgnoreComments\IgnoreCommentInterface;
 use App\Core\IgnoreComments\TDIgnoreComment;
@@ -47,14 +46,8 @@ $app->bind(CommentsServiceInterface::class, CommentsService::class);
 
 $app->bind(UserAgentInterface::class, DefaultUserAgent::class);
 
-$app->bind(UserAgentCollection::class, function (Application $app) {
-    return new UserAgentCollection(
-        $app->make(DefaultUserAgent::class),
-    );
-});
-
 $app->bind(ProviderInterface::class, AbstractProvider::class);
-$app->bind(IgnoreCommentInterface::class,AbstractIgnoreComment::class);
+$app->bind(IgnoreCommentInterface::class,DefaultIgnoreComment::class);
 $app->bind(ParserInterface::class, AbstractParser::class);
 $app->bind(HttpClientInterface::class, DefaultHttpClient::class);
 

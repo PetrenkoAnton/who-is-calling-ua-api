@@ -6,14 +6,13 @@ namespace App\Core\HttpClient\UserAgent;
 
 class DefaultUserAgent implements UserAgentInterface
 {
-    public function __construct(private readonly ?string $agent = null)
+    public function getValue(): string
     {
+        $defaultUserAgent = getenv('DEFAULT_USER_AGENT', true);
 
-    }
+        $availableUserAgents = config('user_agent.available');
+        $randomUserAgent = $availableUserAgents[array_rand($availableUserAgents, 1)];
 
-    public function getAgent(): string
-    {
-        return $this->agent 
-            ?? env('DEFAULT_USER_AGENT', 'Mozilla/5.0 (Linux; Android 13; SM-G998B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36');
+        return getenv('USE_RANDOM_USER_AGENT', true) ? $randomUserAgent : $defaultUserAgent;
     }
 }
