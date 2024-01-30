@@ -9,6 +9,14 @@ use Tests\TestCase;
 
 class DefaultUserAgentTest extends TestCase
 {
+    public function tearDown(): void
+    {
+        putenv('USE_RANDOM_USER_AGENT=1');
+        putenv('DEFAULT_USER_AGENT=Mozilla/5.0 (Linux; Android 13; SM-G998B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36');
+
+        parent::tearDown();
+    }
+
     /**
      * @group ok
      * @dataProvider dpTestGetValue

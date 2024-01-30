@@ -39,7 +39,7 @@ abstract class AbstractProvider implements ProviderInterface
     {
         $key = sprintf('%s_PROVIDER', strtoupper($this->getEnum()->name));
 
-        return (bool) env($key);
+        return (bool) getenv($key, true);
     }
 
     /**
