@@ -67,5 +67,4 @@ class ProviderCollectionTest extends TestCase
             ],
         ];
     }
-
 }

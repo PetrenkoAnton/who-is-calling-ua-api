@@ -7,7 +7,7 @@ namespace Tests\Feature\Services;
 use App\Core\Services\InfoService;
 use Tests\TestCase;
 
-class InfoServiceTest  extends TestCase
+class InfoServiceTest extends TestCase
 {
     /**
      * @group ok

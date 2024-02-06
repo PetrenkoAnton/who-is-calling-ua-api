@@ -29,8 +29,9 @@ class PNValidator
      */
     private function validateNumeric(string $pn): void
     {
-        if (!is_numeric($pn))
+        if (!is_numeric($pn)) {
             throw new NumericPNException();
+        }
     }
 
     /**
@@ -38,8 +39,9 @@ class PNValidator
      */
     private function validateLength(string $pn): void
     {
-        if (strlen($pn) !== 9)
+        if (strlen($pn) !== 9) {
             throw new InvalidPNFormatException();
+        }
     }
 
     /**
@@ -47,7 +49,8 @@ class PNValidator
      */
     private function validateSupportedOperatorCode(string $pn): void
     {
-        if (!in_array(substr($pn, 0, 2), config('pn.supported_codes')))
+        if (!in_array(substr($pn, 0, 2), config('pn.supported_codes'))) {
             throw new UnsupportedCodePNException();
+        }
     }
 }

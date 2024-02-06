@@ -13,7 +13,6 @@ class DefaultHttpClient implements HttpClientInterface
 {
     public function __construct(private readonly UserAgentInterface $userAgent)
     {
-
     }
 
     public function getResponse(string $url): ResponseInterface

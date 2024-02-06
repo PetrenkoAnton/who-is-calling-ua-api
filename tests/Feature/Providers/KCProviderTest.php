@@ -41,5 +41,4 @@ class KCProviderTest extends AbstractProviderTest implements ProviderTestInterfa
             ],
         ];
     }
-
 }

@@ -14,7 +14,8 @@ class SearchController extends Controller
     public function __construct(
         private readonly SearchService $service,
         private readonly PNRule $phoneRule,
-    ) {}
+    ) {
+    }
 
     /**
      * @return array<string, mixed>

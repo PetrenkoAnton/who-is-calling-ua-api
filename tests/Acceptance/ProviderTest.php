@@ -102,8 +102,7 @@ class ProviderTest extends TestCase
     {
         $providerEnv = \sprintf('%s_PROVIDER', $enum->name);
 
-        if (!env($providerEnv))
-        {
+        if (!env($providerEnv)) {
             $this->markTestSkipped(\sprintf('%s=false', $providerEnv));
         }
     }

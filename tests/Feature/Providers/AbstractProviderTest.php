@@ -25,8 +25,9 @@ abstract class AbstractProviderTest extends TestCase
         $this->assertIsArray($comments);
         $this->assertCount(count($expectedComments), $comments);
 
-        foreach ($expectedComments as $key => $value)
+        foreach ($expectedComments as $key => $value) {
             $this->assertEquals($value, $comments[$key]);
+        }
     }
 
     /**

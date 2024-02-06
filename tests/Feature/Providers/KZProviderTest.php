@@ -43,5 +43,4 @@ class KZProviderTest extends AbstractProviderTest implements ProviderTestInterfa
             ],
         ];
     }
-
 }

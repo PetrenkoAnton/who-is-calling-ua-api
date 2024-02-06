@@ -49,5 +49,4 @@ class CIProviderTest extends AbstractProviderTest implements ProviderTestInterfa
             ],
         ];
     }
-
 }

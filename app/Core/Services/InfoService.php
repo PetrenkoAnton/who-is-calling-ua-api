@@ -44,8 +44,9 @@ class InfoService
     {
         $res = [];
 
-        foreach ($this->providers->getEnabled()->getItems() as $provider)
+        foreach ($this->providers->getEnabled()->getItems() as $provider) {
             $res[] = $provider::getEnum()->value;
+        }
 
         \sort($res);
 

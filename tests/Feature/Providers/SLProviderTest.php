@@ -44,5 +44,4 @@ class SLProviderTest extends AbstractProviderTest implements ProviderTestInterfa
             ],
         ];
     }
-
 }

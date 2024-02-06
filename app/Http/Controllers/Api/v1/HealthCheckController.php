@@ -11,7 +11,9 @@ use Symfony\Component\HttpFoundation\Response as BaseResponse;
 
 class HealthCheckController extends Controller
 {
-    public function __construct(private readonly HealthCheckService $service) {}
+    public function __construct(private readonly HealthCheckService $service)
+    {
+    }
 
     public function check(): Response
     {

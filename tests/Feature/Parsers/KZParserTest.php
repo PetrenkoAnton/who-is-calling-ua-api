@@ -44,5 +44,4 @@ class KZParserTest extends TestCase
             ],
         ];
     }
-
 }

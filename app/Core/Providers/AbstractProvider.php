@@ -27,7 +27,7 @@ abstract class AbstractProvider implements ProviderInterface
     ) {
     }
 
-    abstract static function getEnum(): ProviderEnum;
+    abstract public static function getEnum(): ProviderEnum;
 
     // TODO! Add test
     public function getUrl(string $phone): string

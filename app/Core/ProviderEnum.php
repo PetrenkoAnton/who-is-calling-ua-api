@@ -20,10 +20,9 @@ enum ProviderEnum: string
     {
         $arr = self::cases();
 
-        foreach ($arr as $k => $enum)
-        {
+        foreach ($arr as $k => $enum) {
             if ($enum === $except) {
-                unset ($arr[$k]);
+                unset($arr[$k]);
                 break;
             }
         }

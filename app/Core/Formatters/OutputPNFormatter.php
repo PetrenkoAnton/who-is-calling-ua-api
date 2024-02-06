@@ -8,7 +8,8 @@ class OutputPNFormatter
 {
     public function format(string $phone): string
     {
-        return sprintf('0%s %s-%s-%s',
+        return sprintf(
+            '0%s %s-%s-%s',
             substr($phone, 0, 2),
             substr($phone, 2, 3),
             substr($phone, 5, 2),

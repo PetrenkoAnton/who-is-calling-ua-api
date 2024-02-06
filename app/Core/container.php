@@ -47,7 +47,7 @@ $app->bind(CommentsServiceInterface::class, CommentsService::class);
 $app->bind(UserAgentInterface::class, DefaultUserAgent::class);
 
 $app->bind(ProviderInterface::class, AbstractProvider::class);
-$app->bind(IgnoreCommentInterface::class,DefaultIgnoreComment::class);
+$app->bind(IgnoreCommentInterface::class, DefaultIgnoreComment::class);
 $app->bind(ParserInterface::class, AbstractParser::class);
 $app->bind(HttpClientInterface::class, DefaultHttpClient::class);
 
