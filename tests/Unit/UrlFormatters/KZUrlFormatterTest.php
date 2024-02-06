@@ -31,11 +31,11 @@ class KZUrlFormatterTest extends TestCase
         return [
             [
                 'https://ktozvonil.net/nomer/0441234567',
-                '441234567'
+                '441234567',
             ],
             [
                 'https://ktozvonil.net/nomer/0677654321',
-                '677654321'
+                '677654321',
             ],
         ];
     }
@@ -53,7 +53,7 @@ class KZUrlFormatterTest extends TestCase
     public static function dpFor(): array
     {
         return [
-            ProviderEnum::getAllExceptOne(ProviderEnum::KZ)
+            ProviderEnum::getAllExceptOne(ProviderEnum::KZ),
         ];
     }
 }

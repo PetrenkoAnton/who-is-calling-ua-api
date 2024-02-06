@@ -10,7 +10,7 @@ class ProviderCollection extends Collection
 {
     public function __construct(ProviderInterface ...$items)
     {
-        parent::__construct(... $items);
+        parent::__construct(...$items);
     }
 
     public function getEnabled(): self

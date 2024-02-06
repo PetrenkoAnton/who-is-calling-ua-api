@@ -31,11 +31,11 @@ class SLUrlFormatterTest extends TestCase
         return [
             [
                 'https://slick.ly/ua/0441234567',
-                '441234567'
+                '441234567',
             ],
             [
                 'https://slick.ly/ua/0677654321',
-                '677654321'
+                '677654321',
             ],
         ];
     }
@@ -53,7 +53,7 @@ class SLUrlFormatterTest extends TestCase
     public static function dpFor(): array
     {
         return [
-            ProviderEnum::getAllExceptOne(ProviderEnum::SL)
+            ProviderEnum::getAllExceptOne(ProviderEnum::SL),
         ];
     }
 }

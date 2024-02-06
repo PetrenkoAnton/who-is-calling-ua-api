@@ -9,7 +9,6 @@ use App\Core\Formatters\OutputPNFormatter;
 use App\Core\Providers\ProviderCollection;
 use App\Core\Providers\ProviderInterface;
 use Illuminate\Support\Facades\Cache;
-use JetBrains\PhpStorm\ArrayShape;
 use RuntimeException;
 
 class SearchService

@@ -4,25 +4,23 @@ declare(strict_types=1);
 
 namespace Tests\Api\v1;
 
-use Codeception\Util\HttpCode;
 use Tests\Support\ApiTester;
 
 class InfoControllerCest
 {
     /**
-     * @param ApiTester $I
      * @group smoke
      */
-    public function getInfo(ApiTester $I): void
+    public function getInfo(ApiTester $apiTester): void
     {
-        $I->sendGet('/v1/info');
-        $I->seeResponseCodeIs(200);
-        $I->seeResponseMatchesJsonType([
+        $apiTester->sendGet('/v1/info');
+        $apiTester->seeResponseCodeIs(200);
+        $apiTester->seeResponseMatchesJsonType([
             'version' => 'string',
             'providers' => 'array',
             'supported_codes' => 'array',
         ]);
-        $I->seeResponseContainsJson([
+        $apiTester->seeResponseContainsJson([
             'version' => '1.0.0',
             'providers' => [
                 'callfilter.app',

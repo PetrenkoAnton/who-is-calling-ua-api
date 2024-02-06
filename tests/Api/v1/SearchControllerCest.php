@@ -7,18 +7,20 @@ namespace Tests\Api\v1;
 use Codeception\Example;
 use Tests\Support\ApiTester;
 
+use function sprintf;
+use function substr;
+
 class SearchControllerCest
 {
     /**
-     * @param ApiTester $I
      * @group smoke
      * @dataProvider dpGetValidSearch
      */
-    public function getValidSearch(ApiTester $I, Example $example): void
+    public function getValidSearch(ApiTester $apiTester, Example $example): void
     {
-        $I->sendGet(sprintf('/v1/search?pn=%s&c=%d', $example['pn'], $example['cache']));
-        $I->seeResponseCodeIs(200);
-        $I->seeResponseMatchesJsonType([
+        $apiTester->sendGet(sprintf('/v1/search?pn=%s&c=%d', $example['pn'], $example['cache']));
+        $apiTester->seeResponseCodeIs(200);
+        $apiTester->seeResponseMatchesJsonType([
             'pn' => 'string',
             'cache' => 'boolean',
             'comments' => 'array',
@@ -33,7 +35,7 @@ class SearchControllerCest
                 ],
             ],
         ]);
-        $I->seeResponseContainsJson([
+        $apiTester->seeResponseContainsJson([
             'pn' => $example['pnResponse'],
             'cache' => $example['cacheResponse'],
             'providers' => [
@@ -94,22 +96,21 @@ class SearchControllerCest
     }
 
     /**
-     * @param ApiTester $I
      * @group smoke
      * @dataProvider dpGetInvalidSearch
      */
-    public function getInvalidSearch(ApiTester $I, Example $example): void
+    public function getInvalidSearch(ApiTester $apiTester, Example $example): void
     {
-        $I->sendGet(sprintf('/v1/search?pn=%s&c=%s', $example['pn'], $example['c']));
-        $I->seeResponseCodeIs(422);
-        $I->seeResponseMatchesJsonType([
+        $apiTester->sendGet(sprintf('/v1/search?pn=%s&c=%s', $example['pn'], $example['c']));
+        $apiTester->seeResponseCodeIs(422);
+        $apiTesterI->seeResponseMatchesJsonType([
             'error' => 'array',
             'error' => [
                 'c' => 'array',
                 'pn' => 'array',
             ],
         ]);
-        $I->seeResponseContainsJson([
+        $apiTester->seeResponseContainsJson([
             'error' => [
                 'c' => ['The c field must be true or false.'],
                 'pn' => [$example['error']],

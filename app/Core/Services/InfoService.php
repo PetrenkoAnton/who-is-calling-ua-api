@@ -7,6 +7,12 @@ namespace App\Core\Services;
 use App\Core\Providers\ProviderCollection;
 use App\Exceptions\Internal\InternalException;
 
+use function config;
+use function file_get_contents;
+use function realpath;
+use function sort;
+use function trim;
+
 class InfoService
 {
     public function __construct(private readonly ProviderCollection $providers)
@@ -30,11 +36,12 @@ class InfoService
      */
     private function getVersion(): string
     {
-        $file = \realpath(__DIR__.'/../../../VERSION')
+        $file = realpath(__DIR__ . '/../../../VERSION')
             ?: throw new InternalException('VERSION file not found');
-        $versionFileContent = \file_get_contents($file)
+        $versionFileContent = file_get_contents($file)
             ?: throw new InternalException('Invalid VERSION file content');
-        return \trim($versionFileContent);
+
+        return trim($versionFileContent);
     }
 
     /**
@@ -48,7 +55,7 @@ class InfoService
             $res[] = $provider::getEnum()->value;
         }
 
-        \sort($res);
+        sort($res);
 
         return $res;
     }
@@ -58,8 +65,8 @@ class InfoService
      */
     private function getSupportedCodes(): array
     {
-        $codes = \config('pn.supported_codes');
-        \sort($codes);
+        $codes = config('pn.supported_codes');
+        sort($codes);
 
         return $codes;
     }

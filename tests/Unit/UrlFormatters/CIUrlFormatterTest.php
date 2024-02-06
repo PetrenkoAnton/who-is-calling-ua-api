@@ -31,11 +31,11 @@ class CIUrlFormatterTest extends TestCase
         return [
             [
                 'https://www.callinsider.com.ua/ua/0441234567',
-                '441234567'
+                '441234567',
             ],
             [
                 'https://www.callinsider.com.ua/ua/0677654321',
-                '677654321'
+                '677654321',
             ],
         ];
     }
@@ -53,7 +53,7 @@ class CIUrlFormatterTest extends TestCase
     public static function dpFor(): array
     {
         return [
-            ProviderEnum::getAllExceptOne(ProviderEnum::CI)
+            ProviderEnum::getAllExceptOne(ProviderEnum::CI),
         ];
     }
 }

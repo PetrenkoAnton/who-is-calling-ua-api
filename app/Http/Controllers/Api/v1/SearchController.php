@@ -1,11 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\v1;
 
 use App\Core\Services\SearchService;
 use App\Core\Validators\PNRule;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
 
@@ -29,6 +29,6 @@ class SearchController extends Controller
 
         $c = !$request->has('c') || $request->get('c');
 
-        return $this->service->search((string)$request->get('pn'), $c);
+        return $this->service->search((string) $request->get('pn'), $c);
     }
 }

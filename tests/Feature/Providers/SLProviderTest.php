@@ -34,7 +34,7 @@ class SLProviderTest extends AbstractProviderTest implements ProviderTestInterfa
                     'Я тролль с Джумайловки живу на Улице Александра Безгласного.Я люблю мошенничать и обманывать.Это мое хобби.А еще торгую своим лицом на дороге у обочины.',
                     'Данный номер телефона утерян.Пожалуйста не реагируйте на данную публикацию.',
                     // @codingStandardsIgnoreEnd
-                ]
+                ],
             ],
             [
                 '939300040',
@@ -44,7 +44,7 @@ class SLProviderTest extends AbstractProviderTest implements ProviderTestInterfa
                     'Розводяга',
                     'Мошенники',
                     // @codingStandardsIgnoreEnd
-                ]
+                ],
             ],
         ];
     }

@@ -7,6 +7,10 @@ namespace Tests\Feature;
 use App\Core\HttpClient\UserAgent\DefaultUserAgent;
 use Tests\TestCase;
 
+use function config;
+use function getenv;
+use function putenv;
+
 class DefaultUserAgentTest extends TestCase
 {
     public function tearDown(): void
@@ -27,11 +31,11 @@ class DefaultUserAgentTest extends TestCase
         putenv('USE_RANDOM_USER_AGENT=' . $useRandomUserAgent);
         putenv('DEFAULT_USER_AGENT=' . $defaultUserAgent);
 
-        $this->assertEquals((bool)$useRandomUserAgent, getenv('USE_RANDOM_USER_AGENT'));
+        $this->assertEquals((bool) $useRandomUserAgent, getenv('USE_RANDOM_USER_AGENT'));
 
         $userAgent = $this->app->make(DefaultUserAgent::class);
 
-        if ((bool)$useRandomUserAgent) {
+        if ((bool) $useRandomUserAgent) {
             $this->assertContains($userAgent->getValue(), config('user_agent.available'));
             $this->assertNotContains($defaultUserAgent, config('user_agent.available'));
         } else {

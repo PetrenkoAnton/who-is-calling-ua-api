@@ -7,6 +7,8 @@ namespace Tests\Feature\Providers;
 use App\Core\Providers\ProviderCollection;
 use Tests\TestCase;
 
+use function putenv;
+
 class ProviderCollectionTest extends TestCase
 {
     public function tearDown(): void

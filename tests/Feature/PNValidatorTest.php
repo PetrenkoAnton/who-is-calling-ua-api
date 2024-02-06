@@ -57,18 +57,18 @@ class PNValidatorTest extends TestCase
     public static function dpInvalid(): array
     {
         return [
-            ['qwerty', new NumericPNException],
-            ['q', new NumericPNException],
-            ['q71234567', new NumericPNException],
+            ['qwerty', new NumericPNException()],
+            ['q', new NumericPNException()],
+            ['q71234567', new NumericPNException()],
 
-            ['0', new InvalidPNFormatException],
-            ['000', new InvalidPNFormatException],
-            ['123123', new InvalidPNFormatException],
-            ['0010000000000000000000', new InvalidPNFormatException],
+            ['0', new InvalidPNFormatException()],
+            ['000', new InvalidPNFormatException()],
+            ['123123', new InvalidPNFormatException()],
+            ['0010000000000000000000', new InvalidPNFormatException()],
 
-            ['001000000', new UnsupportedCodePNException],
-            ['431234567', new UnsupportedCodePNException],
-            ['927654321', new UnsupportedCodePNException],
+            ['001000000', new UnsupportedCodePNException()],
+            ['431234567', new UnsupportedCodePNException()],
+            ['927654321', new UnsupportedCodePNException()],
         ];
     }
 }

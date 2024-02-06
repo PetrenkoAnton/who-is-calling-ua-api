@@ -31,11 +31,11 @@ class CFUrlFormatterTest extends TestCase
         return [
             [
                 'https://callfilter.app/380441234567',
-                '441234567'
+                '441234567',
             ],
             [
                 'https://callfilter.app/380677654321',
-                '677654321'
+                '677654321',
             ],
         ];
     }
@@ -53,7 +53,7 @@ class CFUrlFormatterTest extends TestCase
     public static function dpFor(): array
     {
         return [
-            ProviderEnum::getAllExceptOne(ProviderEnum::CF)
+            ProviderEnum::getAllExceptOne(ProviderEnum::CF),
         ];
     }
 }

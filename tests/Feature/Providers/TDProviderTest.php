@@ -40,7 +40,7 @@ class TDProviderTest extends AbstractProviderTest implements ProviderTestInterfa
                     'Взяв слухавку, відразу дзвінок прирвався.',
                     'Воля кабель',
                     'дзвонять і скидають',
-                ]
+                ],
             ],
             [
                 '730310246',
@@ -49,7 +49,7 @@ class TDProviderTest extends AbstractProviderTest implements ProviderTestInterfa
                     'школа англійської Englishdom',
                     'Дзвонять з якоїсь школи англійської',
                     'Телефонували один раз, слухавку з невідомих номерів не беру',
-                ]
+                ],
             ],
         ];
     }

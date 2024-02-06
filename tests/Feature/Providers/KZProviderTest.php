@@ -35,7 +35,7 @@ class KZProviderTest extends AbstractProviderTest implements ProviderTestInterfa
                     'Звонят и молчат',
                     'позвонили, услышали голос и сразу сбросили.',
                     // @codingStandardsIgnoreEnd
-                ]
+                ],
             ],
             [
                 '969402323',
@@ -43,7 +43,7 @@ class KZProviderTest extends AbstractProviderTest implements ProviderTestInterfa
                     // @codingStandardsIgnoreStart
                     'Обережно! Шахрай, берег передплату за товар, але посилку не відсилає! На дзвінки, після отримання коштів, не відповідає!',
                     // @codingStandardsIgnoreEnd
-                ]
+                ],
             ],
         ];
     }

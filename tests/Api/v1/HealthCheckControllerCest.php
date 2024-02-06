@@ -9,12 +9,11 @@ use Tests\Support\ApiTester;
 class HealthCheckControllerCest
 {
     /**
-     * @param ApiTester $I
      * @group smoke
      */
-    public function getHealthCheck(ApiTester $I): void
+    public function getHealthCheck(ApiTester $apiTester): void
     {
-        $I->sendGet('/v1/health-check');
-        $I->seeResponseCodeIs(200);
+        $apiTester->sendGet('/v1/health-check');
+        $apiTester->seeResponseCodeIs(200);
     }
 }

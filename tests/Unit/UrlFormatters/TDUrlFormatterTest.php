@@ -31,15 +31,14 @@ class TDUrlFormatterTest extends TestCase
         return [
             [
                 'https://www.telefonnyjdovidnyk.com.ua/nomer/0441234567',
-                '441234567'
+                '441234567',
             ],
             [
                 'https://www.telefonnyjdovidnyk.com.ua/nomer/0677654321',
-                '677654321'
+                '677654321',
             ],
         ];
     }
-
 
     /**
      * @group ok
@@ -54,7 +53,7 @@ class TDUrlFormatterTest extends TestCase
     public static function dpFor(): array
     {
         return [
-            ProviderEnum::getAllExceptOne(ProviderEnum::TD)
+            ProviderEnum::getAllExceptOne(ProviderEnum::TD),
         ];
     }
 }

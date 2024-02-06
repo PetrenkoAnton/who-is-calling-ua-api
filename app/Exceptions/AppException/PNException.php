@@ -8,5 +8,4 @@ use App\Exceptions\AppException;
 
 class PNException extends AppException
 {
-
 }

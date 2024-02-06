@@ -6,6 +6,8 @@ namespace App\Core\Services;
 
 use Illuminate\Support\Facades\Cache;
 
+use function time;
+
 class HealthCheckService
 {
     public function check(): bool
@@ -20,6 +22,6 @@ class HealthCheckService
 
         Cache::put($key, $input);
 
-        return $input === (int)Cache::pull($key);
+        return $input === (int) Cache::pull($key);
     }
 }

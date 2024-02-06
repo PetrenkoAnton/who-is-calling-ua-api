@@ -13,7 +13,7 @@ use DiDom\Element;
 use DiDom\Exceptions\InvalidSelectorException;
 use Psr\Http\Client\ClientExceptionInterface;
 
-use function env;
+use function getenv;
 use function sprintf;
 use function strtoupper;
 
@@ -43,10 +43,10 @@ abstract class AbstractProvider implements ProviderInterface
     }
 
     /**
+     * @return array<string>
+     *
      * @throws InvalidSelectorException
      * @throws ClientExceptionInterface
-     *
-     * @return array<string>
      */
     public function getComments(string $phone): array
     {

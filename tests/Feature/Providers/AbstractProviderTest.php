@@ -11,6 +11,10 @@ use App\Core\Providers\ProviderInterface;
 use PHPUnit\Framework\MockObject\Exception;
 use Tests\TestCase;
 
+use function count;
+use function file_get_contents;
+use function sprintf;
+
 abstract class AbstractProviderTest extends TestCase
 {
     abstract public function getProviderClass(): string;
@@ -38,8 +42,8 @@ abstract class AbstractProviderTest extends TestCase
         $providerClass = $this->getProviderClass();
         $providerEnum = $providerClass::getEnum();
 
-        $path = __DIR__ . \sprintf('/../data/%s-%s.html', $providerEnum->name, $phone);
-        $content = \file_get_contents($path);
+        $path = __DIR__ . sprintf('/../data/%s-%s.html', $providerEnum->name, $phone);
+        $content = file_get_contents($path);
 
         $urlFormatters = $this->app->make(UrlFormatterCollection::class);
 
@@ -55,7 +59,6 @@ abstract class AbstractProviderTest extends TestCase
             ->when($providerClass)
             ->needs(HttpClientInterface::class)
             ->give(fn () => $httpClient);
-
 
         return $this->app->make($providerClass);
     }

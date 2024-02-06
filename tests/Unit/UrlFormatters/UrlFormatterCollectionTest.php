@@ -14,6 +14,8 @@ use App\Core\Formatters\UrlFormatters\UrlFormatterCollection;
 use App\Core\ProviderEnum;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class UrlFormatterCollectionTest extends TestCase
 {
     private UrlFormatterCollection $collection;

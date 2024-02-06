@@ -13,6 +13,13 @@ use GuzzleHttp\Exception\ClientException;
 use Psr\Http\Message\ResponseInterface;
 use Tests\TestCase;
 
+use function array_column;
+use function array_filter;
+use function count;
+use function env;
+use function implode;
+use function sprintf;
+
 class ProviderTest extends TestCase
 {
     /**
@@ -22,8 +29,8 @@ class ProviderTest extends TestCase
     {
         $providers = ProviderEnum::cases();
 
-        foreach ($this->dp() as $k => $v) {
-            $providers = array_filter($providers, fn ($provider) => $provider != $v[0]);
+        foreach ($this->dp() as $p) {
+            $providers = array_filter($providers, fn ($provider) => $provider !== $p[0]);
         }
 
         if (count($providers)) {
@@ -50,12 +57,15 @@ class ProviderTest extends TestCase
             switch ($e->getCode()) {
                 case 403:
                     $this->markTestIncomplete(sprintf('Blocked (403): %s', $url));
+
                     break;
                 case 404:
                     $this->fail(sprintf('Not found (404): %s', $url));
+
                     break;
                 default:
                     $this->fail(sprintf('Error (%d): %s', $e->getCode(), $e->getMessage()));
+
                     break;
             }
         }
@@ -90,6 +100,7 @@ class ProviderTest extends TestCase
     private function getResponse(string $url): ResponseInterface
     {
         $httpClient = $this->app->make(HttpClientInterface::class);
+
         return $httpClient->getResponse($url);
     }
 
@@ -103,10 +114,10 @@ class ProviderTest extends TestCase
 
     private function checkSkipped(ProviderEnum $enum): void
     {
-        $providerEnv = \sprintf('%s_PROVIDER', $enum->name);
+        $providerEnv = sprintf('%s_PROVIDER', $enum->name);
 
         if (!env($providerEnv)) {
-            $this->markTestSkipped(\sprintf('%s=false', $providerEnv));
+            $this->markTestSkipped(sprintf('%s=false', $providerEnv));
         }
     }
 }

@@ -31,11 +31,11 @@ class KCUrlFormatterTest extends TestCase
         return [
             [
                 'http://kto-zvonil.com.ua/number/044/1234567',
-                '441234567'
+                '441234567',
             ],
             [
                 'http://kto-zvonil.com.ua/number/067/7654321',
-                '677654321'
+                '677654321',
             ],
         ];
     }
@@ -53,7 +53,7 @@ class KCUrlFormatterTest extends TestCase
     public static function dpFor(): array
     {
         return [
-            ProviderEnum::getAllExceptOne(ProviderEnum::KC)
+            ProviderEnum::getAllExceptOne(ProviderEnum::KC),
         ];
     }
 }

@@ -30,14 +30,14 @@ class KCProviderTest extends AbstractProviderTest implements ProviderTestInterfa
                 [
                     'Питались узнать номер карти, мошенники',
                     'Шахраї, виманюють номер карти',
-                ]
+                ],
             ],
             [
                 '735290467',
                 [
                     "+380735488532 такий самий пов'язаний номер",
                     'Аферисти',
-                ]
+                ],
             ],
         ];
     }
