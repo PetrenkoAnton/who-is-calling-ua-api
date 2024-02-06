@@ -12,6 +12,7 @@ class DefaultUserAgentTest extends TestCase
     public function tearDown(): void
     {
         putenv('USE_RANDOM_USER_AGENT=1');
+        // phpcs:ignore
         putenv('DEFAULT_USER_AGENT=Mozilla/5.0 (Linux; Android 13; SM-G998B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36');
 
         parent::tearDown();
@@ -44,6 +45,7 @@ class DefaultUserAgentTest extends TestCase
             [
                 '0',
                 // No current value in config('user_agent.available')
+                // phpcs:ignore
                 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.3',
             ],
             [
@@ -54,6 +56,7 @@ class DefaultUserAgentTest extends TestCase
             [
                 '1',
                 // No current value in config('user_agent.available')
+                // phpcs:ignore
                 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.3',
             ],
             [

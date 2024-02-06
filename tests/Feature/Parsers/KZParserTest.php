@@ -38,9 +38,11 @@ class KZParserTest extends TestCase
     {
         return [
             [
+                // @codingStandardsIgnoreStart
                 'Шахраї !  Не беріть з цього номеру. Краще в спам одразу ж відправляти !',
                 "\n
                                                                         Шахраї !  Не беріть з цього номеру. Краще в спам одразу ж відправляти !"
+                // @codingStandardsIgnoreEnd
             ],
         ];
     }

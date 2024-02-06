@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 return [
     'available' => [
+        // @codingStandardsIgnoreStart
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -69,5 +70,6 @@ return [
         'Mozilla/5.0 (iPad; CPU OS 17_2_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 YaBrowser/23.11.7.57 Mobile/15E148 Safari/605.1',
         'Mozilla/5.0 (iPod touch; CPU iPhone 17_2_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 YaBrowser/23.11.7.57 Mobile/15E148 Safari/605.1',
         'Mozilla/5.0 (Linux; arm_64; Android 14; SM-G965F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.210 YaBrowser/21.3.4.59 Mobile Safari/537.36',
+        // @codingStandardsIgnoreEnd
     ],
 ];

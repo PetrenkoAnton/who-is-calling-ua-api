@@ -6,6 +6,9 @@ namespace App\Core\Formatters\UrlFormatters;
 
 use App\Core\ProviderEnum;
 
+use function substr;
+use function sprintf;
+
 class KCUrlFormatter implements UrlFormatterInterface
 {
     public function format(string $pn): string
