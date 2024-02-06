@@ -7,6 +7,10 @@ namespace App\Core\Parsers;
 use App\Core\IgnoreComments\IgnoreCommentInterface;
 use App\Core\ProviderEnum;
 
+use function str_contains;
+use function str_replace;
+use function trim;
+
 abstract class AbstractParser implements ParserInterface
 {
     public function __construct(protected readonly IgnoreCommentInterface $ignoreComment)
@@ -19,7 +23,7 @@ abstract class AbstractParser implements ParserInterface
 
     public function format(string $comment): string
     {
-        return \trim(\str_replace("\n", ' ', $comment));
+        return trim(str_replace("\n", ' ', $comment));
     }
 
     public function ignore(string $comment): bool
@@ -31,8 +35,9 @@ abstract class AbstractParser implements ParserInterface
         $res = false;
 
         foreach ($this->ignoreComment->getList() as $ignoreMessage) {
-            if (\str_contains($comment, $ignoreMessage)) {
+            if (str_contains($comment, $ignoreMessage)) {
                 $res = true;
+
                 break;
             }
         }

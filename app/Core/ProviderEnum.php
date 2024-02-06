@@ -23,6 +23,7 @@ enum ProviderEnum: string
         foreach ($arr as $k => $enum) {
             if ($enum === $except) {
                 unset($arr[$k]);
+
                 break;
             }
         }

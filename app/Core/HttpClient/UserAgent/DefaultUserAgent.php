@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace App\Core\HttpClient\UserAgent;
 
+use function array_rand;
+use function config;
+use function getenv;
+
 class DefaultUserAgent implements UserAgentInterface
 {
     public function getValue(): string

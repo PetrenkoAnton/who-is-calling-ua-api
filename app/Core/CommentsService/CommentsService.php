@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Core\CommentsService;
 
+use function array_unique;
+use function array_values;
+
 class CommentsService implements CommentsServiceInterface
 {
     /**
@@ -36,6 +39,6 @@ class CommentsService implements CommentsServiceInterface
      */
     public function getUniqueComments(): array
     {
-        return \array_values(\array_unique($this->comments));
+        return array_values(array_unique($this->comments));
     }
 }

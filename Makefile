@@ -70,7 +70,7 @@ phpstan:
 .PHONY: phpstan
 
 phpcs:
-	docker exec -it ${APP_NAME}_php ./vendor/bin/phpcs -v
+	docker exec -it ${APP_NAME}_php ./vendor/bin/phpcs
 .PHONY: phpcs
 
 doc:

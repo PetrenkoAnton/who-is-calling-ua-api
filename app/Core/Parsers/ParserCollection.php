@@ -6,7 +6,6 @@ namespace App\Core\Parsers;
 
 use App\Core\ProviderEnum;
 use Collection\Collection;
-use Collection\Collectable;
 use Collection\Exception\CollectionException\InvalidKeyException;
 
 class ParserCollection extends Collection

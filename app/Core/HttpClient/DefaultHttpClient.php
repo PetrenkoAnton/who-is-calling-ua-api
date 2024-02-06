@@ -20,7 +20,7 @@ class DefaultHttpClient implements HttpClientInterface
         $client = new Client(([
             'headers' => [
                 'User-Agent' => $this->userAgent->getValue(),
-            ]
+            ],
         ]));
 
         return $client->get($url);
@@ -34,7 +34,7 @@ class DefaultHttpClient implements HttpClientInterface
         $client = new Client(([
             'headers' => [
                 'User-Agent' => $this->userAgent->getValue(),
-            ]
+            ],
         ]));
 
         return $client->get($url)->getBody()->getContents();

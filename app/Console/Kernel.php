@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
     /**
      * @var array<string>
      */
-    protected $commands = [];
+    protected array $commands = [];
 
     /**
      * @return void

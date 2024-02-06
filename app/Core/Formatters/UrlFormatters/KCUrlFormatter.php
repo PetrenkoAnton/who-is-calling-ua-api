@@ -6,8 +6,8 @@ namespace App\Core\Formatters\UrlFormatters;
 
 use App\Core\ProviderEnum;
 
-use function substr;
 use function sprintf;
+use function substr;
 
 class KCUrlFormatter implements UrlFormatterInterface
 {
