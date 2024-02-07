@@ -2,7 +2,7 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
          beStrictAboutChangesToGlobalState="true" beStrictAboutOutputDuringTests="true" colors="true"
-         cacheDirectory=".phpunit.cache">
+         cacheDirectory="tests/_output">
     <testsuites>
         <testsuite name="Acceptance">
             <directory suffix="Test.php">./tests/Acceptance</directory>
@@ -29,6 +29,10 @@
     <source>
         <include>
             <directory>./app</directory>
+            <directory>./bootstrap</directory>
+            <directory>./config</directory>
+            <directory>./database</directory>
+            <directory>./routes</directory>
         </include>
     </source>
 </phpunit>

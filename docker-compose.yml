@@ -28,6 +28,7 @@ services:
       - ./.docker/services/php/ini/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
       - ./.docker/services/php/ini/opcache.ini:/usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
       - ./.docker/services/php/ini/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
+      - ./tests/_output:/opt/phpstorm-coverage/
     networks:
       - default
 
