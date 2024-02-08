@@ -17,4 +17,11 @@ class CFParser extends AbstractParser implements ParserInterface
     {
         return $provider === ProviderEnum::CF;
     }
+
+    public function getIgnoreCommentsList(): array
+    {
+        return [
+            'Цей відгук прихований модератором. Причина:',
+        ];
+    }
 }

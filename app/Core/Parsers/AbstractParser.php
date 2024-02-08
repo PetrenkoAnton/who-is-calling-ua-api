@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Core\Parsers;
 
-use App\Core\IgnoreComments\IgnoreCommentInterface;
 use App\Core\ProviderEnum;
 
 use function str_contains;
@@ -13,13 +12,14 @@ use function trim;
 
 abstract class AbstractParser implements ParserInterface
 {
-    public function __construct(protected readonly IgnoreCommentInterface $ignoreComment)
-    {
-    }
-
     abstract public function for(ProviderEnum $provider): bool;
 
     abstract public function getCommentsExpression(): string;
+
+    public function getIgnoreCommentsList(): array
+    {
+        return [];
+    }
 
     public function format(string $comment): string
     {
@@ -28,13 +28,13 @@ abstract class AbstractParser implements ParserInterface
 
     public function ignore(string $comment): bool
     {
-        if (!$this->ignoreComment->getList()) {
+        if (!$this->getIgnoreCommentsList()) {
             return false;
         }
 
         $res = false;
 
-        foreach ($this->ignoreComment->getList() as $ignoreMessage) {
+        foreach ($this->getIgnoreCommentsList() as $ignoreMessage) {
             if (str_contains($comment, $ignoreMessage)) {
                 $res = true;
 

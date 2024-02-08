@@ -17,4 +17,16 @@ class TDParser extends AbstractParser implements ParserInterface
     {
         return $provider === ProviderEnum::TD;
     }
+
+    /**
+     * @return array<string>
+     */
+    public function getIgnoreCommentsList(): array
+    {
+        return [
+            'Повідомлення від адміністратора сайту telefonnyjdovidnyk.com.ua',
+            'про цей номер телефону можна знайти на сайті партнера:',
+            'Цей коментар був на прохання тимчасово видалений.',
+        ];
+    }
 }

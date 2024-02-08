@@ -17,4 +17,14 @@ class CIParser extends AbstractParser implements ParserInterface
     {
         return $provider === ProviderEnum::CI;
     }
+
+    /**
+     * @return array<string>
+     */
+    public function getIgnoreCommentsList(): array
+    {
+        return [
+            'Цей коментар був на прохання тимчасово видалений',
+        ];
+    }
 }

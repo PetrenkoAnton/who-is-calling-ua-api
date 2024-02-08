@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Parsers;
 
-use App\Core\Parsers\CIParser;
+use App\Core\Parsers\CFParser;
 use App\Core\ProviderEnum;
 use Tests\TestCase;
 
-class CIParserTest extends TestCase
+class CFParserTest extends TestCase
 {
-    private CIParser $parser;
+    private CFParser $parser;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->parser = $this->app->make(CIParser::class);
+        $this->parser = $this->app->make(CFParser::class);
     }
 
     /**
@@ -23,7 +23,7 @@ class CIParserTest extends TestCase
      */
     public function testGetCommentsExpression(): void
     {
-        $this->assertEquals('.comment .summary p', $this->parser->getCommentsExpression());
+        $this->assertEquals('.review .review_comment', $this->parser->getCommentsExpression());
     }
 
     /**
@@ -32,7 +32,7 @@ class CIParserTest extends TestCase
     public function testGetIgnoreCommentsList(): void
     {
         $list = [
-            'Цей коментар був на прохання тимчасово видалений',
+            'Цей відгук прихований модератором. Причина:',
         ];
 
         $this->assertEquals($list, $this->parser->getIgnoreCommentsList());
@@ -43,7 +43,26 @@ class CIParserTest extends TestCase
      */
     public function testFor(): void
     {
-        $this->assertTrue($this->parser->for(ProviderEnum::CI));
+        $this->assertTrue($this->parser->for(ProviderEnum::CF));
+    }
+
+    /**
+     * @group ok
+     * @dataProvider dp
+     */
+    public function testFormat(string $expected, string $raw): void
+    {
+        $this->assertEquals($expected, $this->parser->format($raw));
+    }
+
+    public static function dp(): array
+    {
+        return [
+            [
+                'Шахраї !  Не беріть з цього номеру. Краще в спам одразу ж відправляти !',
+                'Шахраї !  Не беріть з цього номеру. Краще в спам одразу ж відправляти !',
+            ],
+        ];
     }
 
     /**

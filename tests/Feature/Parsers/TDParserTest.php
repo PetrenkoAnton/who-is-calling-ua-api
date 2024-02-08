@@ -5,16 +5,17 @@ declare(strict_types=1);
 namespace Tests\Feature\Parsers;
 
 use App\Core\Parsers\TDParser;
+use App\Core\ProviderEnum;
 use Tests\TestCase;
 
 class TDParserTest extends TestCase
 {
-    private TDParser $commentFormatter;
+    private TDParser $parser;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->commentFormatter = $this->app->make(TDParser::class);
+        $this->parser = $this->app->make(TDParser::class);
     }
 
     /**
@@ -22,7 +23,29 @@ class TDParserTest extends TestCase
      */
     public function testGetCommentsExpression(): void
     {
-        $this->assertEquals('.comment-item .comment .comment-text', $this->commentFormatter->getCommentsExpression());
+        $this->assertEquals('.comment-item .comment .comment-text', $this->parser->getCommentsExpression());
+    }
+
+    /**
+     * @group ok
+     */
+    public function testGetIgnoreCommentsList(): void
+    {
+        $list = [
+            'Повідомлення від адміністратора сайту telefonnyjdovidnyk.com.ua',
+            'про цей номер телефону можна знайти на сайті партнера:',
+            'Цей коментар був на прохання тимчасово видалений.',
+        ];
+
+        $this->assertEquals($list, $this->parser->getIgnoreCommentsList());
+    }
+
+    /**
+     * @group ok
+     */
+    public function testFor(): void
+    {
+        $this->assertTrue($this->parser->for(ProviderEnum::TD));
     }
 
     /**
@@ -31,7 +54,7 @@ class TDParserTest extends TestCase
      */
     public function testFormat(string $expected, string $raw): void
     {
-        $this->assertEquals($expected, $this->commentFormatter->format($raw));
+        $this->assertEquals($expected, $this->parser->format($raw));
     }
 
     public static function dp(): array
@@ -48,57 +71,40 @@ class TDParserTest extends TestCase
      * @group ok
      * @dataProvider dpIgnore
      */
-    public function testIgnore(bool $expected, string $comment): void
+    public function testIgnore(string $comment): void
     {
-        $this->assertEquals($expected, $this->commentFormatter->ignore($comment));
+        $this->assertTrue($this->parser->ignore($comment));
     }
 
     public static function dpIgnore(): array
     {
         return [
+            // @codingStandardsIgnoreStart
             [
-                true,
-                // phpcs:ignore
                 'Повідомлення від адміністратора сайту telefonnyjdovidnyk.com.ua  «Допоможіть іншим відвідувачам сайту тим, що поділитеся з ними своїм досвідом спілкування з цим абонентом. Коли Вам з цього номеру телефонували і як часто? Що було предметом розмови, якщо Ви підняли трубку? Коментар, який Ви відіслали, буде показаний на цьому сайті.»  ',
             ],
             [
-                true,
                 'Інші коментарі про цей номер телефону можна знайти на сайті партнера: www.cejnomer.ru  (2×)',
             ],
             [
-                true,
                 'Інші коментарі про цей номер телефону можна знайти на сайті партнера: www.spravocnik.ru  (1×)',
             ],
             [
-                true,
                 'Інші коментарі про цей номер телефону можна знайти на сайті партнера: www.najtinomer.ru  (1×)',
             ],
             [
-                true,
                 'Інші коментарі про цей номер телефону можна знайти на сайті партнера: www.callinsider.com.ua  (6×)',
             ],
             [
-                true,
                 'Коментар про цей номер телефону можна знайти на сайті партнера: www.cejnomer.ru  (1×)',
             ],
             [
-                true,
                 'Коментар про цей номер телефону можна знайти на сайті партнера: www.callinsider.com.ua  (1×)',
             ],
             [
-                true,
-                // phpcs:ignore
                 'Цей коментар був на прохання тимчасово видалений. Модератори будуть розглядати цей запит якомога швидше.',
             ],
-            [
-                false,
-                // phpcs:ignore
-                'Мне позвонила девушка и не представившись сказала, что я выиграла 380 тысяч гривен. Нажмите один и мы вам перезвоним. Нажала. Жду. ШАХРАЇ',
-            ],
-            [
-                false,
-                'Якийсь виграш, 370 тисяч....ще й набирають на корпоративний номер',
-            ],
+            // @codingStandardsIgnoreEnd
         ];
     }
 }

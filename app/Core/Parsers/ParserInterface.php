@@ -16,4 +16,9 @@ interface ParserInterface extends Collectable
     public function format(string $comment): string;
 
     public function ignore(string $comment): bool;
+
+    /**
+     * @return array<string>
+     */
+    public function getIgnoreCommentsList(): array;
 }

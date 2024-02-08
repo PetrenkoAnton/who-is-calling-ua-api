@@ -5,16 +5,17 @@ declare(strict_types=1);
 namespace Tests\Feature\Parsers;
 
 use App\Core\Parsers\KZParser;
+use App\Core\ProviderEnum;
 use Tests\TestCase;
 
 class KZParserTest extends TestCase
 {
-    private KZParser $commentFormatter;
+    private KZParser $parser;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->commentFormatter = $this->app->make(KZParser::class);
+        $this->parser = $this->app->make(KZParser::class);
     }
 
     /**
@@ -22,7 +23,25 @@ class KZParserTest extends TestCase
      */
     public function testGetCommentsExpression(): void
     {
-        $this->assertEquals('.comments .content', $this->commentFormatter->getCommentsExpression());
+        $this->assertEquals('.comments .content', $this->parser->getCommentsExpression());
+    }
+
+    /**
+     * @group ok
+     */
+    public function testGetIgnoreCommentsList(): void
+    {
+        $list = [];
+
+        $this->assertEquals($list, $this->parser->getIgnoreCommentsList());
+    }
+
+    /**
+     * @group ok
+     */
+    public function testFor(): void
+    {
+        $this->assertTrue($this->parser->for(ProviderEnum::KZ));
     }
 
     /**
@@ -31,7 +50,7 @@ class KZParserTest extends TestCase
      */
     public function testFormat(string $expected, string $raw): void
     {
-        $this->assertEquals($expected, $this->commentFormatter->format($raw));
+        $this->assertEquals($expected, $this->parser->format($raw));
     }
 
     public static function dp(): array

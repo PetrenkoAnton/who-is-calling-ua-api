@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Core\Services;
 
-use App\Core\CommentsService\CommentsServiceInterface;
 use App\Core\Formatters\OutputPNFormatter;
 use App\Core\Providers\ProviderCollection;
 use App\Core\Providers\ProviderInterface;
+use App\Core\Services\Internal\CommentsService;
 use Illuminate\Support\Facades\Cache;
 use RuntimeException;
 
@@ -16,7 +16,7 @@ class SearchService
     public function __construct(
         private readonly ProviderCollection $searchProviders,
         private readonly OutputPNFormatter $formatter,
-        private CommentsServiceInterface $commentsService,
+        private CommentsService $commentsService,
     ) {
     }
 

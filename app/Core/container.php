@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Core\CommentsService\CommentsService;
-use App\Core\CommentsService\CommentsServiceInterface;
 use App\Core\Formatters\UrlFormatters\CFUrlFormatter;
 use App\Core\Formatters\UrlFormatters\CIUrlFormatter;
 use App\Core\Formatters\UrlFormatters\KCUrlFormatter;
@@ -15,11 +13,6 @@ use App\Core\HttpClient\DefaultHttpClient;
 use App\Core\HttpClient\HttpClientInterface;
 use App\Core\HttpClient\UserAgent\DefaultUserAgent;
 use App\Core\HttpClient\UserAgent\UserAgentInterface;
-use App\Core\IgnoreComments\CFIgnoreComment;
-use App\Core\IgnoreComments\CIIgnoreComment;
-use App\Core\IgnoreComments\DefaultIgnoreComment;
-use App\Core\IgnoreComments\IgnoreCommentInterface;
-use App\Core\IgnoreComments\TDIgnoreComment;
 use App\Core\Parsers\AbstractParser;
 use App\Core\Parsers\CFParser;
 use App\Core\Parsers\CIParser;
@@ -40,26 +33,14 @@ use App\Core\Providers\SLProvider;
 use App\Core\Providers\TDProvider;
 use Laravel\Lumen\Application;
 
-$app->bind(CommentsServiceInterface::class, CommentsService::class);
-
+/**
+ * @var Application $app
+ */
 $app->bind(UserAgentInterface::class, DefaultUserAgent::class);
 
 $app->bind(ProviderInterface::class, AbstractProvider::class);
-$app->bind(IgnoreCommentInterface::class, DefaultIgnoreComment::class);
 $app->bind(ParserInterface::class, AbstractParser::class);
 $app->bind(HttpClientInterface::class, DefaultHttpClient::class);
-
-$app->when(TDParser::class)
-    ->needs(IgnoreCommentInterface::class)
-    ->give(fn (Application $app) => $app->make(TDIgnoreComment::class));
-
-$app->when(CIParser::class)
-    ->needs(IgnoreCommentInterface::class)
-    ->give(fn (Application $app) => $app->make(CIIgnoreComment::class));
-
-$app->when(CFParser::class)
-    ->needs(IgnoreCommentInterface::class)
-    ->give(fn (Application $app) => $app->make(CFIgnoreComment::class));
 
 $app->bind(UrlFormatterCollection::class, fn (Application $app) => new UrlFormatterCollection(
     $app->make(CFUrlFormatter::class),

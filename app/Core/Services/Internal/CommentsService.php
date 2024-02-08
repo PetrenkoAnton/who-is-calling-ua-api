@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Core\CommentsService;
+namespace App\Core\Services\Internal;
 
 use function array_unique;
 use function array_values;
 
-class CommentsService implements CommentsServiceInterface
+class CommentsService
 {
     /**
      * @var array<string>
