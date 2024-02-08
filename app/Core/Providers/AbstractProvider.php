@@ -55,7 +55,7 @@ abstract class AbstractProvider implements ProviderInterface
         $enum = $this->getEnum();
         $parser = $this->parsers->getFirstFor($enum);
 
-        $content = $this->httpClient->getContent($this->getUrl($phone));
+        $content = $this->httpClient->getResponse($this->getUrl($phone))->getBody()->getContents();
 
         $document = $this->documentFactory->create($content);
         $comments = $document->find($parser->getCommentsExpression());

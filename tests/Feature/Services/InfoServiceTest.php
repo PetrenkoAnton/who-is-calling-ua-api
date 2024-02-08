@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Feature\Services;
 
 use App\Core\Services\InfoService;
+use App\Exceptions\Internal\InternalException;
 use Tests\TestCase;
 
 use function config;
@@ -16,13 +17,31 @@ use function trim;
 
 class InfoServiceTest extends TestCase
 {
+    private InfoService $service;
+    private const VERSION_RENAME = 'VERSION_RENAME';
+    private const PATH = __DIR__ . '/../../../';
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->service = $this->app->make(InfoService::class);
+    }
+
+    public function tearDown(): void
+    {
+        parent::tearDown();
+
+        if (realpath(self::PATH . self::VERSION_RENAME)) {
+            rename(realpath(self::PATH . self::VERSION_RENAME), 'VERSION');
+        }
+    }
+
     /**
      * @group ok
      */
-    public function testInfo(): void
+    public function testInfoSuccess(): void
     {
-        $service = $this->app->make(InfoService::class);
-
         // TODO! Change to the "@phpstan-ignore argument.type" after phpstan 1.11 will be released
         // @phpstan-ignore-next-line
         $expectedVersion = trim(file_get_contents(realpath(__DIR__ . '/../../../VERSION')));
@@ -30,7 +49,7 @@ class InfoServiceTest extends TestCase
         $expectedSupportedCodes = config('pn.supported_codes');
         sort($expectedSupportedCodes);
 
-        $info = $service->getInfo();
+        $info = $this->service->getInfo();
 
         $this->assertIsArray($info);
         $this->assertArrayHasKey('version', $info);
@@ -61,5 +80,18 @@ class InfoServiceTest extends TestCase
         ];
 
         $this->assertEquals($expectedProviders, $info['providers']);
+    }
+
+    /**
+     * @group ok
+     */
+    public function testInfoThrowsException(): void
+    {
+        rename(realpath(self::PATH . 'VERSION'), self::VERSION_RENAME);
+
+        $this->expectException(InternalException::class);
+        $this->expectExceptionMessage('VERSION file not found');
+
+        $this->service->getInfo();
     }
 }

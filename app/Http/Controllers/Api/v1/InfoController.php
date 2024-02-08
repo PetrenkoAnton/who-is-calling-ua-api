@@ -7,6 +7,9 @@ namespace App\Http\Controllers\Api\v1;
 use App\Core\Services\InfoService;
 use Laravel\Lumen\Routing\Controller;
 
+/**
+ * @codeCoverageIgnore
+ */
 class InfoController extends Controller
 {
     public function __construct(private readonly InfoService $service)

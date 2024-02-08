@@ -9,6 +9,8 @@ use App\Core\HttpClient\DefaultHttpClient;
 use App\Core\HttpClient\HttpClientInterface;
 use App\Core\Providers\ProviderInterface;
 use PHPUnit\Framework\MockObject\Exception;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 use Tests\TestCase;
 
 use function count;
@@ -49,11 +51,21 @@ abstract class AbstractProviderTest extends TestCase
 
         $url = $urlFormatters->getFirstFor($providerEnum)->format($phone);
 
+        $stream = $this->createMock(StreamInterface::class);
+        $stream
+            ->method('getContents')
+            ->willReturn($content);
+
+        $response = $this->createMock(ResponseInterface::class);
+        $response
+            ->method('getBody')
+            ->willReturn($stream);
+
         $httpClient = $this->createMock(DefaultHttpClient::class);
         $httpClient
-            ->method('getContent')
+            ->method('getResponse')
             ->with($url)
-            ->willReturn($content);
+            ->willReturn($response);
 
         $this->app
             ->when($providerClass)

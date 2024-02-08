@@ -6,7 +6,6 @@ namespace App\Core\HttpClient;
 
 use App\Core\HttpClient\UserAgent\UserAgentInterface;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 
 class DefaultHttpClient implements HttpClientInterface
@@ -24,19 +23,5 @@ class DefaultHttpClient implements HttpClientInterface
         ]));
 
         return $client->get($url);
-    }
-
-    /**
-     * @throws GuzzleException
-     */
-    public function getContent(string $url): string
-    {
-        $client = new Client(([
-            'headers' => [
-                'User-Agent' => $this->userAgent->getValue(),
-            ],
-        ]));
-
-        return $client->get($url)->getBody()->getContents();
     }
 }

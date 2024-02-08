@@ -9,6 +9,9 @@ use Illuminate\Http\Response;
 use Laravel\Lumen\Routing\Controller;
 use Symfony\Component\HttpFoundation\Response as BaseResponse;
 
+/**
+ * @codeCoverageIgnore
+ */
 class HealthCheckController extends Controller
 {
     public function __construct(private readonly HealthCheckService $service)

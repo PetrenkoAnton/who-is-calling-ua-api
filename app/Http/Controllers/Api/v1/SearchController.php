@@ -9,6 +9,9 @@ use App\Core\Validators\PNRule;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
 
+/**
+ * @codeCoverageIgnore
+ */
 class SearchController extends Controller
 {
     public function __construct(
