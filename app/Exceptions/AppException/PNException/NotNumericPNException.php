@@ -6,13 +6,13 @@ namespace App\Exceptions\AppException\PNException;
 
 use App\Exceptions\AppException\PNException;
 
-final class InvalidPNFormatException extends PNException
+final class NotNumericPNException extends PNException
 {
     public function __construct()
     {
         parent::__construct(
-            message: 'Invalid phone number format',
-            code: self::INVALID_FORMAT_PN,
+            message: 'Not numeric phone number',
+            code: self::NOT_NUMERIC_PN,
         );
     }
 }

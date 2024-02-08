@@ -8,4 +8,11 @@ use App\Exceptions\AppException;
 
 class PNException extends AppException
 {
+    protected function __construct(string $message, int $code)
+    {
+        parent::__construct(
+            message: $message,
+            code: $code,
+        );
+    }
 }

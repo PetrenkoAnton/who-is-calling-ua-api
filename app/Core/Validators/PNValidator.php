@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Core\Validators;
 
 use App\Exceptions\AppException\PNException\InvalidPNFormatException;
-use App\Exceptions\AppException\PNException\NumericPNException;
+use App\Exceptions\AppException\PNException\NotNumericPNException;
 use App\Exceptions\AppException\PNException\UnsupportedCodePNException;
 
 use function config;
@@ -17,7 +17,7 @@ use function substr;
 class PNValidator
 {
     /**
-     * @throws NumericPNException
+     * @throws NotNumericPNException
      * @throws InvalidPNFormatException
      * @throws UnsupportedCodePNException
      */
@@ -31,12 +31,12 @@ class PNValidator
     }
 
     /**
-     * @throws NumericPNException
+     * @throws NotNumericPNException
      */
     private function validateNumeric(string $pn): void
     {
         if (!is_numeric($pn)) {
-            throw new NumericPNException();
+            throw new NotNumericPNException();
         }
     }
 

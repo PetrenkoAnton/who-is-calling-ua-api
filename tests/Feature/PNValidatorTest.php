@@ -7,7 +7,7 @@ namespace Tests\Feature;
 use App\Core\Validators\PNValidator;
 use App\Exceptions\AppException;
 use App\Exceptions\AppException\PNException\InvalidPNFormatException;
-use App\Exceptions\AppException\PNException\NumericPNException;
+use App\Exceptions\AppException\PNException\NotNumericPNException;
 use App\Exceptions\AppException\PNException\UnsupportedCodePNException;
 use Tests\TestCase;
 
@@ -57,9 +57,9 @@ class PNValidatorTest extends TestCase
     public static function dpInvalid(): array
     {
         return [
-            ['qwerty', new NumericPNException()],
-            ['q', new NumericPNException()],
-            ['q71234567', new NumericPNException()],
+            ['qwerty', new NotNumericPNException()],
+            ['q', new NotNumericPNException()],
+            ['q71234567', new NotNumericPNException()],
 
             ['0', new InvalidPNFormatException()],
             ['000', new InvalidPNFormatException()],

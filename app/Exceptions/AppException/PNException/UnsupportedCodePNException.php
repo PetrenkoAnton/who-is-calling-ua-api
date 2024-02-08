@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace App\Exceptions\AppException\PNException;
 
 use App\Exceptions\AppException\PNException;
-use Throwable;
 
-class UnsupportedCodePNException extends PNException
+final class UnsupportedCodePNException extends PNException
 {
-    public function __construct(int $code = 0, ?Throwable $previous = null)
+    public function __construct()
     {
-        parent::__construct('Unsupported operator code', $code, $previous);
+        parent::__construct(
+            message: 'Unsupported operator code',
+            code: self::UNSUPPORTED_CODE_PN,
+        );
     }
 }

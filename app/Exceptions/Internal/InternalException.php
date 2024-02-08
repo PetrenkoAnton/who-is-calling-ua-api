@@ -8,4 +8,11 @@ use App\Exceptions\AppException;
 
 class InternalException extends AppException
 {
+    public function __construct(string $message, int $code = self::INTERNAL_ERROR)
+    {
+        parent::__construct(
+            message: $message,
+            code: $code,
+        );
+    }
 }
