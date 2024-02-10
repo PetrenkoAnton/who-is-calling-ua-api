@@ -19,7 +19,7 @@ class Handler extends ExceptionHandler
     /**
      * @var array<string>
      */
-    protected array $dontReport = [
+    protected $dontReport = [
         AuthorizationException::class,
         HttpException::class,
         ModelNotFoundException::class,
