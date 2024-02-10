@@ -34,11 +34,11 @@ jobs:
 
       - name: Setup redis
         uses: chenjuneking/redis-setup-action@v1
-          with:
-            containerName: wic_api_redis
-            hostPort: 6379
-            containerPort: 6379
-            password: password
+        with:
+          containerName: wic_api_redis
+          hostPort: 6379
+          containerPort: 6379
+          password: password
 
       - name: Run tests with coverage results
         run: vendor/bin/phpunit --coverage-clover ./tests/_output/clover.xml
