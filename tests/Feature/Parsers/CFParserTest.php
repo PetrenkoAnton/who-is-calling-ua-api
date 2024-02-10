@@ -77,9 +77,11 @@ class CFParserTest extends TestCase
     public static function dpIgnore(): array
     {
         return [
+            // @codingStandardsIgnoreStart
             [
                 'Цей відгук прихований модератором. Причина: порушення правил сервісу. (програвалася запис / робот)',
             ],
+            // @codingStandardsIgnoreEnd
         ];
     }
 }

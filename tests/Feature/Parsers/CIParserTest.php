@@ -58,9 +58,11 @@ class CIParserTest extends TestCase
     public static function dpIgnore(): array
     {
         return [
+            // @codingStandardsIgnoreStart
             [
-                'Цей відгук прихований модератором. Причина: порушення правил сервісу. (програвалася запис / робот)',
+                'Цей коментар був на прохання тимчасово видалений. Модератори будуть розглядати цей запит якомога швидше.',
             ],
+            // @codingStandardsIgnoreEnd
         ];
     }
 }

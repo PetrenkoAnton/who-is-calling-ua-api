@@ -7,6 +7,7 @@ namespace App\Core\Validators;
 use App\Exceptions\AppException\PNException;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
+use ReflectionFunction;
 
 class PNRule implements ValidationRule
 {

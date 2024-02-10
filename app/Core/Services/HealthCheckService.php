@@ -10,6 +10,8 @@ use function time;
 
 class HealthCheckService
 {
+    public const KEY = 'health-check';
+
     public function check(): bool
     {
         return $this->checkCache();
@@ -17,11 +19,10 @@ class HealthCheckService
 
     private function checkCache(): bool
     {
-        $key = 'health-check';
         $input = time();
 
-        Cache::put($key, $input);
+        Cache::put(self::KEY, $input);
 
-        return $input === (int) Cache::pull($key);
+        return $input === (int) Cache::pull(self::KEY);
     }
 }
