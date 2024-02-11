@@ -22,11 +22,11 @@ jobs:
 
       - name: Tests
         uses: cloudposse/github-action-docker-compose-test-run@main
-          with:
-            file: ../../docker-compose.yml
-              service: php
-              command: |
-                cp ./.env.example ./.env
-                cp ./phpstan.neon.dist ./phpstan.neon
-                composer install
-                ./vendor/bin/phpunit --coverage-text
+        with:
+          file: ../../docker-compose.yml
+          service: php
+          command: |
+            cp ./.env.example ./.env
+            cp ./phpstan.neon.dist ./phpstan.neon
+            composer install
+            ./vendor/bin/phpunit --coverage-text
