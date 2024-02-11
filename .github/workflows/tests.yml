@@ -15,27 +15,18 @@ jobs:
     name: Tests with php8.3
     runs-on: ubuntu-latest
     continue-on-error: false
-    services:
-      redis:
-        image: redis:latest
-        ports:
-          - 6379
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Setup php
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.3
-          coverage: xdebug
-
-      - name: Install dependencies with Composer
-        uses: ramsey/composer-install@v2
-
-      - name: Run PHPUnit tests with coverage results
-        run: vendor/bin/phpunit --coverage-clover ./tests/_output/clover.xml
-
-      - name: Run Codeception tests
-        run: vendor/bin/codecept -c codeception-gh-actions.yml run
+      - name: Tests
+        uses: cloudposse/github-action-docker-compose-test-run@main
+          with:
+            file: ../../docker-compose.yml
+              service: php
+              command: |
+                cp ./.env.example ./.env
+                cp ./phpstan.neon.dist ./phpstan.neon
+                composer install
+                ./vendor/bin/phpunit --coverage-text
