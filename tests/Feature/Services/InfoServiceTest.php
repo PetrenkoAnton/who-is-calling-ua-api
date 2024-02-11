@@ -87,7 +87,9 @@ class InfoServiceTest extends TestCase
      */
     public function testInfoThrowsException(): void
     {
-        rename(realpath(self::PATH . 'VERSION'), self::VERSION_RENAME);
+        $path = realpath(self::PATH . 'VERSION');
+
+        $path ? rename($path, self::VERSION_RENAME) : $this->fail('No VERSION file');
 
         $this->expectException(InternalException::class);
         $this->expectExceptionMessage('VERSION file not found');

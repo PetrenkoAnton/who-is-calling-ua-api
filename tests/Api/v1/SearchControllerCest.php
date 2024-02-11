@@ -24,7 +24,6 @@ class SearchControllerCest
             'pn' => 'string',
             'cache' => 'boolean',
             'comments' => 'array',
-            'providers' => 'array',
             'providers' => [
                 [
                     'name' => 'string',
@@ -104,7 +103,6 @@ class SearchControllerCest
         $apiTester->sendGet(sprintf('/v1/search?pn=%s&c=%s', $example['pn'], $example['c']));
         $apiTester->seeResponseCodeIs(422);
         $apiTester->seeResponseMatchesJsonType([
-            'error' => 'array',
             'error' => [
                 'c' => 'array',
                 'pn' => 'array',

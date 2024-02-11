@@ -6,10 +6,12 @@ parameters:
     - database
     - routes
     - tests
+  excludePaths:
+    - tests/Support/_generated/*
   level: 8
   ignoreErrors:
      -
          messages:
               - "#type has no value type specified in iterable type array.#"
-              - "#with no value type specified in iterable type array.#"
+              - "#with no value type specified in iterable type.#"
          path: tests/*

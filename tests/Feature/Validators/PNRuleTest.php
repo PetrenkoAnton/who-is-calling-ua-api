@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class PNRuleTest extends TestCase
 {
-    private readonly PNRule $rule;
+    private PNRule $rule;
 
     public function setUp(): void
     {
