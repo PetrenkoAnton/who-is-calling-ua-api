@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "45ab150d16306ffcdd9097860803ea51",
+    "content-hash": "44709d5cd636e3efbdc585671c54907f",
     "packages": [
         {
             "name": "brick/math",
@@ -6294,6 +6294,62 @@
                 "source": "https://github.com/Codeception/module-asserts/tree/3.0.0"
             },
             "time": "2022-02-16T19:48:08+00:00"
+        },
+        {
+            "name": "codeception/module-lumen",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Codeception/module-lumen.git",
+                "reference": "f36e1c40ff14ca6c4827f9b7a3ebb3fba7c37426"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Codeception/module-lumen/zipball/f36e1c40ff14ca6c4827f9b7a3ebb3fba7c37426",
+                "reference": "f36e1c40ff14ca6c4827f9b7a3ebb3fba7c37426",
+                "shasum": ""
+            },
+            "require": {
+                "codeception/codeception": "^5.0.8",
+                "codeception/lib-innerbrowser": "^3.1.1 | ^4.0",
+                "ext-json": "*",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "codeception/module-asserts": "^3.0",
+                "laravel/lumen-framework": "^6.3 | ^7.2 | ^8.3",
+                "vlucas/phpdotenv": "^3.6 | ^4.1 | ^5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan-Henk Gerritsen"
+                },
+                {
+                    "name": "Gustavo Nieves",
+                    "homepage": "https://medium.com/@ganieves"
+                }
+            ],
+            "description": "Codeception module for Lumen framework",
+            "homepage": "https://codeception.com/",
+            "keywords": [
+                "codeception",
+                "lumen"
+            ],
+            "support": {
+                "issues": "https://github.com/Codeception/module-lumen/issues",
+                "source": "https://github.com/Codeception/module-lumen/tree/3.0.1"
+            },
+            "time": "2023-02-09T06:42:44+00:00"
         },
         {
             "name": "codeception/module-phpbrowser",

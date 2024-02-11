@@ -21,6 +21,7 @@
         "barryvdh/laravel-ide-helper": "^2.13",
         "codeception/codeception": "^5.0",
         "codeception/module-asserts": "*",
+        "codeception/module-lumen": "^3.0",
         "codeception/module-phpbrowser": "*",
         "codeception/module-rest": "^3.3",
         "fakerphp/faker": "^1.9.1",
@@ -41,7 +42,13 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "exclude-from-classmap": [
+            "vendor/codeception/module-lumen/src/Codeception/Lib/Connector/Lumen/DummyKernel.php"
+        ],
+        "files": [
+            "tests/Support/DummyKernel.php"
+        ]
     },
     "scripts": {
         "post-root-package-install": [

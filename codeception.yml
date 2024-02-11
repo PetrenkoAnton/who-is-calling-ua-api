@@ -8,9 +8,8 @@ suites:
         modules:
             enabled:
                 - REST:
-                    url: nginx:80/api
-                    depends: PhpBrowser
-                    part: Json
+                    url: /api
+                    depends: Lumen
 
 paths:
     tests: tests
