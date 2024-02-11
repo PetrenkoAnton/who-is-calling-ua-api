@@ -41,4 +41,4 @@ jobs:
         run: vendor/bin/phpunit --coverage-clover ./tests/_output/clover.xml
 
       - name: Run Codeception tests
-        run: vendor/bin/codecept run
+        run: vendor/bin/codecept -c codeception-gh-actions.yml run

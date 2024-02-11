@@ -1,0 +1,29 @@
+namespace: Tests
+support_namespace: Support
+# suite config
+suites:
+    api:
+        actor: ApiTester
+        path: Api
+        modules:
+            enabled:
+                - REST:
+                    url: 127.0.0.1:80/api
+                    depends: PhpBrowser
+                    part: Json
+
+paths:
+    tests: tests
+    output: tests/_output
+    data: tests/Support/Data
+    support: tests/Support
+
+settings:
+    shuffle: false
+    lint: true
+    colors: true
+    memory_limit: 1024M
+
+extensions:
+  enabled:
+    - Codeception\Extension\RunFailed
