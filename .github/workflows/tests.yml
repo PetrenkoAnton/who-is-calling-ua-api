@@ -14,7 +14,7 @@ jobs:
   tests:
     name: Tests with php8.3
     runs-on: ubuntu-latest
-#    continue-on-error: false
+    continue-on-error: false
     services:
       redis:
         image: redis:latest
@@ -33,9 +33,6 @@ jobs:
 
       - name: Install dependencies with Composer
         uses: ramsey/composer-install@v2
-
-#      - name: Prepare the application
-#        run: php -r "copy('.env.example', '.env');"
 
       - name: Run PHPUnit tests with coverage results
         run: vendor/bin/phpunit --coverage-clover ./tests/_output/clover.xml
