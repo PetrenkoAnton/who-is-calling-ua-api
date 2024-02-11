@@ -8,7 +8,7 @@ suites:
         modules:
             enabled:
                 - REST:
-                    url: api
+                    url: host.docker.internal/api
                     depends: PhpBrowser
                     part: Json
 
