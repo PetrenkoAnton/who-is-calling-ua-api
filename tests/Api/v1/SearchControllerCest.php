@@ -103,7 +103,7 @@ class SearchControllerCest
     {
         $apiTester->sendGet(sprintf('/v1/search?pn=%s&c=%s', $example['pn'], $example['c']));
         $apiTester->seeResponseCodeIs(422);
-        $apiTesterI->seeResponseMatchesJsonType([
+        $apiTester->seeResponseMatchesJsonType([
             'error' => 'array',
             'error' => [
                 'c' => 'array',
@@ -129,7 +129,7 @@ class SearchControllerCest
             [
                 'pn' => 'a',
                 'c' => 123,
-                'error' => 'Not numeric',
+                'error' => 'Not numeric phone number',
             ],
             [
                 'pn' => '431231212',
