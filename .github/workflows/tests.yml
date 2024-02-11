@@ -15,20 +15,24 @@ jobs:
     name: Tests with php8.3
     runs-on: ubuntu-latest
     continue-on-error: false
+    services:
+      redis:
+        image: redis:latest
+        ports:
+          - 6379
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: .env
-        run: cp ./.env.example ./.env
-
-      - name: Tests
-        uses: cloudposse/github-action-docker-compose-test-run@main
+      - name: Setup php
+        uses: shivammathur/setup-php@v2
         with:
-          file: docker-compose.yml
-          service: php
-          command: |
-            cp ./phpstan.neon.dist ./phpstan.neon
-            composer install
-            ./vendor/bin/phpunit --coverage-text
+          php-version: 8.3
+          coverage: xdebug
+
+      - name: Install dependencies with Composer
+        uses: ramsey/composer-install@v2
+
+      - name: Run PHPUnit tests with coverage results
+        run: vendor/bin/phpunit --coverage-clover ./tests/_output/clover.xml
