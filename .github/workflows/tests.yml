@@ -35,8 +35,8 @@ jobs:
       - name: .env
         run: composer test-env
 
-#      - name: PHPUnit + Code coverage
-#        run: vendor/bin/phpunit --coverage-clover ./tests/_output/clover.xml
+      - name: PHPUnit + Code coverage
+        run: vendor/bin/phpunit --coverage-clover ./tests/_output/clover.xml
 
 #      - name: Coveralls.io
 #        env:
