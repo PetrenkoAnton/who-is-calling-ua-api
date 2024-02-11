@@ -51,7 +51,7 @@
         ]
     },
     "scripts": {
-        "post-root-package-install": [
+        "env": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "check-all": [
