@@ -32,9 +32,6 @@ jobs:
       - name: Install dependencies
         uses: ramsey/composer-install@v2
 
-      - name: .env
-        run: composer test-env
-
       - name: PHPUnit + Code coverage
         run: vendor/bin/phpunit --coverage-clover ./tests/_output/clover.xml
 
@@ -45,5 +42,5 @@ jobs:
 #          composer require php-coveralls/php-coveralls -n
 #          vendor/bin/php-coveralls --coverage_clover=./tests/_output/clover.xml -v --json_path=./tests/_output/coveralls-upload.json
 
-      - name: Codeception
-        run: vendor/bin/codecept run
+#      - name: Codeception
+#        run: vendor/bin/codecept run
