@@ -14,7 +14,7 @@ jobs:
   tests:
     name: Tests with php8.3
     runs-on: ubuntu-latest
-    continue-on-error: false
+#    continue-on-error: false
     services:
       redis:
         image: redis:latest
