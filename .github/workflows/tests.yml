@@ -18,7 +18,8 @@ jobs:
     services:
       redis:
         image: redis:latest
-        ports: 6379
+        ports:
+          - 6379
 
     steps:
       - name: Checkout
