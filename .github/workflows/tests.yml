@@ -35,9 +35,9 @@ jobs:
       - name: PHPUnit + Code coverage
         run: vendor/bin/phpunit --coverage-clover ./tests/_output/clover.xml
 
-      - name: Coveralls.io
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          composer require php-coveralls/php-coveralls -n
-          vendor/bin/php-coveralls --coverage_clover=./tests/_output/clover.xml -v --json_path=./tests/_output/coveralls-upload.json
+#      - name: Coveralls.io
+#        env:
+#          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        run: |
+#          composer require php-coveralls/php-coveralls -n
+#          vendor/bin/php-coveralls --coverage_clover=./tests/_output/clover.xml -v --json_path=./tests/_output/coveralls-upload.json
