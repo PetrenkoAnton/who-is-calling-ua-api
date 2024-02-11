@@ -42,7 +42,12 @@ jobs:
 
       - name: Temp
         run: |
-          curl google.com
+          curl http://localhost:8080/api/v1/info
+          curl http://127.0.0.1:80/api/v1/info
+          curl http://localhost:80/api/v1/info
+          curl http://php:8080/api/v1/info
+          curl localhost/api/v1/info
+
 
 #      - name: Run Codeception tests
 #        run: vendor/bin/codecept -c codeception-gh-actions.yml run
