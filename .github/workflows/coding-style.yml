@@ -11,8 +11,8 @@ on:
       - dev
 
 jobs:
-  tests:
-    name: PHPUnit + Code coverage
+  coding-style:
+    name: PHPStan + PHP_CodeSniffer
     runs-on: ubuntu-latest
     continue-on-error: false
     services:
@@ -27,17 +27,12 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.3
-          coverage: xdebug
 
       - name: Install dependencies
         uses: ramsey/composer-install@v2
 
-      - name: PHPUnit + Code coverage
-        run: vendor/bin/phpunit --coverage-clover ./tests/_output/clover.xml
+      - name: PHPStan
+        run: ./vendor/bin/phpstan --no-progress
 
-      - name: Coveralls.io
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          composer require php-coveralls/php-coveralls -n
-          vendor/bin/php-coveralls --coverage_clover=./tests/_output/clover.xml -v --json_path=./tests/
+      - name: PHP_CodeSniffer
+        run: ./vendor/bin/phpcs --no-cache
