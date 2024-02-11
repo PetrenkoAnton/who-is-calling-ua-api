@@ -35,7 +35,7 @@ jobs:
         uses: ramsey/composer-install@v2
 
       - name: Prepare the application
-        run: php -r "copy('.env.testing', '.env');"
+        run: php -r "copy('.env.example', '.env');"
 
       - name: Run PHPUnit tests with coverage results
         run: vendor/bin/phpunit --coverage-clover ./tests/_output/clover.xml
