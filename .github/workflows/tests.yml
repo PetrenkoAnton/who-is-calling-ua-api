@@ -38,4 +38,7 @@ jobs:
         run: php -r "copy('.env.testing', '.env');"
 
       - name: Run PHPUnit tests with coverage results
-        run: vendor/bin/phpunit --coverage-clover ./tests/output/clover.xml
+        run: vendor/bin/phpunit --coverage-clover ./tests/_output/clover.xml
+
+      - name: Run Codeception tests
+        run: vendor/bin/codecept run
