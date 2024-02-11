@@ -51,8 +51,8 @@
         ]
     },
     "scripts": {
-        "env": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        "test-env": [
+            "@php -r \"copy('.env.testing', '.env');\""
         ],
         "check-all": [
             "composer install",

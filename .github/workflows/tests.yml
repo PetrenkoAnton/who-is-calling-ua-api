@@ -33,7 +33,7 @@ jobs:
         uses: ramsey/composer-install@v2
 
       - name: .env
-        run: composer env
+        run: composer test-env
 
       - name: PHPUnit + Code coverage
         run: vendor/bin/phpunit --coverage-clover ./tests/_output/clover.xml
