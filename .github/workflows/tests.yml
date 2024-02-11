@@ -1,46 +1,74 @@
-name: tests
+  Skip to content
 
-on:
-  push:
-    branches:
-      - main
-      - dev
-  pull_request:
-    branches:
-      -main
-      -dev
+    Search…
+    All gists
+    Back to GitHub
+    @bubba-h57
+    bubba-h57/phpunit.yml
+    Created 4 years ago • Report abuse
+    Code
+    Revisions
+    1
+    Stars
+    6
+    Clone this repository at &lt;script src=&quot;https://gist.github.com/bubba-h57/216ddc79615ca5c0c441cfbdd6f7ad01.js&quot;&gt;&lt;/script&gt;
+    <script src="https://gist.github.com/bubba-h57/216ddc79615ca5c0c441cfbdd6f7ad01.js"></script>
+    Github Actions Continuous Integration/Testing workflow for PHP 7.4, Laravel 7, MariaDb, & Redis.
+    phpunit.yml
+  name: Laravel 7, MariaDb, & Redis CI
 
-jobs:
-  tests:
-    name: Tests with php8.3
-    runs-on: ubuntu-latest
-    continue-on-error: false
+  on:
+    push:
+      branches:
+        - main
+        - dev
+    pull_request:
+      branches:
+        - main
+        - dev
 
-    services:
-      redis:
-        image: redis:latest
-        ports:
-          - "6379:6379"
-        env:
-          - REDIS_PASSWORD=password
-          - REDIS_PORT=6379
-          - REDIS_DATABASES=16
+  jobs:
+    continuous-integration:
+      name: Laravel (PHP 8.3)
+      runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      env:
+        DB_DATABASE: laravel
+        DB_USERNAME: root
+        DB_PASSWORD: password
+        DB_HOST: 127.0.0.1
+        DB_PORT: 32574
+        REDIS_PORT: 6379
+        BROADCAST_DRIVER: log
+        CACHE_DRIVER: redis
+        QUEUE_CONNECTION: redis
+        SESSION_DRIVER: redis
+        MYSQL_ALLOW_EMPTY_PASSWORD: false
+        MYSQL_ROOT_PASSWORD: password
+        MYSQL_DATABASE: laravel
+      services:
+        redis:
+          image: redis
+          ports:
+            - 6379/tcp
+          options: --health-cmd="redis-cli ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
-      - name: Set up php8.3
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.3
-          coverage: xdebug
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
 
-      - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+        - name: Setup PHP, with composer and extensions
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: 8.3
+            extensions: mbstring, dom, fileinfo, mysql, libxml, xml, xmlwriter, dom, tokenizer, filter, json, phar, pcre, openssl, pdo, intl, curl
+            coverage: xdebug
 
-      - name: Install dependencies with Composer
-        uses: ramsey/composer-install@v2
+        - name: Install Composer dependencies
+          run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
 
-      - name: Run tests with coverage results
-        run: vendor/bin/phpunit --coverage-clover ./tests/_output/clover.xml
+        - name: Prepare the application
+          run: php -r "copy('.env.testing', '.env');"
+
+        - name: Test with phpunit
+          run: vendor/bin/phpunit
