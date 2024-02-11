@@ -8,7 +8,7 @@ suites:
         modules:
             enabled:
                 - REST:
-                    url: localhost/api
+                    url: who-is-calling-ua-api/api
                     depends: PhpBrowser
                     part: Json
 
