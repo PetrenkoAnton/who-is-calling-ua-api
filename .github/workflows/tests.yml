@@ -10,20 +10,6 @@ jobs:
   continuous-integration:
     name: Laravel (PHP ${{ matrix.php-versions }})
     runs-on: ubuntu-latest
-
-    env:
-      DB_DATABASE: laravel
-      DB_USERNAME: root
-      DB_PASSWORD: password
-      DB_HOST: 127.0.0.1
-      DB_PORT: 32574
-      REDIS_HOST: wic_api_redis
-      REDIS_PORT: 6379
-      REDIS_PASSWORD: password
-      BROADCAST_DRIVER: log
-      CACHE_DRIVER: redis
-      QUEUE_CONNECTION: redis
-      SESSION_DRIVER: redis
     services:
       redis:
         image: redis
