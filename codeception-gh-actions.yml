@@ -8,7 +8,7 @@ suites:
         modules:
             enabled:
                 - REST:
-                    url: 127.0.0.1/api
+                    url: localhost/api
                     depends: PhpBrowser
                     part: Json
 

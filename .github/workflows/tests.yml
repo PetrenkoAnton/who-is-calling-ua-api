@@ -37,13 +37,8 @@ jobs:
 #      - name: Prepare the application
 #        run: php -r "copy('.env.example', '.env');"
 
-#      - name: Run PHPUnit tests with coverage results
-#        run: vendor/bin/phpunit --coverage-clover ./tests/_output/clover.xml
+      - name: Run PHPUnit tests with coverage results
+        run: vendor/bin/phpunit --coverage-clover ./tests/_output/clover.xml
 
-      - name: Temp
-        run: |
-          curl localhost/api/v1/info
-
-
-#      - name: Run Codeception tests
-#        run: vendor/bin/codecept -c codeception-gh-actions.yml run
+      - name: Run Codeception tests
+        run: vendor/bin/codecept -c codeception-gh-actions.yml run
