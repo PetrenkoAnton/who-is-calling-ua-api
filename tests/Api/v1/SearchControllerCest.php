@@ -19,7 +19,6 @@ class SearchControllerCest
     public function getValidSearch(ApiTester $apiTester, Example $example): void
     {
         $apiTester->sendGet(sprintf('/v1/search?pn=%s&c=%d', $example['pn'], $example['cache']));
-        var_dump($apiTester->grabResponse()); die;
         $apiTester->seeResponseCodeIs(200);
         $apiTester->seeResponseMatchesJsonType([
             'pn' => 'string',
