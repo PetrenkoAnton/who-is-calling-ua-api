@@ -7,7 +7,7 @@ parameters:
     - routes
     - tests
   excludePaths:
-    - tests/Support/_generated/*
+    - tests/Support/*
   level: 8
   ignoreErrors:
      -
