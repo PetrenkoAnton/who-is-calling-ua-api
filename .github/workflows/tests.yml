@@ -42,5 +42,8 @@ jobs:
 #          composer require php-coveralls/php-coveralls -n
 #          vendor/bin/php-coveralls --coverage_clover=./tests/_output/clover.xml -v --json_path=./tests/_output/coveralls-upload.json
 
+      - name: .env
+        run: composer test-env
+
       - name: Codeception
         run: vendor/bin/codecept run
