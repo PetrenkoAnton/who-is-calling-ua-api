@@ -29,11 +29,14 @@ class Handler extends ExceptionHandler
     // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingAnyTypeHint
     public function render($request, Throwable $exception): JsonResponse
     {
-//        $rendered = parent::render($request, $exception);
+        $rendered = parent::render($request, $exception);
 
         return new JsonResponse(
-            ['error' => $exception->getMessage().' '. get_class($exception) .' '. $exception->getTraceAsString()],
-            499,
+            ['error' => $rendered->getContent()
+                ? json_decode($rendered->getContent())
+                : $exception->getMessage()
+            ],
+            $rendered->getStatusCode(),
         );
     }
 }
