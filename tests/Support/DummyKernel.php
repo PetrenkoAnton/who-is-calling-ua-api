@@ -13,8 +13,8 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
  */
 class DummyKernel implements HttpKernelInterface
 {
+    // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingAnyTypeHint
     public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true): Response
     {
-        //
     }
 }

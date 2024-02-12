@@ -12,6 +12,7 @@ class Kernel extends ConsoleKernel
     /**
      * @var array<string>
      */
+    // phpcs:ignore SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
     protected $commands = [];
 
     /**

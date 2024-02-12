@@ -57,12 +57,13 @@ class ProviderTest extends TestCase
             switch ($e->getCode()) {
                 case 403:
                     $this->markTestIncomplete(sprintf('Blocked (403): %s', $url));
-
+                    // no break
                 case 404:
                     $this->fail(sprintf('Not found (404): %s', $url));
-
+                // no break
                 default:
                     $this->fail(sprintf('Error (%d): %s', $e->getCode(), $e->getMessage()));
+                    // no break
             }
         }
 

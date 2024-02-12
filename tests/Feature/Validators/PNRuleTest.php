@@ -59,12 +59,10 @@ class PNRuleTest extends TestCase
             ['qwerty', 'Not numeric phone number'],
             ['q', 'Not numeric phone number'],
             ['q71234567', 'Not numeric phone number'],
-            //
             ['0', 'Invalid phone number format'],
             ['000', 'Invalid phone number format'],
             ['123123', 'Invalid phone number format'],
             ['0010000000000000000000', 'Invalid phone number format'],
-            //
             ['001000000', 'Unsupported operator code'],
             ['431234567', 'Unsupported operator code'],
             ['927654321', 'Unsupported operator code'],

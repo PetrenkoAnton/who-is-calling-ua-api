@@ -60,12 +60,10 @@ class PNValidatorTest extends TestCase
             ['qwerty', new NotNumericPNException()],
             ['q', new NotNumericPNException()],
             ['q71234567', new NotNumericPNException()],
-            //
             ['0', new InvalidPNFormatException()],
             ['000', new InvalidPNFormatException()],
             ['123123', new InvalidPNFormatException()],
             ['0010000000000000000000', new InvalidPNFormatException()],
-            //
             ['001000000', new UnsupportedCodePNException()],
             ['431234567', new UnsupportedCodePNException()],
             ['927654321', new UnsupportedCodePNException()],

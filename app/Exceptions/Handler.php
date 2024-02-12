@@ -19,6 +19,7 @@ class Handler extends ExceptionHandler
     /**
      * @var array<string>
      */
+    // phpcs:ignore SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
     protected $dontReport = [
         AuthorizationException::class,
         HttpException::class,
@@ -34,7 +35,7 @@ class Handler extends ExceptionHandler
         return new JsonResponse(
             ['error' => $rendered->getContent()
                 ? json_decode($rendered->getContent())
-                : $exception->getMessage()
+                : $exception->getMessage(),
             ],
             $rendered->getStatusCode(),
         );

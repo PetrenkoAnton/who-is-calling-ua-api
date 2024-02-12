@@ -12,6 +12,7 @@ use function config;
 use function env;
 use function file_get_contents;
 use function realpath;
+use function rename;
 use function sort;
 use function trim;
 

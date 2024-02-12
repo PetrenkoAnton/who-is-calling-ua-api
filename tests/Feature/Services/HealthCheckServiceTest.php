@@ -8,6 +8,8 @@ use App\Core\Services\HealthCheckService;
 use Illuminate\Support\Facades\Cache;
 use Tests\TestCase;
 
+use function time;
+
 class HealthCheckServiceTest extends TestCase
 {
     private HealthCheckService $service;
