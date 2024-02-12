@@ -15,17 +15,6 @@
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
     </testsuites>
-    <php>
-        <env name="APP_ENV" value="testing"/>
-        <env name="CF_PROVIDER" value="1"/>
-        <env name="CI_PROVIDER" value="1"/>
-        <env name="KC_PROVIDER" value="1"/>
-        <env name="KZ_PROVIDER" value="1"/>
-        <env name="SL_PROVIDER" value="1"/>
-        <env name="TD_PROVIDER" value="1"/>
-        <env name="USE_RANDOM_USER_AGENT" value="1"/>
-        <env name="DEFAULT_USER_AGENT" value="Mozilla/5.0 (Linux; Android 13; SM-G998B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36"/>
-    </php>
     <source>
         <include>
             <directory>./app</directory>
