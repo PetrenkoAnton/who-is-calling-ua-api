@@ -7,6 +7,8 @@ suites:
         path: Api
         modules:
             enabled:
+                - Lumen:
+                    environment_file: .env.testing
                 - REST:
                     url: /api
                     depends: Lumen
