@@ -32,7 +32,7 @@ class Handler extends ExceptionHandler
 //        $rendered = parent::render($request, $exception);
 
         return new JsonResponse(
-            ['error' => json_decode($exception->getMessage())],
+            ['error' => $exception->getMessage().' '. get_class($exception) .' '. $exception->getTraceAsString()],
             499,
         );
     }
