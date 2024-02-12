@@ -51,9 +51,6 @@
         ]
     },
     "scripts": {
-        "init-env": [
-            "@php -r \"copy('.env.github-actions-testing', '.env');\""
-        ],
         "check-all": [
             "composer install",
             "@test",
