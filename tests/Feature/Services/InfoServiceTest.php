@@ -6,21 +6,19 @@ namespace Tests\Feature\Services;
 
 use App\Core\Services\InfoService;
 use App\Exceptions\Internal\InternalException;
+use Tests\Support\VersionRenameHelper;
 use Tests\TestCase;
 
 use function config;
 use function env;
 use function file_get_contents;
 use function realpath;
-use function rename;
 use function sort;
 use function trim;
 
 class InfoServiceTest extends TestCase
 {
     private InfoService $service;
-    private const VERSION_RENAME = 'VERSION_RENAME';
-    private const PATH = __DIR__ . '/../../../';
 
     public function setUp(): void
     {
@@ -33,9 +31,7 @@ class InfoServiceTest extends TestCase
     {
         parent::tearDown();
 
-        if (realpath(self::PATH . self::VERSION_RENAME)) {
-            rename(realpath(self::PATH . self::VERSION_RENAME), 'VERSION');
-        }
+        VersionRenameHelper::rollback();
     }
 
     /**
@@ -84,13 +80,11 @@ class InfoServiceTest extends TestCase
     }
 
     /**
-     * @group ok
+     * @group +
      */
     public function testInfoThrowsException(): void
     {
-        $path = realpath(self::PATH . 'VERSION');
-
-        $path ? rename($path, self::VERSION_RENAME) : $this->fail('No VERSION file');
+        VersionRenameHelper::rename();
 
         $this->expectException(InternalException::class);
         $this->expectExceptionMessage('VERSION file not found');

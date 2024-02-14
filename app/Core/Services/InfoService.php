@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Core\Services;
 
 use App\Core\Providers\ProviderCollection;
+use App\Core\Providers\ProviderInterface;
 use App\Exceptions\Internal\InternalException;
 
 use function config;
@@ -52,6 +53,7 @@ class InfoService
         $res = [];
 
         foreach ($this->providers->getEnabled()->getItems() as $provider) {
+            /** @var ProviderInterface $provider */
             $res[] = $provider->getEnum()->value;
         }
 
