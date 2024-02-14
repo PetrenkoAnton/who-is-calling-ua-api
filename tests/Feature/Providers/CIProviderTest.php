@@ -15,8 +15,6 @@ class CIProviderTest extends AbstractProviderTest implements ProviderTestInterfa
     }
 
     /**
-     * @throws Exception
-     *
      * @group ok
      * @dataProvider dp
      */

@@ -8,8 +8,10 @@ use App\Core\ProviderEnum;
 
 class KZProvider extends AbstractProvider implements ProviderInterface
 {
+    public const ENUM = ProviderEnum::KZ;
+
     public function getEnum(): ProviderEnum
     {
-        return ProviderEnum::KZ;
+        return self::ENUM;
     }
 }

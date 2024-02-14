@@ -4,16 +4,12 @@ declare(strict_types=1);
 
 namespace App\Core\Parsers;
 
-use App\Core\ProviderEnum;
-
 use function str_contains;
 use function str_replace;
 use function trim;
 
 abstract class AbstractParser implements ParserInterface
 {
-    abstract public function for(ProviderEnum $provider): bool;
-
     abstract public function getCommentsExpression(): string;
 
     public function getIgnoreCommentsList(): array

@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Parsers;
+namespace Tests\Unit\Parsers;
 
 use App\Core\Parsers\CIParser;
-use App\Core\ProviderEnum;
-use Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class CIParserTest extends TestCase
 {
@@ -14,8 +13,7 @@ class CIParserTest extends TestCase
 
     public function setUp(): void
     {
-        parent::setUp();
-        $this->parser = $this->app->make(CIParser::class);
+        $this->parser = new CIParser();
     }
 
     /**
@@ -36,14 +34,6 @@ class CIParserTest extends TestCase
         ];
 
         $this->assertEquals($list, $this->parser->getIgnoreCommentsList());
-    }
-
-    /**
-     * @group ok
-     */
-    public function testFor(): void
-    {
-        $this->assertTrue($this->parser->for(ProviderEnum::CI));
     }
 
     /**

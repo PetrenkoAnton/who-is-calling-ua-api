@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Services;
 
-use _PHPStan_11268e5ee\Symfony\Component\Console\Formatter\OutputFormatter;
 use App\Core\Formatters\OutputPNFormatter;
 use App\Core\ProviderEnum;
 use App\Core\Providers\CFProvider;
@@ -20,15 +19,13 @@ use Tests\TestCase;
 
 class SearchServiceTest extends TestCase
 {
-    private SearchService $service;
-
     public function setUp(): void
     {
         parent::setUp();
     }
 
     /**
-     * @group +
+     * @group ok
      */
     public function testSearch(): void
     {

@@ -4,13 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core\Parsers;
 
-use App\Core\ProviderEnum;
-use Collection\Collectable;
-
-interface ParserInterface extends Collectable
+interface ParserInterface
 {
-    public function for(ProviderEnum $provider): bool;
-
     public function getCommentsExpression(): string;
 
     public function format(string $comment): string;

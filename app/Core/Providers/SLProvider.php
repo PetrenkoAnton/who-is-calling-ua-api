@@ -8,8 +8,10 @@ use App\Core\ProviderEnum;
 
 class SLProvider extends AbstractProvider implements ProviderInterface
 {
+    public const ENUM = ProviderEnum::SL;
+
     public function getEnum(): ProviderEnum
     {
-        return ProviderEnum::SL;
+        return self::ENUM;
     }
 }

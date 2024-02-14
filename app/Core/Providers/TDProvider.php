@@ -8,8 +8,10 @@ use App\Core\ProviderEnum;
 
 class TDProvider extends AbstractProvider implements ProviderInterface
 {
+    public const ENUM = ProviderEnum::TD;
+
     public function getEnum(): ProviderEnum
     {
-        return ProviderEnum::TD;
+        return self::ENUM;
     }
 }

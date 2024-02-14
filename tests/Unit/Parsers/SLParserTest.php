@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Parsers;
+namespace Tests\Unit\Parsers;
 
 use App\Core\Parsers\SLParser;
-use App\Core\ProviderEnum;
-use Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class SLParserTest extends TestCase
 {
@@ -14,8 +13,7 @@ class SLParserTest extends TestCase
 
     public function setUp(): void
     {
-        parent::setUp();
-        $this->parser = $this->app->make(SLParser::class);
+        $this->parser = new SLParser();
     }
 
     /**
@@ -34,13 +32,5 @@ class SLParserTest extends TestCase
         $list = [];
 
         $this->assertEquals($list, $this->parser->getIgnoreCommentsList());
-    }
-
-    /**
-     * @group ok
-     */
-    public function testFor(): void
-    {
-        $this->assertTrue($this->parser->for(ProviderEnum::SL));
     }
 }

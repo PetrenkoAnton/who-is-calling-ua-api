@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Unit\UrlFormatters;
 
 use App\Core\Formatters\UrlFormatters\KCUrlFormatter;
-use App\Core\ProviderEnum;
 use PHPUnit\Framework\TestCase;
 
 class KCUrlFormatterTest extends TestCase
@@ -37,23 +36,6 @@ class KCUrlFormatterTest extends TestCase
                 'http://kto-zvonil.com.ua/number/067/7654321',
                 '677654321',
             ],
-        ];
-    }
-
-    /**
-     * @group ok
-     * @dataProvider dpFor
-     */
-    public function testFor(ProviderEnum $invalidProvider): void
-    {
-        $this->assertTrue($this->formatter->for(ProviderEnum::KC));
-        $this->assertFalse($this->formatter->for($invalidProvider));
-    }
-
-    public static function dpFor(): array
-    {
-        return [
-            ProviderEnum::getAllExceptOne(ProviderEnum::KC),
         ];
     }
 }

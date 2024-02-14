@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Parsers;
+namespace Tests\Unit\Parsers;
 
 use App\Core\Parsers\CFParser;
-use App\Core\ProviderEnum;
-use Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class CFParserTest extends TestCase
 {
@@ -14,8 +13,7 @@ class CFParserTest extends TestCase
 
     public function setUp(): void
     {
-        parent::setUp();
-        $this->parser = $this->app->make(CFParser::class);
+        $this->parser = new CFParser();
     }
 
     /**
@@ -36,14 +34,6 @@ class CFParserTest extends TestCase
         ];
 
         $this->assertEquals($list, $this->parser->getIgnoreCommentsList());
-    }
-
-    /**
-     * @group ok
-     */
-    public function testFor(): void
-    {
-        $this->assertTrue($this->parser->for(ProviderEnum::CF));
     }
 
     /**

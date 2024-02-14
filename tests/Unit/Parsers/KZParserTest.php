@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Parsers;
+namespace Tests\Unit\Parsers;
 
 use App\Core\Parsers\KZParser;
-use App\Core\ProviderEnum;
-use Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class KZParserTest extends TestCase
 {
@@ -14,8 +13,7 @@ class KZParserTest extends TestCase
 
     public function setUp(): void
     {
-        parent::setUp();
-        $this->parser = $this->app->make(KZParser::class);
+        $this->parser = new KZParser();
     }
 
     /**
@@ -34,14 +32,6 @@ class KZParserTest extends TestCase
         $list = [];
 
         $this->assertEquals($list, $this->parser->getIgnoreCommentsList());
-    }
-
-    /**
-     * @group ok
-     */
-    public function testFor(): void
-    {
-        $this->assertTrue($this->parser->for(ProviderEnum::KZ));
     }
 
     /**

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Unit\UrlFormatters;
 
 use App\Core\Formatters\UrlFormatters\CFUrlFormatter;
-use App\Core\ProviderEnum;
 use PHPUnit\Framework\TestCase;
 
 class CFUrlFormatterTest extends TestCase
@@ -37,23 +36,6 @@ class CFUrlFormatterTest extends TestCase
                 'https://callfilter.app/380677654321',
                 '677654321',
             ],
-        ];
-    }
-
-    /**
-     * @group ok
-     * @dataProvider dpFor
-     */
-    public function testFor(ProviderEnum $invalidProvider): void
-    {
-        $this->assertTrue($this->formatter->for(ProviderEnum::CF));
-        $this->assertFalse($this->formatter->for($invalidProvider));
-    }
-
-    public static function dpFor(): array
-    {
-        return [
-            ProviderEnum::getAllExceptOne(ProviderEnum::CF),
         ];
     }
 }

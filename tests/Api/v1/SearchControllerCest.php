@@ -30,7 +30,7 @@ class SearchControllerCest
                     'url' => 'string',
                     'code' => 'string',
                     'comments' => 'array',
-                    'err' => 'array|null',
+                    'error' => 'array|null',
                 ],
             ],
         ]);

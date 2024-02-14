@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Core\Formatters\UrlFormatters;
 
-use App\Core\ProviderEnum;
-
 use function sprintf;
 use function substr;
 
@@ -17,10 +15,5 @@ class KCUrlFormatter implements UrlFormatterInterface
         $num = substr($pn, 2, 7);
 
         return sprintf('http://kto-zvonil.com.ua/number/0%s/%s', $code, $num);
-    }
-
-    public function for(ProviderEnum $provider): bool
-    {
-        return $provider === ProviderEnum::KC;
     }
 }

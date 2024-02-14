@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Unit\UrlFormatters;
 
 use App\Core\Formatters\UrlFormatters\TDUrlFormatter;
-use App\Core\ProviderEnum;
 use PHPUnit\Framework\TestCase;
 
 class TDUrlFormatterTest extends TestCase
@@ -37,23 +36,6 @@ class TDUrlFormatterTest extends TestCase
                 'https://www.telefonnyjdovidnyk.com.ua/nomer/0677654321',
                 '677654321',
             ],
-        ];
-    }
-
-    /**
-     * @group ok
-     * @dataProvider dpFor
-     */
-    public function testFor(ProviderEnum $invalidProvider): void
-    {
-        $this->assertTrue($this->formatter->for(ProviderEnum::TD));
-        $this->assertFalse($this->formatter->for($invalidProvider));
-    }
-
-    public static function dpFor(): array
-    {
-        return [
-            ProviderEnum::getAllExceptOne(ProviderEnum::TD),
         ];
     }
 }

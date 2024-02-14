@@ -66,7 +66,7 @@ test-xd:
 .PHONY: test-xd
 
 phpstan:
-	docker exec -it ${APP_NAME}_php ./vendor/bin/phpstan --error-format=table -v
+	docker exec -it ${APP_NAME}_php ./vendor/bin/phpstan --memory-limit=256M --error-format=table -v
 .PHONY: phpstan
 
 phpcs:

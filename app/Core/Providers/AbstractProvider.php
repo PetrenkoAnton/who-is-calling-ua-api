@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Core\Providers;
 
 use App\Core\DocumentFactory;
-use App\Core\Formatters\UrlFormatters\UrlFormatterCollection;
+use App\Core\Formatters\UrlFormatters\UrlFormatterInterface;
 use App\Core\HttpClient\HttpClientInterface;
-use App\Core\Parsers\ParserCollection;
+use App\Core\Parsers\ParserInterface;
 use App\Core\ProviderEnum;
 use DiDom\Element;
 use DiDom\Exceptions\InvalidSelectorException;
@@ -22,14 +22,16 @@ abstract class AbstractProvider implements ProviderInterface
     public function __construct(
         private readonly HttpClientInterface $httpClient,
         private readonly DocumentFactory $documentFactory,
-        private readonly ParserCollection $parsers,
-        private readonly UrlFormatterCollection $urlFormatters,
+        public readonly ParserInterface $parser,
+        private readonly UrlFormatterInterface $urlFormatter,
     ) {
     }
 
+    abstract public function getEnum(): ProviderEnum;
+
     public function getUrl(string $phone): string
     {
-        return $this->urlFormatters->getFirstFor($this->getEnum())->format($phone);
+        return $this->urlFormatter->format($phone);
     }
 
     public function enable(): bool
@@ -49,18 +51,15 @@ abstract class AbstractProvider implements ProviderInterface
     {
         $outputComments = [];
 
-        $enum = $this->getEnum();
-        $parser = $this->parsers->getFirstFor($enum);
-
         $content = $this->httpClient->getResponse($this->getUrl($phone))->getBody()->getContents();
 
         $document = $this->documentFactory->create($content);
-        $comments = $document->find($parser->getCommentsExpression());
+        $comments = $document->find($this->parser->getCommentsExpression());
 
         foreach ($comments as $comment) {
             /** @var Element $comment */
-            if (!$parser->ignore($comment->text())) {
-                $outputComments[] = $parser->format($comment->text());
+            if (!$this->parser->ignore($comment->text())) {
+                $outputComments[] = $this->parser->format($comment->text());
             }
         }
 

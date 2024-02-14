@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace Tests\Acceptance;
 
 use App\Core\DocumentFactory;
-use App\Core\Formatters\UrlFormatters\UrlFormatterCollection;
 use App\Core\HttpClient\HttpClientInterface;
-use App\Core\Parsers\ParserCollection;
 use App\Core\ProviderEnum;
+use App\Core\Providers\CFProvider;
+use App\Core\Providers\CIProvider;
+use App\Core\Providers\KCProvider;
+use App\Core\Providers\KZProvider;
+use App\Core\Providers\SLProvider;
+use App\Core\Providers\TDProvider;
 use GuzzleHttp\Exception\ClientException;
 use Psr\Http\Message\ResponseInterface;
 use Tests\TestCase;
@@ -30,7 +34,7 @@ class ProviderTest extends TestCase
         $providers = ProviderEnum::cases();
 
         foreach ($this->dp() as $p) {
-            $providers = array_filter($providers, fn ($provider) => $provider !== $p[0]);
+            $providers = array_filter($providers, fn ($provider) => $provider !== $p[0]::ENUM);
         }
 
         if (count($providers)) {
@@ -45,11 +49,13 @@ class ProviderTest extends TestCase
      * @group smoke
      * @dataProvider dp
      */
-    public function testProviderContentAvailable(ProviderEnum $enum, string $pn): void
+    public function testProviderContentAvailable(string $providerClass, string $pn): void
     {
-        $this->checkSkipped($enum);
+        $provider = $this->app->make($providerClass);
 
-        $url = $this->getUrl($enum, $pn);
+        $this->checkSkipped($provider->getEnum());
+
+        $url = $provider->getUrl($pn);
 
         try {
             $response = $this->getResponse($url);
@@ -60,7 +66,7 @@ class ProviderTest extends TestCase
                     // no break
                 case 404:
                     $this->fail(sprintf('Not found (404): %s', $url));
-                // no break
+                    // no break
                 default:
                     $this->fail(sprintf('Error (%d): %s', $e->getCode(), $e->getMessage()));
                     // no break
@@ -73,9 +79,7 @@ class ProviderTest extends TestCase
 
         $html = $this->app->make(DocumentFactory::class)->create($content);
 
-        $parser = $this->app->make(ParserCollection::class)->getFirstFor($enum);
-
-        $expression = $parser->getCommentsExpression();
+        $expression = $provider->parser->getCommentsExpression();
 
         if (!$html->count($expression)) {
             $this->markTestIncomplete(sprintf('Updated structure or deleted comments: %s', $url));
@@ -85,12 +89,12 @@ class ProviderTest extends TestCase
     public static function dp(): array
     {
         return [
-            ProviderEnum::CF->name => [ProviderEnum::CF, '672907523'],
-            ProviderEnum::CI->name => [ProviderEnum::CI, '443211864'],
-            ProviderEnum::KC->name => [ProviderEnum::KC, '661541508'],
-            ProviderEnum::KZ->name => [ProviderEnum::KZ, '631885006'],
-            ProviderEnum::SL->name => [ProviderEnum::SL, '631885006'],
-            ProviderEnum::TD->name => [ProviderEnum::TD, '445855178'],
+            CFProvider::ENUM->name => [CFProvider::class, '672907523'],
+            CIProvider::ENUM->name => [CIProvider::class, '443211864'],
+            KCProvider::ENUM->name => [KCProvider::class, '661541508'],
+            KZProvider::ENUM->name => [KZProvider::class, '631885006'],
+            SLProvider::ENUM->name => [SLProvider::class, '631885006'],
+            TDProvider::ENUM->name => [TDProvider::class, '445855178'],
         ];
     }
 
@@ -99,14 +103,6 @@ class ProviderTest extends TestCase
         $httpClient = $this->app->make(HttpClientInterface::class);
 
         return $httpClient->getResponse($url);
-    }
-
-    private function getUrl(ProviderEnum $enum, string $pn): string
-    {
-        $urlFormatterCollection = $this->app->make(UrlFormatterCollection::class);
-        $urlFormatter = $urlFormatterCollection->getFirstFor($enum);
-
-        return $urlFormatter->format($pn);
     }
 
     private function checkSkipped(ProviderEnum $enum): void
