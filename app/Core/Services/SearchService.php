@@ -8,6 +8,7 @@ use App\Core\Formatters\OutputPNFormatter;
 use App\Core\Providers\ProviderCollection;
 use App\Core\Providers\ProviderInterface;
 use App\Core\Services\Internal\CommentsService;
+use Exception;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Facades\Cache;
 
@@ -42,7 +43,7 @@ class SearchService
 
                 try {
                     $this->commentsService->addComments(($comments = $provider->getComments($phone)));
-                } catch (ClientException $e) {
+                } catch (Exception $e) {
                     $error = [
                         'message' => $e->getMessage(),
                         'code' => $e->getCode(),

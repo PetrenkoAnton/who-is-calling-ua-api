@@ -15,19 +15,16 @@ use App\Core\Providers\SLProvider;
 use App\Core\Providers\TDProvider;
 use App\Core\Services\Internal\CommentsService;
 use App\Core\Services\SearchService;
+use Exception;
 use Tests\TestCase;
 
 class SearchServiceTest extends TestCase
 {
-    public function setUp(): void
-    {
-        parent::setUp();
-    }
-
     /**
      * @group ok
+     * @dataProvider dpSearchSuccess
      */
-    public function testSearch(): void
+    public function testSearchSuccess(bool $useCache): void
     {
         $pn = '443551591';
 
@@ -97,10 +94,12 @@ class SearchServiceTest extends TestCase
             $this->app->make(CommentsService::class),
         );
 
+        $actual = $service->search($pn, $useCache);
+
         $expected = array(
             // @codingStandardsIgnoreStart
             'pn' => '044 355-15-91',
-            'cache' => false,
+            'cache' => $useCache,
             'comments' =>
                 array(
                     0 => 'виграв приз 380 тис надо пройти авторизацію говорила дівчина робот (програвалася запис / робот)',
@@ -167,7 +166,135 @@ class SearchServiceTest extends TestCase
             // @codingStandardsIgnoreEnd
         );
 
+        $this->assertEquals($expected, $actual);
+    }
+
+    public static function dpSearchSuccess(): array
+    {
+        return [
+            [false],
+            [true],
+        ];
+    }
+
+    /**
+     * @group ok
+     */
+    public function testSearchWithClientException(): void
+    {
+        $pn = '672341456';
+
+        $commentsKZ = [
+            // @codingStandardsIgnoreStart
+            'Інтернет провайдер',
+            // @codingStandardsIgnoreEnd
+        ];
+
+        $providerCF = $this->createConfiguredMock(CFProvider::class, [
+            'getComments' => [],
+            'enable' => false,
+            'getEnum' => ProviderEnum::CF,
+        ]);
+
+        $providerCI = $this->createConfiguredMock(CIProvider::class, [
+            'getComments' => [],
+            'enable' => true,
+            'getEnum' => ProviderEnum::CI,
+        ]);
+
+        $providerKC = $this->createConfiguredMock(KCProvider::class, [
+            'getComments' => [],
+            'enable' => false,
+            'getEnum' => ProviderEnum::KC,
+        ]);
+
+        $providerKZ = $this->createConfiguredMock(KZProvider::class, [
+            'getComments' => $commentsKZ,
+            'enable' => true,
+            'getEnum' => ProviderEnum::KZ,
+        ]);
+
+        $exception = new Exception(
+        // @codingStandardsIgnore
+            message: "Client error: `GET https://slick.ly/ua/0443551591` resulted in a `403 Forbidden` response:\nerror code: 1006\n",
+            code: 403,
+        );
+
+        $providerSL = $this->createConfiguredMock(SLProvider::class, [
+            'enable' => true,
+            'getEnum' => ProviderEnum::SL,
+        ]);
+
+        $providerSL
+            ->method('getComments')
+            ->willThrowException($exception);
+
+        $providerTD = $this->createConfiguredMock(TDProvider::class, [
+            'getComments' => [],
+            'enable' => false,
+            'getEnum' => ProviderEnum::TD,
+        ]);
+
+        $providerCollection = new ProviderCollection(
+            $providerCF, $providerCI, $providerKC, $providerKZ, $providerSL, $providerTD,
+        );
+
+        $service = new SearchService(
+            $providerCollection,
+            $this->app->make(OutputPNFormatter::class),
+            $this->app->make(CommentsService::class),
+        );
+
         $actual = $service->search($pn, false);
+
+        $expected = array(
+            // @codingStandardsIgnoreStart
+            'pn' => '067 234-14-56',
+            'cache' => false,
+            'comments' =>
+                array(
+                    0 => 'Інтернет провайдер',
+                ),
+            'providers' =>
+                array(
+                    0 =>
+                        array(
+                            'name' => 'callinsider.com.ua',
+                            'url' => '',
+                            'code' => 'CI',
+                            'comments' =>
+                                array(),
+                            'error' => NULL,
+                        ),
+                    1 =>
+                        array(
+                            'name' => 'ktozvonil.net',
+                            'url' => '',
+                            'code' => 'KZ',
+                            'comments' =>
+                                array(
+                                    0 => 'Інтернет провайдер',
+                                ),
+                            'error' => NULL,
+                        ),
+                    2 =>
+                        array(
+                            'name' => 'slick.ly',
+                            'url' => '',
+                            'code' => 'SL',
+                            'comments' =>
+                                array(),
+                            'error' =>
+                                array(
+                                    'message' => 'Client error: `GET https://slick.ly/ua/0443551591` resulted in a `403 Forbidden` response:
+error code: 1006
+',
+                                    'code' => 403,
+                                ),
+                        ),
+                ),
+            // @codingStandardsIgnoreEnd
+        );
 
         $this->assertEquals($expected, $actual);
     }

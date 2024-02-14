@@ -15,7 +15,6 @@ class SLProviderTest extends AbstractProviderTest implements ProviderTestInterfa
 
     /**
      * @group ok
-     * @group +
      * @dataProvider dp
      */
     public function testSuccessfulParseComments(string $phone, array $expectedComments): void
