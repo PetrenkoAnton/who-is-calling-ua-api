@@ -85,7 +85,12 @@ class SearchServiceTest extends TestCase
         ]);
 
         $providerCollection = new ProviderCollection(
-            $providerCF, $providerCI, $providerKC, $providerKZ, $providerSL, $providerTD,
+            $providerCF,
+            $providerCI,
+            $providerKC,
+            $providerKZ,
+            $providerSL,
+            $providerTD,
         );
 
         $service = new SearchService(
@@ -96,7 +101,7 @@ class SearchServiceTest extends TestCase
 
         $actual = $service->search($pn, $useCache);
 
-        $expected = array(
+        $expected = [
             // @codingStandardsIgnoreStart
             'pn' => '044 355-15-91',
             'cache' => $useCache,
@@ -164,7 +169,7 @@ class SearchServiceTest extends TestCase
                         ),
                 ),
             // @codingStandardsIgnoreEnd
-        );
+        ];
 
         $this->assertEquals($expected, $actual);
     }
@@ -215,8 +220,9 @@ class SearchServiceTest extends TestCase
         ]);
 
         $exception = new Exception(
-        // @codingStandardsIgnore
+            // @codingStandardsIgnoreStart
             message: "Client error: `GET https://slick.ly/ua/0443551591` resulted in a `403 Forbidden` response:\nerror code: 1006\n",
+            // @codingStandardsIgnoreEnd
             code: 403,
         );
 
@@ -236,7 +242,12 @@ class SearchServiceTest extends TestCase
         ]);
 
         $providerCollection = new ProviderCollection(
-            $providerCF, $providerCI, $providerKC, $providerKZ, $providerSL, $providerTD,
+            $providerCF,
+            $providerCI,
+            $providerKC,
+            $providerKZ,
+            $providerSL,
+            $providerTD,
         );
 
         $service = new SearchService(
@@ -247,7 +258,7 @@ class SearchServiceTest extends TestCase
 
         $actual = $service->search($pn, false);
 
-        $expected = array(
+        $expected = [
             // @codingStandardsIgnoreStart
             'pn' => '067 234-14-56',
             'cache' => false,
@@ -294,7 +305,7 @@ error code: 1006
                         ),
                 ),
             // @codingStandardsIgnoreEnd
-        );
+        ];
 
         $this->assertEquals($expected, $actual);
     }

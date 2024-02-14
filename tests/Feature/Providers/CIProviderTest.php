@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Feature\Providers;
 
 use App\Core\Providers\CIProvider;
-use PHPUnit\Framework\MockObject\Exception;
 
 class CIProviderTest extends AbstractProviderTest implements ProviderTestInterface
 {

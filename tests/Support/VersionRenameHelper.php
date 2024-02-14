@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Tests\Support;
 
+use function is_file;
 use function rename;
 use function sprintf;
 
 class VersionRenameHelper
 {
-
     private const PATH = '/../../';
     private const VERSION = 'VERSION';
     private const VERSION_RENAME = 'VERSION_RENAME';

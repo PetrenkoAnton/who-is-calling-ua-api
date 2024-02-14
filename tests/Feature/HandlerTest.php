@@ -7,6 +7,8 @@ namespace Tests\Feature;
 use Tests\Support\VersionRenameHelper;
 use Tests\TestCase;
 
+use function route;
+
 class HandlerTest extends TestCase
 {
     /**
