@@ -42,7 +42,7 @@ abstract class AbstractProviderTest extends TestCase
     private function getProvider(string $phone): ProviderInterface
     {
         $providerClass = $this->getProviderClass();
-        $providerEnum = $providerClass::getEnum();
+        $providerEnum = (new $providerClass())->getEnum();
 
         $path = __DIR__ . sprintf('/../data/%s-%s.html', $providerEnum->name, $phone);
         $content = file_get_contents($path);

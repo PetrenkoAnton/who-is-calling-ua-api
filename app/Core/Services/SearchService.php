@@ -8,8 +8,8 @@ use App\Core\Formatters\OutputPNFormatter;
 use App\Core\Providers\ProviderCollection;
 use App\Core\Providers\ProviderInterface;
 use App\Core\Services\Internal\CommentsService;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Facades\Cache;
-use RuntimeException;
 
 class SearchService
 {
@@ -38,15 +38,14 @@ class SearchService
                 /** @var ProviderInterface $provider */
 
                 $comments = [];
-                $err = null;
+                $error = null;
 
                 try {
                     $this->commentsService->addComments(($comments = $provider->getComments($phone)));
-                    // TODO! Temporary error handler.
-                } catch (RuntimeException $e) {
-                    $err = [
-                        'code' => $e->getCode(),
+                } catch (ClientException $e) {
+                    $error = [
                         'message' => $e->getMessage(),
+                        'code' => $e->getCode(),
                     ];
                 }
 
@@ -55,7 +54,7 @@ class SearchService
                     'url' => $provider->getUrl($phone),
                     'code' => $provider->getEnum()->name,
                     'comments' => $comments,
-                    'err' => $err,
+                    'error' => $error,
                 ];
             }
 

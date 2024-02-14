@@ -9,7 +9,7 @@ use Collection\Collectable;
 
 interface ProviderInterface extends Collectable
 {
-    public static function getEnum(): ProviderEnum;
+    public function getEnum(): ProviderEnum;
 
     public function enable(): bool;
 

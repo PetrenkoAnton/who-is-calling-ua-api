@@ -12,8 +12,6 @@ use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
-use function json_decode;
-
 class Handler extends ExceptionHandler
 {
     /**
@@ -30,14 +28,12 @@ class Handler extends ExceptionHandler
     // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingAnyTypeHint
     public function render($request, Throwable $exception): JsonResponse
     {
-        $rendered = parent::render($request, $exception);
-
         return new JsonResponse(
-            ['error' => $rendered->getContent()
-                ? json_decode($rendered->getContent())
-                : $exception->getMessage(),
+            [
+                'error' => $exception->getMessage(),
+                'code' => $exception->getCode(),
             ],
-            $rendered->getStatusCode(),
+            $exception->getCode(),
         );
     }
 }

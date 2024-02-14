@@ -27,9 +27,6 @@ abstract class AbstractProvider implements ProviderInterface
     ) {
     }
 
-    abstract public static function getEnum(): ProviderEnum;
-
-    // TODO! Add test
     public function getUrl(string $phone): string
     {
         return $this->urlFormatters->getFirstFor($this->getEnum())->format($phone);
