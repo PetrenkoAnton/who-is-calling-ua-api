@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Core\DocumentFactory;
+use App\Core\Formatters\UrlFormatters\CIUrlFormatter;
 use App\Core\Formatters\UrlFormatters\CFUrlFormatter;
 use App\Core\Formatters\UrlFormatters\KCUrlFormatter;
 use App\Core\Formatters\UrlFormatters\KZUrlFormatter;
@@ -96,7 +97,7 @@ $app->bind(CIProvider::class, fn (Application $app) => new CIProvider(
     httpClient: $app->make(HttpClientInterface::class),
     documentFactory: $app->make(DocumentFactory::class),
     parser: $app->make(CIParser::class),
-    urlFormatter: $app->make(CFUrlFormatter::class),
+    urlFormatter: $app->make(CIUrlFormatter::class),
 ));
 
 $app->bind(KCProvider::class, fn (Application $app) => new KCProvider(

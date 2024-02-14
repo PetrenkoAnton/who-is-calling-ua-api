@@ -80,7 +80,7 @@ class InfoServiceTest extends TestCase
     }
 
     /**
-     * @group +
+     * @group ok
      */
     public function testInfoThrowsException(): void
     {

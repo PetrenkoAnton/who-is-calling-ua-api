@@ -12,7 +12,7 @@ use function route;
 class HandlerTest extends TestCase
 {
     /**
-     * @group ok
+     * @group +
      */
     public function testRender(): void
     {
