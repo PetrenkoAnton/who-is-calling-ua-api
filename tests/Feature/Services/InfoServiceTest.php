@@ -41,7 +41,7 @@ class InfoServiceTest extends TestCase
     {
         // TODO! Change to the "@phpstan-ignore argument.type" after phpstan 1.11 will be released
         // @phpstan-ignore-next-line
-        $expectedVersion = trim(file_get_contents(realpath(__DIR__ . '/../../../VERSION')));
+        $expectedVersion = trim(file_get_contents(__DIR__ . '/../../../VERSION'));
 
         $expectedSupportedCodes = config('pn.supported_codes');
         sort($expectedSupportedCodes);
