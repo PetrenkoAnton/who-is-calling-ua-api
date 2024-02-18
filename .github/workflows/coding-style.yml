@@ -32,7 +32,7 @@ jobs:
         uses: ramsey/composer-install@v2
 
       - name: PHPStan
-        run: ./vendor/bin/phpstan --no-progress
+        run: ./vendor/bin/phpstan --no-progress --memory-limit=256M
 
       - name: PHP_CodeSniffer
         run: ./vendor/bin/phpcs --no-cache
