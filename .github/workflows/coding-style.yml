@@ -28,11 +28,13 @@ jobs:
         with:
           php-version: 8.3
 
-      - name: Generate ApiTesterActions.php
-        run: vendor/bin/codecept build
-
       - name: Install dependencies
         uses: ramsey/composer-install@v2
+
+      - name: Generate ApiTesterActions.php
+        run: |
+          vendor/bin/codecept build
+          composer dump-autoload
 
       - name: PHPStan
         run: ./vendor/bin/phpstan --no-progress --memory-limit=256M
