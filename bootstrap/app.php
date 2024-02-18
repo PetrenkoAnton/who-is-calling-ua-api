@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use App\Core\DocumentFactory;
-use App\Core\Formatters\UrlFormatters\CIUrlFormatter;
 use App\Core\Formatters\UrlFormatters\CFUrlFormatter;
+use App\Core\Formatters\UrlFormatters\CIUrlFormatter;
 use App\Core\Formatters\UrlFormatters\KCUrlFormatter;
 use App\Core\Formatters\UrlFormatters\KZUrlFormatter;
 use App\Core\Formatters\UrlFormatters\SLUrlFormatter;

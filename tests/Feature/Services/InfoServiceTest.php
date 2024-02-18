@@ -12,7 +12,6 @@ use Tests\TestCase;
 use function config;
 use function env;
 use function file_get_contents;
-use function realpath;
 use function sort;
 use function trim;
 
@@ -58,19 +57,21 @@ class InfoServiceTest extends TestCase
         $this->assertEquals($expectedVersion, $info['version']);
         $this->assertEquals($expectedSupportedCodes, $info['supported_codes']);
 
-        $this->assertCount(6, $info['providers']);
+        $this->assertCount(5, $info['providers']);
 
         $this->assertTrue((bool) env('KZ_PROVIDER'));
         $this->assertTrue((bool) env('TD_PROVIDER'));
         $this->assertTrue((bool) env('CI_PROVIDER'));
         $this->assertTrue((bool) env('SL_PROVIDER'));
-        $this->assertTrue((bool) env('KC_PROVIDER'));
+        // TODO! KC_PROVIDER (ERR_CONNECTION_TIMED_OUT)
+//        $this->assertTrue((bool) env('KC_PROVIDER'));
         $this->assertTrue((bool) env('CF_PROVIDER'));
 
         $expectedProviders = [
             'callfilter.app',
             'callinsider.com.ua',
-            'kto-zvonil.com.ua',
+            // TODO! KC_PROVIDER (ERR_CONNECTION_TIMED_OUT)
+//            'kto-zvonil.com.ua',
             'ktozvonil.net',
             'slick.ly',
             'telefonnyjdovidnyk.com.ua',

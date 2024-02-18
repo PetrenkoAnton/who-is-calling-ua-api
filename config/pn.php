@@ -6,7 +6,7 @@ return [
     'supported_codes' => [
         // vodafone
         50, 66, 95, 99,
-        // life
+        // lifecell
         63, 73, 93,
         // kyivstar
         67, 68, 96, 97, 98,

@@ -8,7 +8,6 @@ use Codeception\Example;
 use Tests\Support\ApiTester;
 
 use function sprintf;
-use function substr;
 
 class SearchControllerCest
 {
@@ -58,15 +57,16 @@ class SearchControllerCest
                     'url' => sprintf('https://slick.ly/ua/0%s', $example['pn']),
                     'code' => 'SL',
                 ],
-                [
-                    'name' => 'kto-zvonil.com.ua',
-                    'url' => sprintf(
-                        'http://kto-zvonil.com.ua/number/0%s/%s',
-                        substr($example['pn'], 0, 2),
-                        substr($example['pn'], 2, 7),
-                    ),
-                    'code' => 'KC',
-                ],
+                // TODO! KC_PROVIDER (ERR_CONNECTION_TIMED_OUT)
+//                [
+//                    'name' => 'kto-zvonil.com.ua',
+//                    'url' => sprintf(
+//                        'http://kto-zvonil.com.ua/number/0%s/%s',
+//                        substr($example['pn'], 0, 2),
+//                        substr($example['pn'], 2, 7),
+//                    ),
+//                    'code' => 'KC',
+//                ],
                 [
                     'name' => 'callfilter.app',
                     'url' => sprintf('https://callfilter.app/380%s', $example['pn']),
@@ -104,14 +104,26 @@ class SearchControllerCest
         $apiTester->seeResponseCodeIs(422);
         $apiTester->seeResponseMatchesJsonType([
             'error' => [
-                'c' => 'array',
-                'pn' => 'array',
+                'validation' => [
+                    [
+                        'attribute' => 'string',
+                        'info' => 'string',
+                    ],
+                ],
             ],
         ]);
         $apiTester->seeResponseContainsJson([
             'error' => [
-                'c' => ['The c field must be true or false.'],
-                'pn' => [$example['error']],
+                'validation' => [
+                    [
+                        'attribute' => 'c',
+                        'info' => 'The c field must be true or false.',
+                    ],
+                    [
+                        'attribute' => 'pn',
+                        'info' => $example['error'],
+                    ],
+                ],
             ],
         ]);
     }

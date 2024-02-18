@@ -10,9 +10,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
-use function json_decode;
+use function array_keys;
+use function array_map;
+use function array_values;
+use function getenv;
 
 class Handler extends ExceptionHandler
 {
@@ -30,17 +34,40 @@ class Handler extends ExceptionHandler
     // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingAnyTypeHint
     public function render($request, Throwable $exception): JsonResponse
     {
-        $rendered = parent::render($request, $exception);
+        switch ($exception) {
+            case $exception instanceof NotFoundHttpException:
+                $message = 'Not found';
+                $code = 404;
 
-        $error = json_decode($rendered->content()) ?: $exception->getMessage();
-        $code = $rendered->getStatusCode() ?: $exception->getCode();
+                break;
+            case $exception instanceof ValidationException:
+                $message = [
+                    'validation' => array_map(fn ($key, $messages) => [
+                        'attribute' => $key,
+                        'info' => $messages[0] ?? 'No info',
+                    ], array_keys($exception->errors()), array_values($exception->errors())),
+                ];
+                $code = 422;
+
+                break;
+            default:
+                $message = getenv('APP_DEBUG', true)
+                    ? $exception->getMessage()
+                    : 'Internal server error';
+                $code = 500;
+
+                break;
+        }
+
+        $data = [
+            'error' => $message,
+            'code' => $code,
+        ];
 
         return new JsonResponse(
-            [
-                'error' => $error,
-                'code' => $code,
-            ],
-            $code,
+            data: $data,
+            status: $code,
+            headers: ['Content-Type' => 'application/json'],
         );
     }
 }
