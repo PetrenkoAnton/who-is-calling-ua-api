@@ -26,7 +26,8 @@ class HealthCheckServiceTest extends TestCase
      */
     public function testCheckSuccess(): void
     {
-        $this->assertTrue($this->service->check());
+        $this->assertEquals(['health-check' => 'success'], $this->service->getData());
+        $this->assertTrue($this->service->status());
     }
 
     /**
@@ -44,6 +45,7 @@ class HealthCheckServiceTest extends TestCase
             ->with(HealthCheckService::KEY)
             ->andReturn(0);
 
-        $this->assertFalse($this->service->check());
+        $this->assertEquals(['health-check' => 'success'], $this->service->getData());
+        $this->assertFalse($this->service->status());
     }
 }

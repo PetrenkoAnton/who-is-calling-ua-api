@@ -11,7 +11,7 @@ $router->get('/', fn () => $router->app->version());
 $router->group(['prefix' => 'api', 'namespace' => 'Api'], function () use ($router) {
     $router->group(['prefix' => 'v1', 'namespace' => 'v1'], function () use ($router) {
         $router->get('health-check', [
-            'as' => 'healthCheck', 'uses' => 'HealthCheckController@check',
+            'as' => 'v1/healthCheck', 'uses' => 'HealthCheckController@check',
         ]);
 
         $router->get('search', [

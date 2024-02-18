@@ -13,3 +13,4 @@ phpstan.neon
 !/storage/framework/views/.gitkeep
 !/storage/logs/.gitkeep
 !/.phpstorm.meta.php
+/public/doc

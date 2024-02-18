@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\v1;
 
 use App\Core\Services\HealthCheckService;
-use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 use Laravel\Lumen\Routing\Controller;
 use Symfony\Component\HttpFoundation\Response as BaseResponse;
 
@@ -18,10 +18,13 @@ class HealthCheckController extends Controller
     {
     }
 
-    public function check(): Response
+    public function check(): JsonResponse
     {
-        $status = $this->service->check() ? BaseResponse::HTTP_OK : BaseResponse::HTTP_INTERNAL_SERVER_ERROR;
+        $dto = $this->service->getHealthCheckDto();
 
-        return new Response('', $status);
+        return new JsonResponse(
+            data: $dto->getData(),
+            status: $dto->getStatus(),
+        );
     }
 }

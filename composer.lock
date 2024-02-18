@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "44709d5cd636e3efbdc585671c54907f",
+    "content-hash": "80138c8c649bf58c4fa61e3258098e64",
     "packages": [
         {
             "name": "brick/math",
@@ -2456,6 +2456,61 @@
                 "source": "https://github.com/PetrenkoAnton/php-collection/tree/v1.1.2"
             },
             "time": "2024-01-26T19:55:35+00:00"
+        },
+        {
+            "name": "petrenkoanton/php-dto",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PetrenkoAnton/php-dto.git",
+                "reference": "2eb5a6ee45287b83bb2afafa17a8c71f71c94110"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PetrenkoAnton/php-dto/zipball/2eb5a6ee45287b83bb2afafa17a8c71f71c94110",
+                "reference": "2eb5a6ee45287b83bb2afafa17a8c71f71c94110",
+                "shasum": ""
+            },
+            "require": {
+                "petrenkoanton/php-collection": "^1.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.7",
+                "phpunit/phpunit": "^9.0",
+                "psalm/plugin-phpunit": "^0.18.4",
+                "ramsey/coding-standard": "^2.1",
+                "squizlabs/php_codesniffer": "^3.8",
+                "vimeo/psalm": "^5.16"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Dto\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Petrenko",
+                    "email": "antptrnk@gmail.com",
+                    "homepage": "https://github.com/petrenkoanton",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Custom dto implementation",
+            "keywords": [
+                "dto",
+                "structure"
+            ],
+            "support": {
+                "issues": "https://github.com/PetrenkoAnton/php-dto/issues",
+                "source": "https://github.com/PetrenkoAnton/php-dto/tree/v1.1.2"
+            },
+            "time": "2024-01-26T20:03:54+00:00"
         },
         {
             "name": "phpoption/phpoption",
