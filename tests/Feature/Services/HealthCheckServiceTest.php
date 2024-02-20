@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Services;
 
+use App\Core\Dto\HealthCheckDto;
 use App\Core\Services\HealthCheckService;
 use Illuminate\Support\Facades\Cache;
 use Tests\TestCase;
@@ -12,22 +13,15 @@ use function time;
 
 class HealthCheckServiceTest extends TestCase
 {
-    private HealthCheckService $service;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->service = $this->app->make(HealthCheckService::class);
-    }
-
     /**
      * @group ok
      */
     public function testCheckSuccess(): void
     {
-        $this->assertEquals(['health-check' => 'success'], $this->service->getData());
-        $this->assertTrue($this->service->status());
+        $dto = $this->app->make(HealthCheckService::class)->getHealthCheckDto();
+
+        $this->assertEquals(['health-check' => 'success'], $dto->getData());
+        $this->assertEquals(200, $dto->getStatus());
     }
 
     /**
@@ -45,7 +39,9 @@ class HealthCheckServiceTest extends TestCase
             ->with(HealthCheckService::KEY)
             ->andReturn(0);
 
-        $this->assertEquals(['health-check' => 'success'], $this->service->getData());
-        $this->assertFalse($this->service->status());
+        $dto = $this->app->make(HealthCheckService::class)->getHealthCheckDto();
+
+        $this->assertEquals(['health-check' => 'fail'], $dto->getData());
+        $this->assertEquals(500, $dto->getStatus());
     }
 }
