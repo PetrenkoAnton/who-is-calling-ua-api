@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Core\Dto\InfoDto;
 use App\Core\Services\InfoService;
 use Laravel\Lumen\Routing\Controller;
 
@@ -16,11 +17,8 @@ class InfoController extends Controller
     {
     }
 
-    /**
-     * @return array{version:string,providers:array<string>,supported_codes:array<int>}
-     */
-    public function info(): array
+    public function info(): InfoDto
     {
-        return $this->service->getInfo();
+        return $this->service->getInfoDto();
     }
 }

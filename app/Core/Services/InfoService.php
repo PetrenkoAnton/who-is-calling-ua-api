@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core\Services;
 
+use App\Core\Dto\InfoDto;
+use App\Core\Dto\InfoDtoFactory;
 use App\Core\Providers\ProviderCollection;
 use App\Core\Providers\ProviderInterface;
 use App\Exceptions\Internal\InternalException;
@@ -16,20 +18,22 @@ use function trim;
 
 class InfoService
 {
-    public function __construct(private readonly ProviderCollection $providers)
+    public function __construct(
+        private readonly ProviderCollection $providers,
+        private readonly InfoDtoFactory $dtoFactory,
+    )
     {
     }
 
-    /**
-     * @return array{version:string,providers:array<string>,supported_codes:array<int>}
-     */
-    public function getInfo(): array
+    public function getInfoDto(): InfoDto
     {
-        return [
+        $data = [
             'version' => $this->getVersion(),
             'providers' => $this->getProviders(),
-            'supported_codes' => $this->getSupportedCodes(),
+            'supportedCodes' => $this->getSupportedCodes(),
         ];
+
+        return $this->dtoFactory->create($data);
     }
 
     /**

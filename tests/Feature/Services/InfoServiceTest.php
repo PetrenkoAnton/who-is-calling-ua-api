@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Services;
 
+use App\Core\Dto\InfoDto;
 use App\Core\Services\InfoService;
 use App\Exceptions\Internal\InternalException;
 use Tests\Support\VersionRenameHelper;
@@ -45,19 +46,15 @@ class InfoServiceTest extends TestCase
         $expectedSupportedCodes = config('pn.supported_codes');
         sort($expectedSupportedCodes);
 
-        $info = $this->service->getInfo();
+        $infoDto = $this->service->getInfoDto();
 
-        $this->assertIsArray($info);
-        $this->assertArrayHasKey('version', $info);
-        $this->assertArrayHasKey('providers', $info);
-        $this->assertArrayHasKey('supported_codes', $info);
+        $this->assertInstanceOf(InfoDto::class, $infoDto);
+        $this->assertCount(3, $infoDto->toArray());
 
-        $this->assertCount(3, $info);
+        $this->assertEquals($expectedVersion, $infoDto->getVersion());
+        $this->assertEquals($expectedSupportedCodes, $infoDto->getSupportedCodes());
 
-        $this->assertEquals($expectedVersion, $info['version']);
-        $this->assertEquals($expectedSupportedCodes, $info['supported_codes']);
-
-        $this->assertCount(5, $info['providers']);
+        $this->assertCount(5, $infoDto->getProviders());
 
         $this->assertTrue((bool) env('KZ_PROVIDER'));
         $this->assertTrue((bool) env('TD_PROVIDER'));
@@ -77,7 +74,7 @@ class InfoServiceTest extends TestCase
             'telefonnyjdovidnyk.com.ua',
         ];
 
-        $this->assertEquals($expectedProviders, $info['providers']);
+        $this->assertEquals($expectedProviders, $infoDto->getProviders());
     }
 
     /**
@@ -90,6 +87,6 @@ class InfoServiceTest extends TestCase
         $this->expectException(InternalException::class);
         $this->expectExceptionMessage('VERSION file not found');
 
-        $this->service->getInfo();
+        $this->service->getInfoDto();
     }
 }

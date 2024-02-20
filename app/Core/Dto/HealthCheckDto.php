@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Core\Dto;
+declare(strict_types=1);
 
-use Dto\Dto;
+namespace App\Core\Dto;
 
 /**
  * @method array getData()
