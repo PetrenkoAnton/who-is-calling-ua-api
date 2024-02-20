@@ -11,7 +11,7 @@ namespace App\Core\Dto;
 class HealthCheckDto extends Dto
 {
     /**
-     * @var array<'health-check', string>
+     * @var array{health-check:string}
      */
     protected array $data;
     protected int $status;

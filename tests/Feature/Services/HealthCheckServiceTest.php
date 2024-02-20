@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Services;
 
-use App\Core\Dto\HealthCheckDto;
 use App\Core\Services\HealthCheckService;
 use Illuminate\Support\Facades\Cache;
 use Tests\TestCase;

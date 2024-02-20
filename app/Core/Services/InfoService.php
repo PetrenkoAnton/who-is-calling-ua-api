@@ -21,8 +21,7 @@ class InfoService
     public function __construct(
         private readonly ProviderCollection $providers,
         private readonly InfoDtoFactory $dtoFactory,
-    )
-    {
+    ) {
     }
 
     public function getInfoDto(): InfoDto

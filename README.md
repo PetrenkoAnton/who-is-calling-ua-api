@@ -44,5 +44,6 @@ The [who-is-calling-ua-api](https://github.com/PetrenkoAnton/who-is-calling-ua-a
 
 ## Related projects
 
+- [PetrenkoAnton/key-normalizer](https://github.com/PetrenkoAnton/key-normalizer)
 - [PetrenkoAnton/php-collection](https://github.com/PetrenkoAnton/php-collection)
 - [PetrenkoAnton/php-dto](https://github.com/PetrenkoAnton/php-dto)

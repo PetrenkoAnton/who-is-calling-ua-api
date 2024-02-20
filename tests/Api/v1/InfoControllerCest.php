@@ -25,8 +25,7 @@ class InfoControllerCest
             'providers' => [
                 'callfilter.app',
                 'callinsider.com.ua',
-                // TODO! KC_PROVIDER (ERR_CONNECTION_TIMED_OUT)
-//                'kto-zvonil.com.ua',
+                'kto-zvonil.com.ua',
                 'ktozvonil.net',
                 'slick.ly',
                 'telefonnyjdovidnyk.com.ua',

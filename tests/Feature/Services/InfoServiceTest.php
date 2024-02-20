@@ -7,6 +7,7 @@ namespace Tests\Feature\Services;
 use App\Core\Dto\InfoDto;
 use App\Core\Services\InfoService;
 use App\Exceptions\Internal\InternalException;
+use Dto\KeyCase;
 use Tests\Support\VersionRenameHelper;
 use Tests\TestCase;
 
@@ -49,26 +50,24 @@ class InfoServiceTest extends TestCase
         $infoDto = $this->service->getInfoDto();
 
         $this->assertInstanceOf(InfoDto::class, $infoDto);
-        $this->assertCount(3, $infoDto->toArray());
+        $this->assertCount(3, $infoDto->toArray(KeyCase::CAMEL_CASE));
 
         $this->assertEquals($expectedVersion, $infoDto->getVersion());
         $this->assertEquals($expectedSupportedCodes, $infoDto->getSupportedCodes());
 
-        $this->assertCount(5, $infoDto->getProviders());
+        $this->assertCount(6, $infoDto->getProviders());
 
         $this->assertTrue((bool) env('KZ_PROVIDER'));
         $this->assertTrue((bool) env('TD_PROVIDER'));
         $this->assertTrue((bool) env('CI_PROVIDER'));
         $this->assertTrue((bool) env('SL_PROVIDER'));
-        // TODO! KC_PROVIDER (ERR_CONNECTION_TIMED_OUT)
-//        $this->assertTrue((bool) env('KC_PROVIDER'));
+        $this->assertTrue((bool) env('KC_PROVIDER'));
         $this->assertTrue((bool) env('CF_PROVIDER'));
 
         $expectedProviders = [
             'callfilter.app',
             'callinsider.com.ua',
-            // TODO! KC_PROVIDER (ERR_CONNECTION_TIMED_OUT)
-//            'kto-zvonil.com.ua',
+            'kto-zvonil.com.ua',
             'ktozvonil.net',
             'slick.ly',
             'telefonnyjdovidnyk.com.ua',

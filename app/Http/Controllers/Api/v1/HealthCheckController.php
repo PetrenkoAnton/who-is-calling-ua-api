@@ -7,7 +7,6 @@ namespace App\Http\Controllers\Api\v1;
 use App\Core\Services\HealthCheckService;
 use Illuminate\Http\JsonResponse;
 use Laravel\Lumen\Routing\Controller;
-use Symfony\Component\HttpFoundation\Response as BaseResponse;
 
 /**
  * @codeCoverageIgnore

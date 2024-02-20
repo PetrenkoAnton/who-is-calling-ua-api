@@ -46,9 +46,7 @@ class ProviderCollectionTest extends TestCase
                 [
                     'CF_PROVIDER',
                 ],
-                // TODO! KC_PROVIDER (ERR_CONNECTION_TIMED_OUT)
-                // 5
-                4,
+                5,
             ],
             [
                 [
