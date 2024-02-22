@@ -128,7 +128,7 @@ class CommentsDetailedDtoFactoryTest extends TestCase
         /** @var ProviderDto $providerDto */
         $providerDto = $dto->getProviders()->getItem(3);
         $error = $data['providers'][3]['error'];
-        $this->assertEquals($error['message'], $providerDto->getError()->getMessage());
-        $this->assertEquals($error['code'], $providerDto->getError()->getCode());
+        $this->assertEquals($error['message'], $providerDto->getError()?->getMessage());
+        $this->assertEquals($error['code'], $providerDto->getError()?->getCode());
     }
 }

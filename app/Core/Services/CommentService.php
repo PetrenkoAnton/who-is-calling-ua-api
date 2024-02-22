@@ -101,6 +101,9 @@ class CommentService
         );
     }
 
+    /**
+     * @return array{comments: string[]}
+     */
     private function getUniqueCommentsArray(): array
     {
         return ['comments' => $this->commentsService->getUniqueComments()];
