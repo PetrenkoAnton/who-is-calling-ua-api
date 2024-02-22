@@ -20,13 +20,13 @@ use Throwable;
 class CommentService
 {
     public function __construct(
-        private                    readonly ProviderCollection $searchProviders,
-        private                    readonly OutputPNFormatter $formatter,
+        private readonly ProviderCollection $searchProviders,
+        private readonly OutputPNFormatter $formatter,
         private CommentsCollection $commentsService,
-        private                    readonly CommentsDtoFactory $commentsDtoFactory,
-        private                    readonly CommentsDetailedDtoFactory $commentsDetailedDtoFactory,
-        private                    readonly ProviderDtoCollectionFactory $providerDtoCollectionFactory,
-        private                    readonly ProviderDtoFactory $providerDtoFactory,
+        private readonly CommentsDtoFactory $commentsDtoFactory,
+        private readonly CommentsDetailedDtoFactory $commentsDetailedDtoFactory,
+        private readonly ProviderDtoCollectionFactory $providerDtoCollectionFactory,
+        private readonly ProviderDtoFactory $providerDtoFactory,
     )
     {
     }
