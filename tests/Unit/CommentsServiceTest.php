@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
-use App\Core\Services\Internal\CommentsService;
+use App\Core\Collections\CommentsCollection;
 use PHPUnit\Framework\TestCase;
 
 class CommentsServiceTest extends TestCase
 {
-    private CommentsService $service;
+    private CommentsCollection $service;
 
     public function setUp(): void
     {
-        $this->service = new CommentsService();
+        $this->service = new CommentsCollection();
     }
 
     /**

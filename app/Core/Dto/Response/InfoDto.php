@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Dto;
+namespace App\Core\Dto\Response;
+
+use App\Core\Dto\Dto;
 
 /**
  * @method string getVersion()

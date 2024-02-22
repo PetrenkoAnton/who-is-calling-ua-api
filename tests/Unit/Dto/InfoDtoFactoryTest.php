@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
-use App\Core\Dto\InfoDto;
-use App\Core\Dto\InfoDtoFactory;
+use App\Core\Dto\Response\InfoDto;
+use App\Core\Dto\Response\InfoDtoFactory;
 use PHPUnit\Framework\TestCase;
 
 class InfoDtoFactoryTest extends TestCase

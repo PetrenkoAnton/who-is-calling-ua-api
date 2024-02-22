@@ -2404,6 +2404,61 @@
             "time": "2023-02-08T01:06:31+00:00"
         },
         {
+            "name": "petrenkoanton/key-normalizer",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PetrenkoAnton/key-normalizer.git",
+                "reference": "ed0442d85c04501689d4a113b0775574b6684374"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PetrenkoAnton/key-normalizer/zipball/ed0442d85c04501689d4a113b0775574b6684374",
+                "reference": "ed0442d85c04501689d4a113b0775574b6684374",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.7",
+                "phpunit/phpunit": "^9.0",
+                "psalm/plugin-phpunit": "^0.18.4",
+                "ramsey/coding-standard": "^2.1",
+                "squizlabs/php_codesniffer": "^3.8",
+                "vimeo/psalm": "^5.16"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "KeyNormalizer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Petrenko",
+                    "email": "antptrnk@gmail.com",
+                    "homepage": "https://github.com/petrenkoanton",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Converts snake_case to camelCase and vice versa",
+            "keywords": [
+                "camel case",
+                "helper",
+                "snake case"
+            ],
+            "support": {
+                "issues": "https://github.com/PetrenkoAnton/key-normalizer/issues",
+                "source": "https://github.com/PetrenkoAnton/key-normalizer/tree/v2.0.0"
+            },
+            "time": "2024-02-20T14:29:47+00:00"
+        },
+        {
             "name": "petrenkoanton/php-collection",
             "version": "v1.1.2",
             "source": {
@@ -2459,19 +2514,20 @@
         },
         {
             "name": "petrenkoanton/php-dto",
-            "version": "v1.1.2",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PetrenkoAnton/php-dto.git",
-                "reference": "2eb5a6ee45287b83bb2afafa17a8c71f71c94110"
+                "reference": "f97c57a07797d60a502c2174ba49a7cdda4cd095"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PetrenkoAnton/php-dto/zipball/2eb5a6ee45287b83bb2afafa17a8c71f71c94110",
-                "reference": "2eb5a6ee45287b83bb2afafa17a8c71f71c94110",
+                "url": "https://api.github.com/repos/PetrenkoAnton/php-dto/zipball/f97c57a07797d60a502c2174ba49a7cdda4cd095",
+                "reference": "f97c57a07797d60a502c2174ba49a7cdda4cd095",
                 "shasum": ""
             },
             "require": {
+                "petrenkoanton/key-normalizer": "^2.0",
                 "petrenkoanton/php-collection": "^1.0",
                 "php": "^8.1"
             },
@@ -2508,9 +2564,9 @@
             ],
             "support": {
                 "issues": "https://github.com/PetrenkoAnton/php-dto/issues",
-                "source": "https://github.com/PetrenkoAnton/php-dto/tree/v1.1.2"
+                "source": "https://github.com/PetrenkoAnton/php-dto/tree/v1.2.0"
             },
-            "time": "2024-01-26T20:03:54+00:00"
+            "time": "2024-02-20T17:05:31+00:00"
         },
         {
             "name": "phpoption/phpoption",

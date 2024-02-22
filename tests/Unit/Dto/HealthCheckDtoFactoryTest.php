@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
-use App\Core\Dto\HealthCheckDto;
-use App\Core\Dto\HealthCheckDtoFactory;
+use App\Core\Dto\Response\HealthCheckDto;
+use App\Core\Dto\Response\HealthCheckDtoFactory;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Response as BaseResponse;
 

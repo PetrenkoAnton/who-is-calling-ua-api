@@ -10,7 +10,7 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class Dto extends BaseDto implements Arrayable
 {
-    public function toArray(KeyCase $keyCase = KeyCase::SNAKE_CASE): array
+    public function toArray(KeyCase $keyCase = KeyCase::CAMEL_CASE): array
     {
         return parent::toArray($keyCase);
     }

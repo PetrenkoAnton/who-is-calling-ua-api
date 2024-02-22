@@ -52,7 +52,7 @@ class Handler extends ExceptionHandler
                 break;
             default:
                 $message = getenv('APP_DEBUG', true)
-                    ? $exception->getMessage()
+                    ? sprintf('%s | %s', $exception->getMessage() ?: '_', $exception->getTraceAsString())
                     : 'Internal server error';
                 $code = 500;
 

@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Services;
 
-use App\Core\Dto\InfoDto;
+use App\Core\Dto\Response\InfoDto;
 use App\Core\Services\InfoService;
 use App\Exceptions\Internal\InternalException;
 use Dto\KeyCase;
 use Tests\Support\VersionRenameHelper;
 use Tests\TestCase;
-
 use function config;
 use function env;
 use function file_get_contents;

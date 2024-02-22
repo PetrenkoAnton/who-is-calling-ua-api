@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Core\Dto\InfoDto;
+use App\Core\Dto\Response\InfoDto;
 use App\Core\Services\InfoService;
 use Laravel\Lumen\Routing\Controller;
 

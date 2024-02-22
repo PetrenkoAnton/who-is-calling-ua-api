@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Services\Internal;
+namespace App\Core\Collections;
 
 use function array_unique;
 use function array_values;
 
-class CommentsService
+class CommentsCollection
 {
     /**
      * @var array<string>

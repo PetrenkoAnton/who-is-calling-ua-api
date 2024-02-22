@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Services;
 
+use App\Core\Collections\CommentsCollection;
 use App\Core\Formatters\OutputPNFormatter;
 use App\Core\ProviderEnum;
 use App\Core\Providers\CFProvider;
@@ -13,8 +14,7 @@ use App\Core\Providers\KZProvider;
 use App\Core\Providers\ProviderCollection;
 use App\Core\Providers\SLProvider;
 use App\Core\Providers\TDProvider;
-use App\Core\Services\Internal\CommentsService;
-use App\Core\Services\SearchService;
+use App\Core\Services\CommentService;
 use Exception;
 use Tests\TestCase;
 
@@ -93,10 +93,10 @@ class SearchServiceTest extends TestCase
             $providerTD,
         );
 
-        $service = new SearchService(
+        $service = new CommentService(
             $providerCollection,
             $this->app->make(OutputPNFormatter::class),
-            $this->app->make(CommentsService::class),
+            $this->app->make(CommentsCollection::class),
         );
 
         $actual = $service->search($pn, $useCache);
@@ -250,10 +250,10 @@ class SearchServiceTest extends TestCase
             $providerTD,
         );
 
-        $service = new SearchService(
+        $service = new CommentService(
             $providerCollection,
             $this->app->make(OutputPNFormatter::class),
-            $this->app->make(CommentsService::class),
+            $this->app->make(CommentsCollection::class),
         );
 
         $actual = $service->search($pn, false);
