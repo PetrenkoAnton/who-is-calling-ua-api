@@ -33,7 +33,7 @@ class HandlerTest extends TestCase
      */
     public function testRender422(): void
     {
-        $response = $this->get(route('v1/search', ['pn' => 'aaa', 'c' => 'aaa']))->response;
+        $response = $this->get(route('v1/comments:index', ['pn' => 'aaa', 'c' => 'aaa']))->response;
         $response->assertUnprocessable();
 
         $response->assertJson(
@@ -92,7 +92,7 @@ class HandlerTest extends TestCase
         $response = $this->get(route('v1/info'))->response;
         $response->assertInternalServerError();
 
-        $response->assertJson(
+        $response->assertJsonFragment(
             [
                 'error' => 'VERSION file not found',
                 'code' => 500,

@@ -12,7 +12,7 @@ use App\Core\Dto\Response\CommentsDetailedDto\ProviderDto\ErrorDto;
  * @method string getUrl()
  * @method string getCode()
  * @method string[] getComments()
- * @method ?ProviderDtoCollection getError()
+ * @method ErrorDto|null getError()
  */
 class ProviderDto extends Dto
 {

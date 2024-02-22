@@ -18,11 +18,10 @@ class SearchControllerCest
      */
     public function getValidSearch(ApiTester $apiTester, Example $example): void
     {
-        $apiTester->sendGet(sprintf('/v1/search?pn=%s&c=%d', $example['pn'], $example['cache']));
+        $apiTester->sendGet(sprintf('/v1/comments_detailed?pn=%s', $example['pn']));
         $apiTester->seeResponseCodeIs(200);
         $apiTester->seeResponseMatchesJsonType([
             'pn' => 'string',
-            'cache' => 'boolean',
             'comments' => 'array',
             'providers' => [
                 [
@@ -36,7 +35,6 @@ class SearchControllerCest
         ]);
         $apiTester->seeResponseContainsJson([
             'pn' => $example['pnResponse'],
-            'cache' => $example['cacheResponse'],
             'providers' => [
                 [
                     'name' => 'telefonnyjdovidnyk.com.ua',
@@ -81,15 +79,11 @@ class SearchControllerCest
         return [
             [
                 'pn' => '680719969',
-                'cache' => 0,
                 'pnResponse' => '068 071-99-69',
-                'cacheResponse' => false,
             ],
             [
                 'pn' => '680719969',
-                'cache' => 1,
                 'pnResponse' => '068 071-99-69',
-                'cacheResponse' => true,
             ],
         ];
     }
@@ -100,7 +94,7 @@ class SearchControllerCest
      */
     public function getInvalidSearch(ApiTester $apiTester, Example $example): void
     {
-        $apiTester->sendGet(sprintf('/v1/search?pn=%s&c=%s', $example['pn'], $example['c']));
+        $apiTester->sendGet(sprintf('/v1/comments_detailed?pn=%s&c=%s', $example['pn'], $example['c']));
         $apiTester->seeResponseCodeIs(422);
         $apiTester->seeResponseMatchesJsonType([
             'error' => [
@@ -111,20 +105,18 @@ class SearchControllerCest
                     ],
                 ],
             ],
+            'code' => 'integer',
         ]);
         $apiTester->seeResponseContainsJson([
             'error' => [
                 'validation' => [
-                    [
-                        'attribute' => 'c',
-                        'info' => 'The c field must be true or false.',
-                    ],
                     [
                         'attribute' => 'pn',
                         'info' => $example['error'],
                     ],
                 ],
             ],
+            'code' => 422,
         ]);
     }
 

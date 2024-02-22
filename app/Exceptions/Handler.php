@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Exceptions;
 
+use App\Exceptions\Internal\InternalException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
@@ -52,7 +53,7 @@ class Handler extends ExceptionHandler
                 break;
             default:
                 $message = getenv('APP_DEBUG', true)
-                    ? sprintf('%s | %s', $exception->getMessage() ?: '_', $exception->getTraceAsString())
+                    ? $exception->getMessage()
                     : 'Internal server error';
                 $code = 500;
 

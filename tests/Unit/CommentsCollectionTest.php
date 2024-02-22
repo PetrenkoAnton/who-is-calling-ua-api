@@ -7,7 +7,7 @@ namespace Tests\Unit;
 use App\Core\Collections\CommentsCollection;
 use PHPUnit\Framework\TestCase;
 
-class CommentsServiceTest extends TestCase
+class CommentsCollectionTest extends TestCase
 {
     private CommentsCollection $service;
 

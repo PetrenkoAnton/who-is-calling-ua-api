@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit;
+namespace Tests\Unit\Dto\Response;
 
 use App\Core\Dto\Response\HealthCheckDto;
 use App\Core\Dto\Response\HealthCheckDtoFactory;

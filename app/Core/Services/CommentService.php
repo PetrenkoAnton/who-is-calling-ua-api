@@ -82,15 +82,14 @@ class CommentService
                 ];
             }
 
-            $providers->add($this->providerDtoFactory->create(
-                [
+            $providers->add($this->providerDtoFactory->create([
                     'name' => $provider->getEnum()->value,
                     'url' => $provider->getUrl($pn),
                     'code' => $provider->getEnum()->name,
                     'comments' => $comments,
                     'error' => $error,
-                ]
-            ));
+                ])
+            );
         }
 
         Cache::set($pn, $comments = $this->getUniqueCommentsArray());

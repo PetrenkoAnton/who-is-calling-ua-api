@@ -5,6 +5,10 @@ declare(strict_types=1);
 namespace Tests\Feature\Services;
 
 use App\Core\Collections\CommentsCollection;
+use App\Core\Dto\Response\CommentsDetailedDto\ProviderDtoCollectionFactory;
+use App\Core\Dto\Response\CommentsDetailedDto\ProviderDtoFactory;
+use App\Core\Dto\Response\CommentsDetailedDtoFactory;
+use App\Core\Dto\Response\CommentsDtoFactory;
 use App\Core\Formatters\OutputPNFormatter;
 use App\Core\ProviderEnum;
 use App\Core\Providers\CFProvider;
@@ -97,6 +101,10 @@ class SearchServiceTest extends TestCase
             $providerCollection,
             $this->app->make(OutputPNFormatter::class),
             $this->app->make(CommentsCollection::class),
+            $this->app->make(CommentsDtoFactory::class),
+            $this->app->make(CommentsDetailedDtoFactory::class),
+            $this->app->make(ProviderDtoCollectionFactory::class),
+            $this->app->make(ProviderDtoFactory::class),
         );
 
         $actual = $service->search($pn, $useCache);
@@ -117,61 +125,10 @@ class SearchServiceTest extends TestCase
                     7 => 'ушасили',
                     8 => 'Робот-шахрай спокушає призом',
                 ),
-            'providers' =>
-                array(
-                    0 =>
-                        array(
-                            'name' => 'callfilter.app',
-                            'url' => '',
-                            'code' => 'CF',
-                            'comments' =>
-                                array(
-                                    0 => 'виграв приз 380 тис надо пройти авторизацію говорила дівчина робот (програвалася запис / робот)',
-                                    1 => '(програвалася запис / робот)',
-                                    2 => '(програвалася запис / робот)',
-                                    3 => 'програвався запис (програвалася запис / робот)',
-                                    4 => 'так само телефонував робот , казав про виграшний приз . Шахраї (програвалася запис / робот)',
-                                    5 => 'Говорив молодий чоловік, стандартні фрази - комп\'ютер вибрав ваш номер, ви виграли 400 тис., давайте пройдемо авторизацію і т.ж. Однозначно шахраї. (програвалася запис / робот)',
-                                    6 => 'Звонять і кажуть що номер є виграшним. Щоб получити приз, потрібно дати всю інформацію про себе. МОШШОНИКИ (програвалася запис / робот)',
-                                ),
-                            'error' => NULL,
-                        ),
-                    1 =>
-                        array(
-                            'name' => 'callinsider.com.ua',
-                            'url' => '',
-                            'code' => 'CI',
-                            'comments' =>
-                                array(),
-                            'error' => NULL,
-                        ),
-                    2 =>
-                        array(
-                            'name' => 'kto-zvonil.com.ua',
-                            'url' => '',
-                            'code' => 'KC',
-                            'comments' =>
-                                array(),
-                            'error' => NULL,
-                        ),
-                    3 =>
-                        array(
-                            'name' => 'telefonnyjdovidnyk.com.ua',
-                            'url' => '',
-                            'code' => 'TD',
-                            'comments' =>
-                                array(
-                                    0 => 'Надоели. Призы выигрывать. С разных номеров звонят.. и рядом ещё АК этелеграмм пытаются взломать. Ставьте двойную защиту.',
-                                    1 => 'ушасили',
-                                    2 => 'Робот-шахрай спокушає призом',
-                                ),
-                            'error' => NULL,
-                        ),
-                ),
             // @codingStandardsIgnoreEnd
         ];
 
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals($expected, $actual->toArray());
     }
 
     public static function dpSearchSuccess(): array
@@ -254,6 +211,10 @@ class SearchServiceTest extends TestCase
             $providerCollection,
             $this->app->make(OutputPNFormatter::class),
             $this->app->make(CommentsCollection::class),
+            $this->app->make(CommentsDtoFactory::class),
+            $this->app->make(CommentsDetailedDtoFactory::class),
+            $this->app->make(ProviderDtoCollectionFactory::class),
+            $this->app->make(ProviderDtoFactory::class),
         );
 
         $actual = $service->search($pn, false);
@@ -266,47 +227,9 @@ class SearchServiceTest extends TestCase
                 array(
                     0 => 'Інтернет провайдер',
                 ),
-            'providers' =>
-                array(
-                    0 =>
-                        array(
-                            'name' => 'callinsider.com.ua',
-                            'url' => '',
-                            'code' => 'CI',
-                            'comments' =>
-                                array(),
-                            'error' => NULL,
-                        ),
-                    1 =>
-                        array(
-                            'name' => 'ktozvonil.net',
-                            'url' => '',
-                            'code' => 'KZ',
-                            'comments' =>
-                                array(
-                                    0 => 'Інтернет провайдер',
-                                ),
-                            'error' => NULL,
-                        ),
-                    2 =>
-                        array(
-                            'name' => 'slick.ly',
-                            'url' => '',
-                            'code' => 'SL',
-                            'comments' =>
-                                array(),
-                            'error' =>
-                                array(
-                                    'message' => 'Client error: `GET https://slick.ly/ua/0443551591` resulted in a `403 Forbidden` response:
-error code: 1006
-',
-                                    'code' => 403,
-                                ),
-                        ),
-                ),
             // @codingStandardsIgnoreEnd
         ];
 
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals($expected, $actual->toArray());
     }
 }

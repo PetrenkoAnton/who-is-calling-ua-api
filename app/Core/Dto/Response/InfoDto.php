@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Core\Dto\Response;
 
 use App\Core\Dto\Dto;
+use Dto\KeyCase;
 
 /**
  * @method string getVersion()
@@ -22,4 +23,9 @@ class InfoDto extends Dto
      * @var int[]
      */
     protected array $supportedCodes;
+
+    public function toArray(KeyCase $keyCase = KeyCase::SNAKE_CASE): array
+    {
+        return parent::toArray($keyCase);
+    }
 }

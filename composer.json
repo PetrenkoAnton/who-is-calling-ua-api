@@ -16,7 +16,7 @@
         "imangazaliev/didom": "^2.0",
         "laravel/lumen-framework": "^10.0",
         "petrenkoanton/php-collection": "^1.0",
-        "petrenkoanton/php-dto": "^1.1"
+        "petrenkoanton/php-dto": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",
