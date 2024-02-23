@@ -8,6 +8,7 @@ use App\Core\Dto\Response\HealthCheckDto;
 use App\Core\Dto\Response\HealthCheckDtoFactory;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response as BaseResponse;
+
 use function time;
 
 class HealthCheckService

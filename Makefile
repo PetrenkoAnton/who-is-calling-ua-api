@@ -76,3 +76,6 @@ phpcs:
 doc:
 	apidoc -c ./doc/v1/apidoc.json -i ./doc/v1 -o ./public/doc
 .PHONY: doc
+
+check: test-c
+.PHONY: check
