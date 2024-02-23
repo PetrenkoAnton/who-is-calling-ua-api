@@ -33,11 +33,11 @@ class CommentService
     public function search(string $pn, bool $useCache = true): CommentsDto
     {
         if (!$useCache) {
-            Cache::delete($pn);
+            Cache::forget($pn);
         }
 
         if ($cache = Cache::has($pn)) {
-            $comments = Cache::get($pn);
+            $uniqueComments = Cache::get($pn);
         } else {
             foreach ($this->searchProviders->getEnabled()->getItems() as $provider) {
                 /** @var ProviderInterface $provider */
@@ -47,15 +47,16 @@ class CommentService
                 }
             }
 
-            $comments = $this->getUniqueCommentsArray();
+            $uniqueComments = $this->commentsService->getUniqueComments();
 
-            Cache::set($pn, $comments);
+            Cache::set($pn, $uniqueComments);
         }
 
         $data = [
             'pn' => $this->formatter->format($pn),
             'cache' => $cache,
-        ] + $comments;
+            'comments' => $uniqueComments,
+        ];
 
         return $this->commentsDtoFactory->create($data);
     }
@@ -90,20 +91,14 @@ class CommentService
             ]));
         }
 
-        Cache::set($pn, $comments = $this->getUniqueCommentsArray());
+        $uniqueComments = $this->commentsService->getUniqueComments();
 
-        return $this->commentsDetailedDtoFactory->create(
-            ['pn' => $this->formatter->format($pn)]
-            + $comments
-            + ['providers' => $providers],
-        );
-    }
+        Cache::set($pn, $uniqueComments);
 
-    /**
-     * @return array{comments: string[]}
-     */
-    private function getUniqueCommentsArray(): array
-    {
-        return ['comments' => $this->commentsService->getUniqueComments()];
+        return $this->commentsDetailedDtoFactory->create([
+            'pn' => $this->formatter->format($pn),
+            'comments' => $uniqueComments,
+            'providers' => $providers,
+        ]);
     }
 }
