@@ -37,7 +37,7 @@ class Handler extends ExceptionHandler
     {
         switch ($exception) {
             case $exception instanceof NotFoundHttpException:
-                $message = 'Not found';
+                $message = 'Not Found';
                 $code = 404;
 
                 break;
@@ -54,7 +54,7 @@ class Handler extends ExceptionHandler
             default:
                 $message = getenv('APP_DEBUG', true)
                     ? $exception->getMessage()
-                    : 'Internal server error';
+                    : 'Internal Server Error';
                 $code = 500;
 
                 break;

@@ -22,7 +22,7 @@ class HandlerTest extends TestCase
 
         $response->assertJson(
             [
-                'error' => 'Not found',
+                'error' => 'Not Found',
                 'code' => 404,
             ],
         );
@@ -82,7 +82,7 @@ class HandlerTest extends TestCase
 
         $response->assertJson(
             [
-                'error' => 'Internal server error',
+                'error' => 'Internal Server Error',
                 'code' => 500,
             ],
         );

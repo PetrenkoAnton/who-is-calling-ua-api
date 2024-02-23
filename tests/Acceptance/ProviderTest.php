@@ -65,7 +65,7 @@ class ProviderTest extends TestCase
                     $this->markTestIncomplete(sprintf('Blocked (403): %s', $url));
                     // no break
                 case 404:
-                    $this->fail(sprintf('Not found (404): %s', $url));
+                    $this->fail(sprintf('Not Found (404): %s', $url));
                     // no break
                 default:
                     $this->fail(sprintf('Error (%d): %s', $e->getCode(), $e->getMessage()));
