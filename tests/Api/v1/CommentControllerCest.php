@@ -10,13 +10,64 @@ use Tests\Support\ApiTester;
 use function sprintf;
 use function substr;
 
-class SearchControllerCest
+class CommentControllerCest
 {
     /**
      * @group smoke
-     * @dataProvider dpGetValidSearch
+     * @dataProvider dpGetSearchSuccess
      */
-    public function getValidSearch(ApiTester $apiTester, Example $example): void
+    public function getSearchSuccess(ApiTester $apiTester, Example $example): void
+    {
+        $apiTester->sendGet(sprintf('/v1/comments?pn=%s&c=%s', $example['pn'], (string) $example['c']));
+        $apiTester->seeResponseCodeIs(200);
+        $apiTester->seeResponseMatchesJsonType([
+            'pn' => 'string',
+            'cache' => 'boolean',
+            'comments' => 'array',
+        ]);
+        $apiTester->seeResponseContainsJson([
+            'pn' => $example['pnResponse'],
+            'cache' => (bool) $example['c'],
+        ]);
+    }
+
+    /**
+     * @group smoke
+     * @dataProvider dpValidationErrors
+     */
+    public function getSearchWithValidationError(ApiTester $apiTester, Example $example): void
+    {
+        $apiTester->sendGet(sprintf('/v1/comments?pn=%s&c=%s', $example['pn'], $example['c']));
+        $apiTester->seeResponseCodeIs(422);
+        $apiTester->seeResponseMatchesJsonType([
+            'error' => [
+                'validation' => [
+                    [
+                        'attribute' => 'string',
+                        'info' => 'string',
+                    ],
+                ],
+            ],
+            'code' => 'integer',
+        ]);
+        $apiTester->seeResponseContainsJson([
+            'error' => [
+                'validation' => [
+                    [
+                        'attribute' => 'pn',
+                        'info' => $example['error'],
+                    ],
+                ],
+            ],
+            'code' => 422,
+        ]);
+    }
+
+    /**
+     * @group smoke
+     * @dataProvider dpGetSearchSuccess
+     */
+    public function getDetailedSearchSuccess(ApiTester $apiTester, Example $example): void
     {
         $apiTester->sendGet(sprintf('/v1/comments_detailed?pn=%s', $example['pn']));
         $apiTester->seeResponseCodeIs(200);
@@ -74,15 +125,17 @@ class SearchControllerCest
         ]);
     }
 
-    public function dpGetValidSearch(): array
+    public function dpGetSearchSuccess(): array
     {
         return [
             [
                 'pn' => '680719969',
+                'c' => 0,
                 'pnResponse' => '068 071-99-69',
             ],
             [
                 'pn' => '680719969',
+                'c' => 1,
                 'pnResponse' => '068 071-99-69',
             ],
         ];
@@ -90,9 +143,9 @@ class SearchControllerCest
 
     /**
      * @group smoke
-     * @dataProvider dpGetInvalidSearch
+     * @dataProvider dpValidationErrors
      */
-    public function getInvalidSearch(ApiTester $apiTester, Example $example): void
+    public function getDetailedSearchWithValidationError(ApiTester $apiTester, Example $example): void
     {
         $apiTester->sendGet(sprintf('/v1/comments_detailed?pn=%s&c=%s', $example['pn'], $example['c']));
         $apiTester->seeResponseCodeIs(422);
@@ -120,7 +173,7 @@ class SearchControllerCest
         ]);
     }
 
-    public function dpGetInvalidSearch(): array
+    public function dpValidationErrors(): array
     {
         return [
             [
