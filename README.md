@@ -9,7 +9,7 @@
 [![PHPStan Level 8](https://img.shields.io/badge/PHPStan-Level%208-brightgreen)](https://github.com/petrenkoanton/who-is-calling-ua-api)
 [![Build Status](https://github.com/petrenkoanton/who-is-calling-ua-api/workflows/coding-style/badge.svg)](https://github.com/petrenkoanton/who-is-calling-ua-api/actions)
 
-[Installation](#installation) | [Functionality](#functionality) | [Usage](#usage) | [Other commands](#other-commands) | [License](#license) | [Related projects](#related-projects)
+[Installation](#installation) | [Functionality](#functionality) | [Usage](#usage) | [Other commands](#other-commands) | [License](#license) | [Used packages](#used-packages)
 
 ## Installation
 
@@ -225,7 +225,7 @@ make down
 
 The [who-is-calling-ua-api](https://github.com/PetrenkoAnton/who-is-calling-ua-api) project is open-sourced software licensed under the [MIT license](./LICENSE).
 
-## Related projects
+## Used packages
 
 - [PetrenkoAnton/key-normalizer](https://github.com/PetrenkoAnton/key-normalizer)
 - [PetrenkoAnton/php-collection](https://github.com/PetrenkoAnton/php-collection)
