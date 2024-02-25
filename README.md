@@ -206,8 +206,6 @@ Response:
 
 ## Other commands
 
-[Makefile](Makefile)
-
 ### Run linters and tests
 ```bash
 make check
