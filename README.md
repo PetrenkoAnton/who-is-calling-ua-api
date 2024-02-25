@@ -1,11 +1,9 @@
 # who-is-calling-ua-api
 
-[![PHP Version](https://img.shields.io/packagist/php-v/petrenkoanton/who-is-calling-ua-api)](https://packagist.org/packages/petrenkoanton/who-is-calling-ua-api)
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/petrenkoanton/who-is-calling-ua-api.svg)](https://packagist.org/packages/petrenkoanton/who-is-calling-ua-api)
-[![Total Downloads](https://img.shields.io/packagist/dt/petrenkoanton/who-is-calling-ua-api.svg)](https://packagist.org/packages/petrenkoanton/who-is-calling-ua-api)
-[![License](https://img.shields.io/packagist/l/petrenkoanton/who-is-calling-ua-api)](https://packagist.org/packages/petrenkoanton/who-is-calling-ua-api)
+![GitHub Latest Release)](https://img.shields.io/github/v/release/petrenkoanton/who-is-calling-ua-api?logo=github)
+[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](LICENSE)
 
-[![PHP Composer](https://github.com/petrenkoanton/who-is-calling-ua-api/actions/workflows/tests.yml/badge.svg)](https://github.com/petrenkoanton/who-is-calling-ua-api/actions/workflows/tests.yml)
+[![Build Status](https://github.com/petrenkoanton/who-is-calling-ua-api/workflows/tests/badge.svg)](https://github.com/petrenkoanton/who-is-calling-ua-api/actions)
 [![Coverage Status](https://coveralls.io/repos/github/PetrenkoAnton/who-is-calling-ua-api/badge.svg?branch=main)](https://coveralls.io/github/PetrenkoAnton/who-is-calling-ua-api?branch=main)
 [![type-coverage](https://shepherd.dev/github/petrenkoanton/who-is-calling-ua-api/coverage.svg)](https://shepherd.dev/github/petrenkoanton/who-is-calling-ua-api)
 [![PHPStan Level 8](https://img.shields.io/badge/PHPStan-Level%208-brightgreen)](https://github.com/petrenkoanton/who-is-calling-ua-api)
