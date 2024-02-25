@@ -9,7 +9,7 @@
 [![PHPStan Level 8](https://img.shields.io/badge/PHPStan-Level%208-brightgreen)](https://github.com/petrenkoanton/who-is-calling-ua-api)
 [![Build Status](https://github.com/petrenkoanton/who-is-calling-ua-api/workflows/coding-style/badge.svg)](https://github.com/petrenkoanton/who-is-calling-ua-api/actions)
 
-[Installation](#installation) | [Functionality](#functionality) | [Usage](#usage) | | [Other commands](#other-commands) | [License](#license) | [Related projects](#related-projects)
+[Installation](#installation) | [Functionality](#functionality) | [Usage](#usage) | [Other commands](#other-commands) | [License](#license) | [Related projects](#related-projects)
 
 ## Installation
 
