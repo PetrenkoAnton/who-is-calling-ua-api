@@ -10,12 +10,18 @@ step:
 	@$c
 .PHONY: step
 
+clear:
+	@docker-compose down
+	@rm -rf vendor
+.PHONY: clear
+
 init:
 	$(MAKE) step c="cp ./.env.example ./.env"
 	$(MAKE) step c="docker-compose -f ./docker-compose.yml up -d"
 	$(MAKE) step c="docker exec -it ${APP_NAME}_php composer install --optimize-autoloader"
 	$(MAKE) step c="docker exec -it ${APP_NAME}_php php artisan key:generate"
 	$(MAKE) step c="cp ./phpstan.neon.dist ./phpstan.neon"
+	$(MAKE) step c="apidoc -c ./doc/v1/apidoc.json -i ./doc/v1 -o ./public/doc"
 .PHONY: init
 
 inside:
@@ -69,10 +75,6 @@ cest-smoke:
 test-smoke:
 	docker exec -it ${APP_NAME}_php ./vendor/bin/phpunit --group smoke --display-skipped --display-incomplete --testdox
 .PHONY: test-smoke
-
-test-xd:
-	docker exec -it ${APP_NAME}_php ./vendor/bin/phpunit --group xd
-.PHONY: test-xd
 
 phpstan:
 	docker exec -it ${APP_NAME}_php ./vendor/bin/phpstan --memory-limit=256M --error-format=table -v
