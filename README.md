@@ -87,6 +87,10 @@ make down
 
 [localhost:8080/doc](http://localhost:8080/doc/index.html)
 
+### Postman collection
+
+[collection.json](who-is-calling-ua-api-local.postman_collection.json)
+
 ### Short examples
 
 Request:
