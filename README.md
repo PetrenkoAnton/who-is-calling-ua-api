@@ -9,7 +9,7 @@
 [![PHPStan Level 8](https://img.shields.io/badge/PHPStan-Level%208-brightgreen)](https://github.com/petrenkoanton/who-is-calling-ua-api)
 [![Build Status](https://github.com/petrenkoanton/who-is-calling-ua-api/workflows/coding-style/badge.svg)](https://github.com/petrenkoanton/who-is-calling-ua-api/actions)
 
-[Installation](#installation) | [Functionality](#functionality) | [Usage](#usage) | | [For developers](#for-developers) | [License](#license) | [Related projects](#related-projects)
+[Installation](#installation) | [Functionality](#functionality) | [Usage](#usage) | | [Other commands](#other-commands) | [License](#license) | [Related projects](#related-projects)
 
 ## Installation
 
@@ -46,11 +46,6 @@ KZ_PROVIDER=1
 SL_PROVIDER=1
 # telefonnyjdovidnyk.com.ua
 TD_PROVIDER=1
-```
-
-### Close app
-```bash
-make down
 ```
 
 ## Functionality
@@ -209,7 +204,9 @@ Response:
 }
 ```
 
-## For developers
+## Other commands
+
+[Makefile](Makefile)
 
 ### Run linters and tests
 ```bash
@@ -219,6 +216,11 @@ make check
 ### Go inside of the container
 ```bash
 make inside
+```
+
+### Close app
+```bash
+make down
 ```
 
 ## License
