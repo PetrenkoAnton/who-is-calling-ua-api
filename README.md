@@ -75,8 +75,8 @@ make down
 | Providers | Codes              |
 |:----------|:-------------------|
 | Vodafone  | 50, 66, 95, 99     |
-| lifecell  | 63, 73, 93         |
-| kyivstar  | 67, 68, 96, 97, 98 |
+| Lifecell  | 63, 73, 93         |
+| Kyivstar  | 67, 68, 96, 97, 98 |
 | etc       | 44                 |
 
 ## Usage
