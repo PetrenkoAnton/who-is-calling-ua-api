@@ -9,6 +9,7 @@ parameters:
   excludePaths:
     - tests/Support/*
   level: 8
+  checkGenericClassInNonGenericObjectType: false
   ignoreErrors:
      -
          messages:

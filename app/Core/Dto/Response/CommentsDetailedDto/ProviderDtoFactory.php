@@ -7,7 +7,7 @@ namespace App\Core\Dto\Response\CommentsDetailedDto;
 class ProviderDtoFactory
 {
     /**
-     * @param array{name: string, url: string, code: string, comments: string[], error: (array{message: string, code: integer})|null} $data
+     * @param array{name: string, url: string, code: string, comments: string[], error: (array{message: string, code: int})|null} $data
      */
     public function create(array $data): ProviderDto
     {

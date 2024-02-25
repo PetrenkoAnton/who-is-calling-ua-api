@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace App\Console;
 
+use App\Console\Commands\KeyGenerateCommand;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
     /**
-     * @var array<string>
+     * @var string[] $commands
      */
     // phpcs:ignore SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
-    protected $commands = [];
+    protected $commands = [
+        KeyGenerateCommand::class,
+    ];
 }

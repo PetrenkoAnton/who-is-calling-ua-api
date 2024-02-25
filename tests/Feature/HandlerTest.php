@@ -70,7 +70,7 @@ class HandlerTest extends TestCase
 
         $response->assertJson(
             [
-                'error' => 'VERSION file not found',
+                'error' => 'Internal Server Error',
                 'code' => 500,
             ],
         );

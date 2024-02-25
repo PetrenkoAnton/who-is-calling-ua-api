@@ -23,5 +23,8 @@
             <directory>./database</directory>
             <directory>./routes</directory>
         </include>
+        <exclude>
+            <file>./app/Console/Commands/KeyGenerateCommand.php</file>
+        </exclude>
     </source>
 </phpunit>

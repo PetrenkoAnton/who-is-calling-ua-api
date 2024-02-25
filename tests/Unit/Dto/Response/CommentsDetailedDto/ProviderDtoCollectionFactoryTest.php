@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Dto\Response\Comment;
+namespace Tests\Unit\Dto\Response\CommentsDetailedDto;
 
 use App\Core\Dto\Response\CommentsDetailedDto\ProviderDtoCollection;
 use App\Core\Dto\Response\CommentsDetailedDto\ProviderDtoCollectionFactory;

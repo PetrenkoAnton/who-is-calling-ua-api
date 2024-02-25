@@ -5,8 +5,17 @@
 
 .DEFAULT_GOAL := inside
 
+step:
+	@echo "Run: [$(c)] --->"
+	@$c
+.PHONY: step
+
 init:
-	cp ./.env.example ./.env && cp ./phpstan.neon.dist ./phpstan.neon && echo "Created ./.env && ./.phpstan.neon files"
+	$(MAKE) step c="cp ./.env.example ./.env"
+	$(MAKE) step c="docker-compose -f ./docker-compose.yml up -d"
+	$(MAKE) step c="docker exec -it ${APP_NAME}_php composer install --optimize-autoloader"
+	$(MAKE) step c="docker exec -it ${APP_NAME}_php php artisan key:generate"
+	$(MAKE) step c="cp ./phpstan.neon.dist ./phpstan.neon"
 .PHONY: init
 
 inside:
@@ -77,5 +86,5 @@ doc:
 	apidoc -c ./doc/v1/apidoc.json -i ./doc/v1 -o ./public/doc
 .PHONY: doc
 
-check: test-c
+check: phpcs phpstan test-c cest
 .PHONY: check
