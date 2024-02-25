@@ -11,7 +11,7 @@
 [![PHPStan Level 8](https://img.shields.io/badge/PHPStan-Level%208-brightgreen)](https://github.com/petrenkoanton/who-is-calling-ua-api)
 [![Build Status](https://github.com/petrenkoanton/who-is-calling-ua-api/workflows/coding-style/badge.svg)](https://github.com/petrenkoanton/who-is-calling-ua-api/actions)
 
-[Installation](#installation) | [Functionality](#functionality) | [Usage](#usage) | [License](#license) | [Related projects](#related-projects)
+[Installation](#installation) | [Functionality](#functionality) | [Usage](#usage) | | [For developers](#for-developers) | [License](#license) | [Related projects](#related-projects)
 
 ## Installation
 
@@ -50,6 +50,11 @@ SL_PROVIDER=1
 TD_PROVIDER=1
 ```
 
+### Close app
+```bash
+make down
+```
+
 ## Functionality
 
 ### Providers
@@ -80,10 +85,6 @@ TD_PROVIDER=1
 
 ### apidoc
 
-```bash
-make doc
-```
-
 [localhost:8080/doc](http://localhost:8080/doc/index.html)
 
 ### Short examples
@@ -93,7 +94,6 @@ Request:
 **[GET]** http://localhost:8080/api/v1/comments?pn=672341456&c=0
 
 Response:
-
 ```json
 {
     "pn": "044 355-15-91",
@@ -119,7 +119,6 @@ Request:
 **[GET]** http://localhost:8080/api/v1/comments_detailed?pn=672341456
 
 Response:
-
 ```json
 {
     "pn": "044 355-15-91",
@@ -206,6 +205,18 @@ Response:
         }
     ]
 }
+```
+
+## For developers
+
+### Run linters and tests
+```bash
+make check
+```
+
+### Go inside of the container
+```bash
+make inside
 ```
 
 ## License
