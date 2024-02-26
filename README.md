@@ -5,7 +5,6 @@
 
 [![Build Status](https://github.com/petrenkoanton/who-is-calling-ua-api/workflows/tests/badge.svg)](https://github.com/petrenkoanton/who-is-calling-ua-api/actions)
 [![Coverage Status](https://coveralls.io/repos/github/PetrenkoAnton/who-is-calling-ua-api/badge.svg?branch=main)](https://coveralls.io/github/PetrenkoAnton/who-is-calling-ua-api?branch=main)
-[![type-coverage](https://shepherd.dev/github/petrenkoanton/who-is-calling-ua-api/coverage.svg)](https://shepherd.dev/github/petrenkoanton/who-is-calling-ua-api)
 [![PHPStan Level 8](https://img.shields.io/badge/PHPStan-Level%208-brightgreen)](https://github.com/petrenkoanton/who-is-calling-ua-api)
 [![Build Status](https://github.com/petrenkoanton/who-is-calling-ua-api/workflows/coding-style/badge.svg)](https://github.com/petrenkoanton/who-is-calling-ua-api/actions)
 
