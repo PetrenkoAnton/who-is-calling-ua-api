@@ -88,13 +88,13 @@ TD_PROVIDER=1
 
 Request:
 
-**[GET]** http://localhost:8080/api/v1/comments?pn=672341456&c=0
+**[GET]** http://localhost:8080/api/v1/comments?pn=672341456&c=1
 
 Response:
 ```json
 {
     "pn": "044 355-15-91",
-    "cache": false,
+    "cache": true,
     "comments": [
         "Надоели. Призы выигрывать. С разных номеров звонят.. и рядом ещё АК этелеграмм пытаются взломать. Ставьте двойную защиту.",
         "ушасили",
