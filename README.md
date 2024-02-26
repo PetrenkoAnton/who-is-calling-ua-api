@@ -82,7 +82,7 @@ TD_PROVIDER=1
 
 ### Postman collection
 
-[collection.json](who-is-calling-ua-api-local.postman_collection.json)
+[who-is-calling-ua-api-local.postman_collection.json](who-is-calling-ua-api-local.postman_collection.json)
 
 ### Short examples
 
