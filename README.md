@@ -1,6 +1,6 @@
 # who-is-calling-ua-api
 
-![GitHub Latest Release)](https://img.shields.io/github/v/release/petrenkoanton/who-is-calling-ua-api?logo=github)
+![GitHub Latest Release](https://img.shields.io/github/v/release/petrenkoanton/who-is-calling-ua-api?logo=github)
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](LICENSE)
 
 [![Build Status](https://github.com/petrenkoanton/who-is-calling-ua-api/workflows/tests/badge.svg)](https://github.com/petrenkoanton/who-is-calling-ua-api/actions)
@@ -227,6 +227,6 @@ The [who-is-calling-ua-api](https://github.com/PetrenkoAnton/who-is-calling-ua-a
 
 ## Used packages
 
-- [PetrenkoAnton/key-normalizer](https://github.com/PetrenkoAnton/key-normalizer)
-- [PetrenkoAnton/php-collection](https://github.com/PetrenkoAnton/php-collection)
 - [PetrenkoAnton/php-dto](https://github.com/PetrenkoAnton/php-dto)
+- [PetrenkoAnton/php-collection](https://github.com/PetrenkoAnton/php-collection)
+- [PetrenkoAnton/key-normalizer](https://github.com/PetrenkoAnton/key-normalizer)
