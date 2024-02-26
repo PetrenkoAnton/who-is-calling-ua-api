@@ -1,0 +1,64 @@
+{
+    "name": "petrenkoanton/who-is-calling-ua-api",
+    "description": "Who is calling UA API",
+    "keywords": [
+        "lumen",
+        "api",
+        "parser",
+        "calls"
+    ],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": "^8.3",
+        "guzzlehttp/guzzle": "^7.8",
+        "illuminate/redis": "^10.35",
+        "imangazaliev/didom": "^2.0",
+        "laravel/lumen-framework": "^10.0",
+        "petrenkoanton/php-collection": "^1.0",
+        "petrenkoanton/php-dto": "^2.0"
+    },
+    "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.13",
+        "fakerphp/faker": "^1.9.1",
+        "mockery/mockery": "^1.4.4",
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^10.0",
+        "squizlabs/php_codesniffer": "^3.8",
+        "codeception/codeception": "^5.0",
+        "codeception/module-asserts": "*",
+        "codeception/module-lumen": "^3.0",
+        "codeception/module-phpbrowser": "*",
+        "codeception/module-rest": "^3.3",
+        "php-coveralls/php-coveralls": "^2.7",
+        "ramsey/coding-standard": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        },
+        "exclude-from-classmap": [
+            "vendor/codeception/module-lumen/src/Codeception/Lib/Connector/Lumen/DummyKernel.php"
+        ],
+        "files": [
+            "tests/Support/DummyKernel.php"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

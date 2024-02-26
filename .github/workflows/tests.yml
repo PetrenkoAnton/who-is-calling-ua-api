@@ -1,0 +1,49 @@
+name: tests
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  tests:
+    name: PHPUnit + Code coverage
+    runs-on: ubuntu-latest
+    continue-on-error: false
+    services:
+      redis:
+        image: redis:latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup php
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          coverage: xdebug
+
+      - name: Install dependencies
+        uses: ramsey/composer-install@v2
+
+      - name: Init .env
+        run: cp .env.github-actions-testing .env
+
+      - name: PHPUnit + Code coverage
+        run: vendor/bin/phpunit --coverage-clover ./tests/_output/clover.xml
+
+#      - name: Coveralls.io
+#        env:
+#          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        run: |
+#          composer require php-coveralls/php-coveralls -n
+#          vendor/bin/php-coveralls --coverage_clover=./tests/_output/clover.xml -v --json_path=./tests/_output/coveralls-upload.json
+
+      - name: Codeception
+        run: vendor/bin/codecept run

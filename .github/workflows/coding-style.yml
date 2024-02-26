@@ -1,0 +1,43 @@
+name: coding-style
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  coding-style:
+    name: PHPStan + PHP_CodeSniffer
+    runs-on: ubuntu-latest
+    continue-on-error: false
+    services:
+      redis:
+        image: redis:latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup php
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+
+      - name: Install dependencies
+        uses: ramsey/composer-install@v2
+
+      - name: Generate ApiTesterActions.php
+        run: |
+          vendor/bin/codecept build
+          composer dump-autoload
+
+      - name: PHPStan
+        run: ./vendor/bin/phpstan --no-progress --memory-limit=256M
+
+      - name: PHP_CodeSniffer
+        run: ./vendor/bin/phpcs --no-cache

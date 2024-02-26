@@ -1,0 +1,18 @@
+parameters:
+  paths:
+    - app
+    - bootstrap
+    - config
+    - database
+    - routes
+    - tests
+  excludePaths:
+    - tests/Support/*
+  level: 8
+  checkGenericClassInNonGenericObjectType: false
+  ignoreErrors:
+     -
+         messages:
+              - "#type has no value type specified in iterable type array.#"
+              - "#with no value type specified in iterable type.#"
+         path: tests/*

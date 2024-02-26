@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         beStrictAboutChangesToGlobalState="true" beStrictAboutOutputDuringTests="true" colors="true"
+         cacheDirectory="tests/_output">
+    <testsuites>
+        <testsuite name="Acceptance">
+            <directory suffix="Test.php">./tests/Acceptance</directory>
+        </testsuite>
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./tests/Feature</directory>
+            <exclude>./tests/Feature/Providers/AbstractProviderTest.php</exclude>
+        </testsuite>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests/Unit</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory>./app</directory>
+            <directory>./bootstrap</directory>
+            <directory>./config</directory>
+            <directory>./database</directory>
+            <directory>./routes</directory>
+        </include>
+        <exclude>
+            <file>./app/Console/Commands/KeyGenerateCommand.php</file>
+        </exclude>
+    </source>
+</phpunit>

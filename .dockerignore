@@ -1,0 +1,7 @@
+.git
+.docker
+.dockerignore
+docker-compose.yml
+.idea
+.phpunit.result.cache
+Makefile
